@@ -36,6 +36,7 @@ if(isset($logged_user)==null){
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     
 
 <!-- <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -82,52 +83,76 @@ if(isset($logged_user)==null){
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" 
-            aria-expanded="true" aria-controls="collapseUtilities">
+            aria-expanded="true" aria-controls="collapseInbox">
             <i class="fas fa-fw fa-inbox"></i>
             <span>Inbox</span>
         </a>
        
     </li>
-    
+
     <li class="nav-item">
         
         <a class="nav-link collapsed" href="userpanel.php" 
-            aria-expanded="true" aria-controls="collapseTwo">
+            aria-expanded="true" aria-controls="collapseStatistics">
             <i class="fas fa-fw fa-cog"></i>
             <span>Statistics</span>
         </a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Applicant Profiles</span>
-        </a>
-       
-    </li>
 
     <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfiles"
+                    aria-expanded="true" aria-controls="collapseProfiles">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Applicant Profiles</span>
+                </a>
+                <div id="collapseProfiles" class="collapse" aria-labelledby="headingProfiles"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Profiles</a>
+                        <a class="collapse-item" href="#">Evaluation</a>
+                    </div>
+                </div>
+            </li>
+
+
+
+    <!-- <li class="nav-item">
         
         <a class="nav-link collapsed" href="accounts/qa-init.php" 
-            aria-expanded="true" aria-controls="collapseTwo" target="accounts_iframe">
+            aria-expanded="true" aria-controls="collapseQuestion" target="accounts_iframe">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Questionnaire</span>
         </a>
-    </li>
+    </li> -->
+
+    <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuestion"
+                    aria-expanded="true" aria-controls="collapseQuestion">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Questionnaire</span>
+                </a>
+                <div id="collapseQuestion" class="collapse" aria-labelledby="headingProfiles"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="accounts/qa-init.php">Questionnaire Builder</a>
+                        <a class="collapse-item" href="#">Requirements Builder</a>
+                    </div>
+                </div>
+            </li>
 
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" 
-            aria-expanded="true" aria-controls="collapseUtilities">
+            aria-expanded="true" aria-controls="collapseExport">
             <i class="fas fa-fw fa-save"></i>
             <span>CSV Export</span>
         </a>
        
     </li>
 
-    
+   
 
     
 
@@ -339,31 +364,18 @@ if(isset($logged_user)==null){
         <!-- End of Topbar -->
 
         <!-- iframe -->
-        <div class="container">
+        <!-- <div class="container">
           <div class="pos-f-t ml-12" style="height: 120vh">
           <iframe frameBorder=0 height=100% width=100% src="accounts/accounts-panel.php" name="accounts_iframe">
                           
                           
              </div>                    
-          </div>
+          </div> -->
        <!-- iframe end -->
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                                       
 
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
 
 <!-- ########################## old page  #############################3 -->
 
@@ -505,13 +517,24 @@ if(isset($logged_user)==null){
     </div> -->
     
  
-    <script src="js/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://localhost/thesis1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="https://localhost/thesis1/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Custom scripts for all pages-->
+    <script src="https://localhost/thesis1/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="https://localhost/thesis1/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://localhost/thesis1/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="https://localhost/thesis1/js/demo/datatables-demo.js"></script>
+
+   
 </body>
 </html>
