@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 29, 2021 at 12:32 PM
+-- Generation Time: Oct 13, 2021 at 02:58 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -123,7 +123,16 @@ CREATE TABLE `login_accounts` (
 INSERT INTO `login_accounts` (`id`, `username`, `password`, `confirmpassword`, `email_acct`, `acct_priv`, `game_id`) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@rustydev.com', NULL, NULL),
 (2, 'admina', 'bc5832de4d1698bcf6f07c366072a262892b4c25', 'bc5832de4d1698bcf6f07c366072a262892b4c25', 'admina@aol.com', NULL, NULL),
-(3, 'qwerty', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'qwerty@qwerty.com', NULL, NULL);
+(3, 'qwerty', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'qwerty@qwerty.com', NULL, NULL),
+(4, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(5, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(6, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(7, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(8, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(9, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(10, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(11, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
+(12, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -193,7 +202,24 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (49, 'admin', '2021-09-25 13:32:02'),
 (50, 'admin', '2021-09-26 22:24:47'),
 (51, 'admin', '2021-09-26 22:25:24'),
-(52, 'admin', '2021-09-26 22:35:03');
+(52, 'admin', '2021-09-26 22:35:03'),
+(53, 'admin', '2021-09-29 18:44:59'),
+(54, 'admin', '2021-09-29 18:47:32'),
+(55, 'admin', '2021-10-12 10:14:05'),
+(56, 'admin', '2021-10-12 11:40:39'),
+(57, 'admin', '2021-10-12 11:50:14'),
+(58, 'admin', '2021-10-12 14:58:00'),
+(59, 'admin', '2021-10-12 15:31:36'),
+(60, 'admin', '2021-10-12 15:40:56'),
+(61, 'admin', '2021-10-12 16:01:20'),
+(62, 'admin', '2021-10-12 16:06:13'),
+(63, 'admin', '2021-10-12 16:19:35'),
+(64, 'admin', '2021-10-12 17:47:18'),
+(65, 'admin', '2021-10-12 17:47:40'),
+(66, 'admin', '2021-10-12 17:51:38'),
+(67, 'admin', '2021-10-13 11:43:57'),
+(68, 'admin', '2021-10-13 11:45:52'),
+(69, 'admin', '2021-10-13 19:59:54');
 
 -- --------------------------------------------------------
 
@@ -282,13 +308,13 @@ ALTER TABLE `game_accounts`
 -- AUTO_INCREMENT for table `login_accounts`
 --
 ALTER TABLE `login_accounts`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
