@@ -79,6 +79,16 @@ if(isset($logged_user)==null){
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" 
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-inbox"></i>
+            <span>Inbox</span>
+        </a>
+       
+    </li>
+    
     <li class="nav-item">
         
         <a class="nav-link collapsed" href="userpanel.php" 
@@ -86,6 +96,15 @@ if(isset($logged_user)==null){
             <i class="fas fa-fw fa-cog"></i>
             <span>Statistics</span>
         </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" 
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Applicant Profiles</span>
+        </a>
+       
     </li>
 
     <li class="nav-item">
@@ -97,15 +116,20 @@ if(isset($logged_user)==null){
         </a>
     </li>
 
+
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" 
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-save"></i>
-            <span>Export to CSV</span>
+            <span>CSV Export</span>
         </a>
        
     </li>
+
+    
+
+    
 
     
     
