@@ -6,11 +6,12 @@ require_once('db-config.php');
 
 
 			if(isset($_POST)){
+				
 				$username = $_POST['username'];
 				$password = sha1($_POST['password']);
 				$confirmpassword = sha1($_POST['confirmPassword']);
 				$email = $_POST['email'];
-
+				var_dump ($username,$password,$confirmpassword,$email);
 				
 				$sql = "INSERT INTO login_accounts (username,password,confirmpassword,email_acct) VALUES (?,?,?,?)";
 				$stmtinsert = $db->prepare($sql);

@@ -87,12 +87,39 @@ else {
                                         <div class="col-md-10 col-xs-4 row"> <p class="modal-text mr-2">Don't have an account yet?<p> <a href="register.php">Click here</a></div>
                                         
                                         <div class="modal-footer">
+                                            <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="false" aria-controls="collapseExample">
+                                                Admin Login
+                                            </button> -->
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary" name="submit" id="modal-btn">Login</button>
                                         </div>
 
-                                        
-                                        
+                                        <!-- collapse card start -->
+
+                                        <!-- <div class="collapse" id="collapseAdmin">
+                                        <div class="card card-body">
+
+                                            <div class="form-group row justify-content-center">
+                                                <div class="col-lg-10 col-sm-10">
+                                                    <p>USERNAME </p><input type="text" name="username" class="form-control input-txt-style" placeholder="username" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-center">
+                                                <div class="col-lg-10 col-sm-10">
+                                                    <p>PASSWORD</p><input type="password" name="password" class="form-control" placeholder="*********" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-center">
+                                                <div class="col-lg-10 col-sm-10">
+                                                    <p>KEY CODE</p><input type="password" name="keycode" class="form-control" placeholder="*********" >
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        </div> -->
+
+                                        <!-- collapse card end-->
+                                                                                
                                         </form>
                                 </div>
                             
@@ -132,19 +159,48 @@ else {
                                 
                                 </ul>
                                 
-                                <ul class="col-md-6 navbar-nav m-0 ml-lg-auto p-3 p-lg-0 justify-content-between" >
-                                        <li>
-                                            <a class="nav-link" href="#about" id="abt-btn">ABOUT</a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="#services" id="srv-btn">PRODUCT</a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="#porttwo" id="prt-btn">PORTFOLIO</a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="#footer-personal" id="contact-us">LOGIN</a>
-                                        </li>
+                                <?php 
+                                if(!isset($_SESSION["username"])){
+                                    echo "<ul class=\"col-md-6 navbar-nav m-0 ml-lg-auto p-3 p-lg-0 justify-content-between\" >";
+
+                                    echo "<li>
+                                    <a class=\"nav-link\" href=\"#about\" id=\"abt-btn\">ABOUT</a>
+                                    </li>";
+                                    echo "<li>
+                                    <a class=\"nav-link\" href=\"#services\" id=\"srv-btn\">PRODUCT</a>
+                                    </li>";
+                                    echo "<li>
+                                    <a class=\"nav-link\" href=\"#porttwo\" id=\"prt-btn\">PORTFOLIO</a>
+                                    </li>";
+                                    echo "<li>
+                                    <a class=\"nav-link\" data-toggle=\"modal\" data-target=\"#accountmodal\" id=\"contact-us\">LOGIN</a>
+                                    </li>";
+                                }
+                                else {
+                                    //if logged in, welcomes user
+                                    $logged_user = $_SESSION["username"];
+                                    
+                                    echo "<ul class=\"col-md-6 navbar-nav m-0 ml-lg-auto p-3 p-lg-0 justify-content-between\" >";
+
+                                    echo "<li>
+                                    <a class=\"nav-link\" href=\"#about\" id=\"abt-btn\">ABOUT</a>
+                                    </li>";
+                                    echo "<li>
+                                    <a class=\"nav-link\" href=\"#services\" id=\"srv-btn\">PRODUCT</a>
+                                    </li>";
+                                    echo "<li>
+                                    <a class=\"nav-link\" href=\"#porttwo\" id=\"prt-btn\">PORTFOLIO</a>
+                                    </li>";
+                                    echo "<li>
+                                    <a class=\"nav-link\" href=\"userpanel.php\" id=\"contact-us\">ACCOUNT</a>
+                                    </li>";
+                                }
+                                ?>
+                                
+                                        
+                                        
+                                        
+                                        
                                         <!-- <li>
                                             <a id="account-btn" class="nav-link" data-toggle="modal" data-target="#accountmodal">ACCOUNT</a>
                                         </li>     -->
@@ -165,7 +221,17 @@ else {
                             <!-- <div class="row"> -->
                                 <div class="col-lg-6 col-md-6 text-center">
                                     <p class="text-style">HUMAN RESOURCE INFORMATION SYSTEM</p>
-                                    <button class="btn btn-warning button-style" data-toggle="modal" data-target="#accountmodal" id="gs-btn">GET STARTED</button>
+
+                                    <?php 
+                                    if(!isset($_SESSION["username"])){
+                                        echo "<button class=\"btn btn-warning button-style\" data-toggle=\"modal\" data-target=\"#accountmodal\" id=\"gs-btn\">GET STARTED</button>";
+                                    }
+                                    else {
+                                        //if logged in, welcomes user
+                                        $logged_user = $_SESSION["username"];
+                                    }
+                                    ?>
+                                    
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <img class="img-fluid" src="img/landing_pg_1.png">
@@ -176,6 +242,8 @@ else {
                 </div>
             </section>
             <!-- ---------------------landing cover end-------------------------- -->
+
+            
 
             <!-----------------------scripts start-------------------------- -->
 

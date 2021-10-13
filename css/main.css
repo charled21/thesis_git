@@ -466,51 +466,51 @@ body{
   }
 
   .manage-acc-button{
-	border-radius: 28px;
+	border-radius: 18px;
 	color: rgb(168, 167, 167, 0.1);
 	border: solid gray 1px;
 	text-decoration: none;
 	letter-spacing: 1px;
-  font-weight: 400;
-  margin-left: 8%;
+  margin-left: 15%;
   margin-bottom: 3%;
-  margin-top: 4%;
+  margin-top: 10%;
+  height: 35px;
 }
 .manage-acc-button:hover{
-	border-radius: 28px;
-  font-size: 14px;
+	border-radius: 18px;
 	color: rgb(168, 167, 167, 0.1);
 	border: solid gray 1px;
 	text-decoration: none;
 	letter-spacing: 1px;
-  font-weight: 300;
-  margin-left: 8%;
+  margin-left: 15%;
   margin-bottom: 3%;
-  margin-top: 4%;
+  margin-top: 10%;
 }
 
 .logout-text{
-	font-size: 13px;
+	font-size: 9px;
 	color: gray;
 	letter-spacing: 1px;
 	word-spacing: 1px;
 	text-align: center;
   }
+  
 .logout-button{
-	border-radius: 8px;
+	border-radius: 18px;
 	height: 45px;
 	  font-family: Lucida Sans;
 	  color: rgb(168, 167, 167, 0.1);
 	  border: solid gray 1px;
 	  text-decoration: none;
 	font-weight: 400;
-	margin-left: 8%;
+	margin-left: 15%;
 	margin-top: 10%;
 	margin-bottom: 10%;
+  height: 35px;
   }
   
   .logout-button:hover{
-	  border-radius: 8px;
+	  border-radius: 18px;
 	  font-family: Lucida Sans;
 	  color: rgb(31, 30, 30);
 	  background-color: white;
@@ -518,7 +518,7 @@ body{
 	  text-decoration: none;
 	  font-weight: 400;
 	cursor: pointer;
-	margin-left: 8%;
+	margin-left: 15%;
   }
 
   .sidebar-panel{
