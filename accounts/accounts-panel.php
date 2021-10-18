@@ -10,9 +10,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     
-<link rel="stylesheet" type="text/css" href="/mywebsite/css/acct-main.css">
-<link rel="stylesheet" type="text/css" href="/mywebsite/css/bootstrap.min.css">
-<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
@@ -46,7 +43,8 @@ session_start();
                 <div class="progress progress-sm mr-2 mt-2">
                     <div class="progress-bar bg-info" role="progressbar"
                         style="width: 30%" aria-valuenow="10" aria-valuemin="0"
-                        aria-valuemax="100"></div>
+                        aria-valuemax="100">
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,7 +72,7 @@ session_start();
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
 
     <!-- Earnings (Monthly) Card Example -->
@@ -221,6 +219,7 @@ session_start();
 </div>
 <!-- End of Main Content -->
 
+
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
 <div class="container my-auto">
@@ -288,10 +287,28 @@ aria-hidden="true">
                         </div>
                     </div> -->
                    
+
+                    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://localhost/thesis1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="https://localhost/thesis1/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="https://localhost/thesis1/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="https://localhost/thesis1/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="https://localhost/thesis1/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="https://localhost/thesis1/js/demo/datatables-demo.js"></script>
                     <script src="/thesis1/vendor/chart.js/Chart.min.js"></script>
-<!-- Page level custom scripts -->
-<script src="/thesis1/js/demo/chart-area-demo.js"></script>
-<script src="/thesis1/js/demo/chart-pie-demo.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/thesis1/js/demo/chart-area-demo.js"></script>
+    <script src="/thesis1/js/demo/chart-pie-demo.js"></script>
 
 
     
