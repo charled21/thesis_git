@@ -44,10 +44,13 @@
         <option>Others</option>
       </select>
     </div>
-    <div class="form-group col-md-4">  
-        <select id="month" data-flip="false"></select>									
-		<select id="day"></select>
-		<select id="year" data-flip="false"></select> 
+    <div class="form-group col-md-3 ml-4">  
+    <label for="birthday">Birthday</label>
+      <div class="form-group row">
+        <select id="month" data-flip="false" class="form-control col-sm-4"></select>									
+        <select id="day" class="form-control col-sm-4"></select>
+        <select id="year" data-flip="false" class="form-control col-sm-4"></select> 
+      </div>
     </div>
    
 
