@@ -103,13 +103,15 @@ if(isset($logged_user)==null){
     <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfiles"
                     aria-expanded="true" aria-controls="collapseProfiles">
+                <!-- <a class="nav-link collapsed" href="#" >
+                    <i class="fas fa-fw fa-user"></i> -->
                     <i class="fas fa-fw fa-user"></i>
                     <span>Applicant Profiles</span>
                 </a>
                 <div id="collapseProfiles" class="collapse" aria-labelledby="headingProfiles"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Profiles</a>
+                        <a class="collapse-item" href="applicant\applicant-cv.php" target="accounts_iframe">Profiles</a>
                         <a class="collapse-item" href="#">Evaluation</a>
                     </div>
                 </div>
@@ -127,18 +129,21 @@ if(isset($logged_user)==null){
     </li> -->
 
     <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuestion"
+                <a class="nav-link collapsed"href="#" data-toggle="collapse" data-target="#collapseQuestion"
                     aria-expanded="true" aria-controls="collapseQuestion">
-                    <i class="fas fa-fw fa-user"></i>
+                    <i class="fas fa-fw fa-wrench"></i>
+
                     <span>Questionnaire</span>
                 </a>
-                <div id="collapseQuestion" class="collapse" aria-labelledby="headingProfiles"
+                
+                <div id="collapseQuestion" class="collapse" aria-labelledby="headingQuestion"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="accounts/qa-init.php">Questionnaire Builder</a>
-                        <a class="collapse-item" href="#">Requirements Builder</a>
+                        <a class="collapse-item" href="applicant\applicant-cv.php">Question Management</a>
+                        <a class="collapse-item" href="#">Question Builder</a>
                     </div>
                 </div>
+
             </li>
 
 
@@ -148,6 +153,16 @@ if(isset($logged_user)==null){
             aria-expanded="true" aria-controls="collapseExport">
             <i class="fas fa-fw fa-save"></i>
             <span>CSV Export</span>
+        </a>
+       
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="hr/gmail-send.php" 
+            aria-expanded="true" aria-controls="collapseExport">
+            <i class="fas fa-fw fa-envelope-open-text"></i>
+            <span>Send Email</span>
         </a>
        
     </li>
@@ -364,6 +379,12 @@ if(isset($logged_user)==null){
         <!-- End of Topbar -->
 
         <!-- iframe -->
+
+        <div class="embed-responsive embed-responsive-16by9" style="height: 80vh">
+        <iframe class="embed-responsive-item" src="accounts/accounts-panel.php" name="accounts_iframe" allowfullscreen></iframe>
+        </div>
+
+
         <!-- <div class="container">
           <div class="pos-f-t ml-12" style="height: 120vh">
           <iframe frameBorder=0 height=100% width=100% src="accounts/accounts-panel.php" name="accounts_iframe">
@@ -519,21 +540,25 @@ if(isset($logged_user)==null){
  
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="https://localhost/thesis1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/thesis1/vendor/jquery/jquery.min.js"></script>
+    <script src="/thesis1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="https://localhost/thesis1/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/thesis1/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="https://localhost/thesis1/js/sb-admin-2.min.js"></script>
+    <script src="/thesis1/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="https://localhost/thesis1/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="https://localhost/thesis1/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/thesis1/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/thesis1/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="https://localhost/thesis1/js/demo/datatables-demo.js"></script>
+    <script src="/thesis1/js/demo/datatables-demo.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/thesis1/js/demo/chart-area-demo.js"></script>
+    <script src="/thesis1/js/demo/chart-pie-demo.js"></script>
 
    
 </body>

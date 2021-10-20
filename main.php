@@ -86,7 +86,7 @@ else {
                                                 <p>PASSWORD</p><input type="password" name="password" class="form-control" placeholder="*********" >
                                             </div>
                                         </div>
-                                        <div class="col-md-10 col-xs-4 row"> <p class="modal-text mr-2">Don't have an account yet?<p> <a href="register.php">Click here</a></div>
+                                        <div class="col-md-10 col-xs-4 row"> <p class="modal-text mr-2">Don't have an account yet?<p> <a href="register/register.php">Click here</a></div>
                                         
                                         <div class="modal-footer">
                                             <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="false" aria-controls="collapseExample">
