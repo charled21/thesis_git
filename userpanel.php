@@ -82,8 +82,8 @@ if(isset($logged_user)==null){
     <!-- Nav Item - Pages Collapse Menu -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
-            aria-expanded="true" aria-controls="collapseInbox">
+        <a class="nav-link collapsed" href="php/inbox-display.php" 
+            aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-inbox"></i>
             <span>Inbox</span>
         </a>
@@ -139,7 +139,7 @@ if(isset($logged_user)==null){
                 <div id="collapseQuestion" class="collapse" aria-labelledby="headingQuestion"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="applicant\applicant-cv.php">Question Management</a>
+                        <a class="collapse-item" href="#">Question Management</a>
                         <a class="collapse-item" href="#">Question Builder</a>
                     </div>
                 </div>
