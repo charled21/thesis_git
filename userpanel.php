@@ -111,7 +111,7 @@ if(isset($logged_user)==null){
                 <div id="collapseProfiles" class="collapse" aria-labelledby="headingProfiles"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="applicant\applicant-cv.php" target="accounts_iframe">Profiles</a>
+                        <a class="collapse-item" href="applicant\applicant-profiles.php" target="accounts_iframe">Profiles</a>
                         <a class="collapse-item" href="#">Evaluation</a>
                     </div>
                 </div>

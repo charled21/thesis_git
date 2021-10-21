@@ -1,5 +1,5 @@
 <?php
-require_once('db-config.php');
+require_once(__DIR__.'/../php/db-config.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ require_once('db-config.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inbox Display</title>
+    <title>Applicant Profiles</title>
 
     <!-- Custom fonts for this template-->
     <link href="/thesis_git/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@ require_once('db-config.php');
 
 
 <div class="container">
-    <h3 class="mt-4 mb-4">INBOX</h3>
+    <h3 class="mt-4 mb-4">LIST OF APPLICANT PROFILES</h3>
     <form action="inbox-review.php" method="post">
         <?php 
 
@@ -38,7 +38,7 @@ if (isset($_POST['ft_tables2'])) {
 else{
 	
 }
-$ftable2 = 'applicant_service';
+$ftable2 = 'applicant_details';
 $hostname = "localhost";
 $username = "root";
 $password = "";
@@ -51,7 +51,9 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         WHERE TABLE_NAME = '$ft_tables'";
 
                         //start of display
-                        $schemaQuery = "SELECT * FROM $ft_tables";
+                        //$schemaQuery = "SELECT * FROM $ft_tables";
+                        //DATE_FORMAT((dateBirth),'%b %d, %Y')
+                        $schemaQuery = "SELECT applicant_id, firstname, lastname, gender,  DATE_FORMAT(dateBirth,'%b %d, %Y') as birthday, city, state, zipcode FROM $ft_tables";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -62,12 +64,12 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             while($row2 = mysqli_fetch_array($result2))
                             {
                                 $fetchedCol= $row2['COLUMN_NAME'];
-                                if($row2['COLUMN_NAME']=="applicant_id"){
-                                    //echo "<th style=\"font-size:16px;\">$fetchedCol";
-                                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="firstname"){
+                                // if($row2['COLUMN_NAME']=="applicant_id"){
+                                //     //echo "<th style=\"font-size:16px;\">$fetchedCol";
+                                //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
+                                //     echo "<hr>";
+                                // }
+                                if($row2['COLUMN_NAME']=="firstname"){
                                     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
                                     echo "<hr>";
                                 }
@@ -75,13 +77,31 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
                                     echo "<hr>";
                                 }
+                                else if($row2['COLUMN_NAME']=="gender"){
+                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Gender";
+                                    echo "<hr>";
+                                }
+                                else if($row2['COLUMN_NAME']=="dateBirth"){
+                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Date of Birth";
+                                    echo "<hr>";
+                                }
+                                else if($row2['COLUMN_NAME']=="city"){
+                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">City";
+                                    echo "<hr>";
+                                }
+                                else if($row2['COLUMN_NAME']=="state"){
+                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Province";
+                                    echo "<hr>";
+                                }
+                                else if($row2['COLUMN_NAME']=="zipcode"){
+                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Postal Code";
+                                    echo "<hr>";
+                                }
                                 else{
                                     
                                 }
                                 
                             }
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Status";
-                            echo "<hr>";
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
                             echo "<hr>";
                         echo "</th> </tr>";
@@ -91,35 +111,18 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                 while($row = mysqli_fetch_array($result3))
                                 {
                                 $row_num = $row['applicant_id'];
-
-                                if($row['status']>3){
-
+                                echo "<tr>";                                
+                                //echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row['applicant_id'] . "</font>"."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['gender'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['birthday'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['city'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['state'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['zipcode'] . "</font>" ."</td>";
+                                echo "<td>" . "<button type=\"submit\" class=\"btn btn-warning mb-2\" value=$row_num id=\"tds2\" name=\"tds2\" >Edit</button>"."</td>";
+                                echo "</tr>";
                                 }
-                                else{
-                                    echo "<tr>";                                
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row['applicant_id'] . "</font>"."</td>";
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
-    
-                                    //status changer start
-                                    $current_status="";
-                                        if($row['status']==1){
-                                            $current_status = "Pending Exam";
-                                        }
-                                        else if($row['status']==2){
-                                            $current_status = "Awaiting Interview";
-                                        }
-                                        else if($row['status']==3){
-                                            $current_status = "Hired";
-                                        }
-                                    //status changer end
-    
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $current_status . "</font>" ."</td>";
-                                    echo "<td>" . "<button type=\"submit\" class=\"btn btn-primary mb-2\" value=$row_num id=\"tds2\" name=\"tds2\" >Review</button>"."</td>";
-                                    echo "</tr>";
-                                    }
-                                }
-                                
                             }
                             
                                 echo "</table>";
