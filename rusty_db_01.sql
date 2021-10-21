@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 13, 2021 at 02:58 PM
+-- Generation Time: Oct 21, 2021 at 01:46 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -42,6 +42,44 @@ CREATE TABLE `account_details` (
   `username` varchar(30) DEFAULT NULL,
   `account_privilege` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `applicant_details`
+--
+
+CREATE TABLE `applicant_details` (
+  `applicant_id` int(100) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `middlename` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `suffix` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `dateBirth` date NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `address2` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `zipcode` varchar(255) NOT NULL,
+  `status` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `applicant_details`
+--
+
+INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `lastname`, `suffix`, `gender`, `dateBirth`, `address`, `address2`, `city`, `state`, `zipcode`, `status`) VALUES
+(1, 'Jejomar', 'Mondejar', 'Binay', 'Jr.', 'M', '2000-05-10', 'Kurog St.', 'J.C Aparment, 3rd floor', 'Cabadbaran City', 'Agusan del Norte', '8605', 1),
+(2, 'Junard', 'Reyes', 'Miranda', '', 'M', '1980-02-06', 'P-6 Leon Kilat', 'JC Aquino', 'Butuan City', 'Agusan del Norte', '8600', 1),
+(3, 'Juan ', 'Aguilar', 'Dela Cruz', '', 'M', '1998-10-10', 'P-1 Obrero', 'Montilla Blvd.', 'Butuan City', 'Agusan del Norte', '8600', 1),
+(4, 'Angela', 'Macabugto', 'Luso', '', 'F', '1988-06-27', 'P-8 Libertad', 'JC Aquino ', 'Butuan City', 'Agusan del Norte', '8600', 2),
+(5, 'Dhanika', 'Sugbo', 'Cagas', '', 'F', '1997-08-18', 'Blk 34 Lot 18', 'Northtown Subdivision', 'Butuan City', 'Agusan del Norte', '8600', 1),
+(7, 'Teofisto', 'Tuman', 'Lumad', '', 'M', '1989-07-29', 'P-1 Bading', 'Bading Rampa Road', 'Butuan City', 'Agusan del Norte', '8600', 4),
+(8, 'Raymart', 'Naquila', 'Norberte', '', 'M', '1991-01-05', 'P-1 San Agustin ', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4),
+(9, 'Jhuanna', 'Avenido', 'Dampa', '', 'F', '1994-12-21', 'P-3 San Agustin', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4),
+(10, 'Arthur', 'Yantoc', 'Pajo', '', 'M', '1990-08-08', 'San Isidro I', 'Sibagat', 'Sibagat', 'Agusan del Sur', '8503', 4),
+(11, 'Jennifer', 'Macadulot', 'Pacyas', '', 'F', '1992-02-05', 'Libertad', 'San Isidro I', 'Sibagat', 'Agusan del Sur', '8503', 4);
 
 -- --------------------------------------------------------
 
@@ -219,7 +257,22 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (66, 'admin', '2021-10-12 17:51:38'),
 (67, 'admin', '2021-10-13 11:43:57'),
 (68, 'admin', '2021-10-13 11:45:52'),
-(69, 'admin', '2021-10-13 19:59:54');
+(69, 'admin', '2021-10-13 19:59:54'),
+(70, 'admin', '2021-10-13 21:49:56'),
+(71, 'admin', '2021-10-13 22:02:21'),
+(72, 'admin', '2021-10-13 23:01:50'),
+(73, 'admin', '2021-10-14 03:02:19'),
+(74, 'admin', '2021-10-20 18:04:37'),
+(75, 'admin', '2021-10-20 19:40:15'),
+(76, 'admin', '2021-10-21 13:29:09'),
+(77, 'admin', '2021-10-21 17:11:49'),
+(78, 'admin', '2021-10-21 17:16:37'),
+(79, 'admin', '2021-10-21 17:16:54'),
+(80, 'admin', '2021-10-21 17:40:02'),
+(81, 'admin', '2021-10-21 17:40:20'),
+(82, 'admin', '2021-10-21 17:51:57'),
+(83, 'admin', '2021-10-21 18:20:40'),
+(84, 'admin', '2021-10-21 19:42:41');
 
 -- --------------------------------------------------------
 
@@ -271,6 +324,12 @@ ALTER TABLE `account_details`
   ADD PRIMARY KEY (`acc_id`);
 
 --
+-- Indexes for table `applicant_details`
+--
+ALTER TABLE `applicant_details`
+  ADD PRIMARY KEY (`applicant_id`);
+
+--
 -- Indexes for table `game_accounts`
 --
 ALTER TABLE `game_accounts`
@@ -299,6 +358,12 @@ ALTER TABLE `account_details`
   MODIFY `acc_id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `applicant_details`
+--
+ALTER TABLE `applicant_details`
+  MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `game_accounts`
 --
 ALTER TABLE `game_accounts`
@@ -314,7 +379,7 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
