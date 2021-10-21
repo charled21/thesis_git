@@ -7,7 +7,7 @@ session_destroy();
 
 echo "
     <script type=\"text/javascript\">alert(\"Logout Successful!\");
-    window.location.href = \"/thesis1/main.php\";
+    window.location.href = \"/thesis_git/main.php\";
     </script>
     ";
 
