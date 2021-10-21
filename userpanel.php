@@ -82,7 +82,7 @@ if(isset($logged_user)==null){
     <!-- Nav Item - Pages Collapse Menu -->
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="php/inbox-display.php" 
+        <a class="nav-link collapsed" href="php/inbox.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
             <i class="fas fa-fw fa-inbox"></i>
             <span>Inbox</span>

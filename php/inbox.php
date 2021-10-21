@@ -10,15 +10,25 @@ require_once('db-config.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inbox Display</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Custom fonts for this template-->
+    <link href="/thesis_git/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <link href="/thesis_git/css/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/thesis_git/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/thesis_git/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 <body>
 
 
 <div class="container">
-    <h3 class="mt-4 mb-4">Inbox</h3>
-    <form action="" method="post">
+    <h3 class="mt-4 mb-4">INBOX</h3>
+    <form action="inbox-review.php" method="post">
         <?php 
 
 $ft_tables="applicant_details";
@@ -55,12 +65,15 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                 if($row2['COLUMN_NAME']=="applicant_id"){
                                     //echo "<th style=\"font-size:16px;\">$fetchedCol";
                                     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
+                                    echo "<hr>";
                                 }
                                 else if($row2['COLUMN_NAME']=="firstname"){
                                     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
+                                    echo "<hr>";
                                 }
                                 else if($row2['COLUMN_NAME']=="lastname"){
                                     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
+                                    echo "<hr>";
                                 }
                                 else{
                                     
@@ -68,23 +81,28 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                 
                             }
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Status";
-
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
+                            echo "<hr>";
                         echo "</th> </tr>";
+
+                            
                             if($ft_tables=="applicant_details"){
                                 while($row = mysqli_fetch_array($result3))
                                 {
-                                    $row_num = $row['applicant_id'];
+                                $row_num = $row['applicant_id'];
                                 echo "<tr>";                                
                                 echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row['applicant_id'] . "</font>"."</td>";
                                 echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
                                 echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['middlename'] . "</font>" ."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . "Status Details" . "</font>" ."</td>";
-                                echo "<td>" . "<button class=\"btn btn-primary\" >Review</button>"."</td>";
+                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . "Pending" . "</font>" ."</td>";
+                                echo "<td>" . "<button type=\"submit\" class=\"btn btn-primary mb-2\" value=$row_num id=\"tds2\" name=\"tds2\" >Review</button>"."</td>";
                                 echo "</tr>";
                                 }
                             }
                             
                                 echo "</table>";
+                                
                                 mysqli_close($connect);
                     
                         //end of display start of original
@@ -108,19 +126,21 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $(document).ready(function(){
     $('button').click(function() {
     let xhr = new XMLHttpRequest();
-    let url = new URL('http://localhost/thesis1/php/inbox-display2');
+    let url = new URL('https://localhost/thesis_git/php/inbox-review.php');
     var row = $(this).closest("tr");
     var tds2 = row.find("td:nth-child(1)").text();
 
-    alert("You have clicked "+ tds2 +"!");
+    //alert("You have clicked "+ tds2 +"!");
 
     
     $.ajax({
         type: "POST",
-        url: "inbox-display2.php",
+        url: "inbox-review.php",
         data: {tds2 : tds2},
         success: function (data) {
+            console.log(data);
                     xhr.open('GET', url);
+                    
             }        
         });
     });
