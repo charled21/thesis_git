@@ -228,7 +228,7 @@ else {
          
                                     <?php 
                                     if(!isset($_SESSION["username"])){
-                                        echo "<button class=\"btn btn-warning button-style \" data-toggle=\"modal\" data-target=\"#accountmodal\" id=\"gs-btn\" style=\"font-family: 'Nunito'; font-size: 20px;\";>GET STARTED</button>";
+                                        echo "<a role=\"button\" href=\"applicant\applicant-page1.php\" class=\"btn btn-warning button-style \"  id=\"gs-btn\" style=\"font-family: 'Nunito'; font-size: 20px;\";>GET STARTED</a>";
                                     }
                                     else {
                                         //if logged in, welcomes user
