@@ -1,7 +1,3 @@
-<?php
-require_once('db-config.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,40 +42,50 @@ $databaseName = "thesis_1";
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
-                        $employeeQuery = "SELECT COLUMN_NAME FROM
+                        $schemaQuery = "SELECT COLUMN_NAME FROM
                         INFORMATION_SCHEMA.COLUMNS 
                         WHERE TABLE_NAME = '$ft_tables'";
 
                         //start of display
-                        $schemaQuery = "SELECT * FROM $ft_tables";
+                        $dataQuery = "SELECT * FROM $ft_tables";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
                         <tr>";
-                        $result3 = mysqli_query($connect, $schemaQuery);
-                        $result2 = mysqli_query($connect, $employeeQuery);
+                        $result3 = mysqli_query($connect, $dataQuery);
+                        $result2 = mysqli_query($connect, $schemaQuery);
                             $th2 = "";
-                            while($row2 = mysqli_fetch_array($result2))
-                            {
-                                $fetchedCol= $row2['COLUMN_NAME'];
-                                if($row2['COLUMN_NAME']=="applicant_id"){
-                                    //echo "<th style=\"font-size:16px;\">$fetchedCol";
-                                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="firstname"){
-                                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="lastname"){
-                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
-                                    echo "<hr>";
-                                }
-                                else{
+                            // while($row2 = mysqli_fetch_array($result2))
+                            // {
+                            //     // $fetchedCol= $row2['COLUMN_NAME'];
+                            //     // if($row2['COLUMN_NAME']=="applicant_id"){
+                            //     //     //echo "<th style=\"font-size:16px;\">$fetchedCol";
+                            //     //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
+                            //     //     echo "<hr>";
+                            //     // }
+                            //     // else if($row2['COLUMN_NAME']=="firstname"){
+                            //     //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
+                            //     //     echo "<hr>";
+                            //     // }
+                            //     // else if($row2['COLUMN_NAME']=="lastname"){
+                            //     //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
+                            //     //     echo "<hr>";
+                            //     // }
+                            //     // else{
                                     
-                                }
+                            //     // }
                                 
-                            }
+                            // }
+
+                            //moved the headers here
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
+                            echo "<hr>";
+                            //moved the headers here
+
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Status";
                             echo "<hr>";
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";

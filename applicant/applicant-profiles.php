@@ -62,47 +62,69 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         $result3 = mysqli_query($connect, $schemaQuery);
                         $result2 = mysqli_query($connect, $employeeQuery);
                             $th2 = "";
-                            while($row2 = mysqli_fetch_array($result2))
-                            {
-                                $fetchedCol= $row2['COLUMN_NAME'];
-                                // if($row2['COLUMN_NAME']=="applicant_id"){
-                                //     //echo "<th style=\"font-size:16px;\">$fetchedCol";
-                                //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
+                            
+                            //while($row2 = mysqli_fetch_array($result2))
+                            //{
+                                // $fetchedCol= $row2['COLUMN_NAME'];
+                                // // if($row2['COLUMN_NAME']=="applicant_id"){
+                                // //     //echo "<th style=\"font-size:16px;\">$fetchedCol";
+                                // //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
+                                // //     echo "<hr>";
+                                // // }
+                                // if($row2['COLUMN_NAME']=="firstname"){
+                                //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
                                 //     echo "<hr>";
                                 // }
-                                if($row2['COLUMN_NAME']=="firstname"){
-                                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="lastname"){
-                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="gender"){
-                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Gender";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="dateBirth"){
-                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Date of Birth";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="city"){
-                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">City";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="state"){
-                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Province";
-                                    echo "<hr>";
-                                }
-                                else if($row2['COLUMN_NAME']=="zipcode"){
-                                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Postal Code";
-                                    echo "<hr>";
-                                }
-                                else{
+                                // else if($row2['COLUMN_NAME']=="lastname"){
+                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
+                                //     echo "<hr>";
+                                // }
+                                // else if($row2['COLUMN_NAME']=="gender"){
+                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Gender";
+                                //     echo "<hr>";
+                                // }
+                                // else if($row2['COLUMN_NAME']=="dateBirth"){
+                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Date of Birth";
+                                //     echo "<hr>";
+                                // }
+                                // else if($row2['COLUMN_NAME']=="city"){
+                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">City";
+                                //     echo "<hr>";
+                                // }
+                                // else if($row2['COLUMN_NAME']=="state"){
+                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Province";
+                                //     echo "<hr>";
+                                // }
+                                // else if($row2['COLUMN_NAME']=="zipcode"){
+                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Postal Code";
+                                //     echo "<hr>";
+                                // }
+                                // else{
                                     
-                                }
+                                // }
                                 
-                            }
+                            //}
+
+
+                            //moved headers here
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Gender";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Date of Birth";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">City";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Province";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Postal Code";
+                            echo "<hr>";
+
+                            //moved headers here end
+
+
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
                             echo "<hr>";
                         echo "</th> </tr>";

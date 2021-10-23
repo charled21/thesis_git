@@ -38,6 +38,11 @@
             </div>
                     
             <hr>
+            <div class="embed-responsive embed-responsive-16by9" style="height: 100vh">
+            <iframe class="embed-responsive-item" src="applicant-page2.php" name="applicant_iframe" allowfullscreen></iframe>
+            </div>
+
+            <hr>
             <a href="/thesis_git/main.php" class="btn btn-danger" role="button">BACK</a>
             <a href="applicant-page2.php" class="btn btn-primary" role="button">PROCEED</a>
 
