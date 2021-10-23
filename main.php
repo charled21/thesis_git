@@ -34,7 +34,7 @@ else {
 
             <?php
 
-            $con = mysqli_connect("localhost","root","","rusty_db_01");
+            $con = mysqli_connect("localhost","root","","thesis_1");
 
             if (isset($_POST['username'])){
             

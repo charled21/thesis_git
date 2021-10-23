@@ -26,6 +26,7 @@ require_once(__DIR__.'/../php/db-config.php');
 <body>
 
 
+
 <div class="container">
     <h3 class="mt-4 mb-4">LIST OF APPLICANT PROFILES</h3>
     <form action="inbox-review.php" method="post">
@@ -42,7 +43,7 @@ $ftable2 = 'applicant_details';
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$databaseName = "rusty_db_01";
+$databaseName = "thesis_1";
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 

@@ -1,5 +1,5 @@
 <?php
-$con=mysqli_connect("localhost","root","","rusty_db_01");
+$con=mysqli_connect("localhost","root","","thesis_1");
 $logged_user = $_SESSION['username'];
 
 if (mysqli_connect_errno())

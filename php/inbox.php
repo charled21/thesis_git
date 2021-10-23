@@ -42,7 +42,7 @@ $ftable2 = 'applicant_service';
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$databaseName = "rusty_db_01";
+$databaseName = "thesis_1";
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
