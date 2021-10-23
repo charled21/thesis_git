@@ -10,7 +10,8 @@ if(!isset($_SESSION["username"])){
 else {
     //if logged in, welcomes user
     $logged_user = $_SESSION["username"];
-    echo "<script type=\"text/javascript\">alert(\"Welcome back $logged_user!\")</script>";
+    $priv = $_SESSION['acctpriv'];
+    echo "<script type=\"text/javascript\">alert(\"Welcome back $logged_user $priv!\")</script>";
 }
 ?>
 
@@ -34,6 +35,20 @@ else {
 
             <?php
 
+            //debug start
+            $ftable2 = 'login_accounts';
+            $hostname = "localhost";
+            $username = "root";
+            $password = "";
+            $databaseName = "thesis_1";
+            $dataQuery = "SELECT * FROM  $ftable2 WHERE username ='$username'; ";
+            $result3 = mysqli_query($connect, $dataQuery);
+            while($row2 = mysqli_fetch_array($result3)){
+                $priv = $row2['acct_priv'];
+                
+            }
+            //debug end
+
             $con = mysqli_connect("localhost","root","","thesis_1");
 
             if (isset($_POST['username'])){
@@ -41,6 +56,7 @@ else {
               $username = ($_POST['username']);
               $password = ($_POST['password']);
               $password = (sha1($password)); 
+              $priv = "";
             
             $query = "SELECT * FROM `login_accounts` WHERE username='$username'
             and password='".($password)."'";
@@ -48,6 +64,8 @@ else {
              $rows = mysqli_num_rows($result);
                     if($rows==1){
                  $_SESSION['username'] = $username;
+
+            
                  
             include "php\login-history.php";
             header("Location: userpanel.php");
