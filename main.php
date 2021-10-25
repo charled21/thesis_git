@@ -36,17 +36,17 @@ else {
             <?php
 
             //debug start
-            $ftable2 = 'login_accounts';
-            $hostname = "localhost";
-            $username = "root";
-            $password = "";
-            $databaseName = "thesis_1";
-            $dataQuery = "SELECT * FROM  $ftable2 WHERE username ='$username'; ";
-            $result3 = mysqli_query($connect, $dataQuery);
-            while($row2 = mysqli_fetch_array($result3)){
-                $priv = $row2['acct_priv'];
+            // $ftable2 = 'login_accounts';
+            // $hostname = "localhost";
+            // $username = "root";
+            // $password = "";
+            // $databaseName = "thesis_1";
+            // $dataQuery = "SELECT * FROM  $ftable2 WHERE username ='$username'; ";
+            // $result3 = mysqli_query($connect, $dataQuery);
+            // while($row2 = mysqli_fetch_array($result3)){
+            //     $priv = $row2['acct_priv'];
                 
-            }
+            // }
             //debug end
 
             $con = mysqli_connect("localhost","root","","thesis_1");

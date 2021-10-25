@@ -1,7 +1,7 @@
 <?php  
 session_start();
 $logged_user = $_SESSION['username'];
-$priv = $_SESSION['acctpriv'];
+//$priv = $_SESSION['acctpriv'];
 
 //var_dump($_SESSION);
 
@@ -50,20 +50,20 @@ if(isset($logged_user)==null){
 
 <!-- Sidebar -->
 <?php 
-if($priv >= 10){
-echo "<ul class=\"navbar-nav bg-gradient-warning sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
-}
-else if($priv > 4 && $priv < 10){
-echo "<ul class=\"navbar-nav bg-gradient-success sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
-}
-else{
-echo "<ul class=\"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
-}
+// if($priv >= 10){
+// echo "<ul class=\"navbar-nav bg-gradient-warning sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
+// }
+// else if($priv > 4 && $priv < 10){
+// echo "<ul class=\"navbar-nav bg-gradient-success sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
+// }
+// else{
+// echo "<ul class=\"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
+// }
 
-echo "eut + $priv";
+// echo "priv dapat dri + $priv";
 ?>
 
-<!-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main.php">
         <div class="sidebar-brand-icon rotate-n-15">

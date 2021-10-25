@@ -38,13 +38,13 @@
             </div>
                     
             <hr>
-            <div class="embed-responsive embed-responsive-16by9" style="height: 100vh">
-            <iframe class="embed-responsive-item" src="questions.html" name="applicant_iframe" allowfullscreen></iframe>
+            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
+            <iframe class="embed-responsive-item" src="questions.php" name="applicant_iframe" allowfullscreen></iframe>
             </div>
 
             <hr>
-            <a href="/thesis_git/main.php" class="btn btn-danger" role="button">BACK</a>
-            <a href="applicant-page2.php" class="btn btn-primary" role="button">PROCEED</a>
+            <!-- <a href="/thesis_git/main.php" class="btn btn-danger" role="button">BACK</a>
+            <a href="applicant-page2.php" class="btn btn-primary" role="button">PROCEED</a> -->
 
 
 </div>
