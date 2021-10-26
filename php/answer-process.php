@@ -11,10 +11,12 @@
 <?php 
 
 $opt = array();
+        echo "<script>const result = []; </script>";
         for($x = 1; $x <=60; $x++){
             $opt[$x]=$_POST["opt_" . $x . ""];
+            
             echo "<script> 
-            const result = [];
+            
             result[$x] = ". $opt[$x]. " </script>";
         }
 
