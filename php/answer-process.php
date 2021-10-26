@@ -32,16 +32,38 @@ $opt = array();
         }
 ?>
 
-<label for="mindBar">Mind Bar</label>
+<div class="d-flex justify-content-between">
+    <p id="mind_per">Mind Bar</p>
+    <p id="mind_per2">Mind Bar</p>
+</div>
 <div id="mindBar" class="progress"></div>
-<label for="enerBar">Energy Bar</label>
+<div class="d-flex justify-content-between">
+    <p id="ener_per">Energy Bar</p>
+    <p id="ener_per2">Energy Bar</p>
+</div>
 <div id="enerBar" class="progress"></div>
-<label for="natBar">Nature Bar</label>
+<div class="d-flex justify-content-between">
+    <p id="nat_per">Nature Bar</p>
+    <p id="nat_per2">Nature Bar</p>
+</div>
 <div id="natBar" class="progress"></div>
-<label for="tactBar">Tactics Bar</label>
+<div class="d-flex justify-content-between">
+    <p id="tact_per">Tactics Bar</p>
+    <p id="tact_per2">Tactics Bar</p>
+</div>
 <div id="tactBar" class="progress"></div>
-<label for="identBar">Identity Bar</label>
-<div id="identBar" class="progress"></div>
+
+<label for="identBar" hidden>Identity Bar</label>
+<div id="identBar" class="progress" hidden></div>
+
+<hr>
+<div>
+    <h3>PERSONALITY TYPE</h3>
+</div>
+<div>
+    <p>Your personality type is :</p>
+    <h4 id="per_result"></h4>
+</div>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

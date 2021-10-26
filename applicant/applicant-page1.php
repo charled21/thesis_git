@@ -20,7 +20,8 @@
 
 </head>
 <body>
-    <!-- Topbar -->
+
+<!-- Topbar -->
     
 
 <nav style="height: 100%; width : 100%; background: #4169e1;" class="navbar navbar-primary mb-4 static-top shadow">
@@ -31,24 +32,17 @@
 
 <div class="container">
 
-        <h3>Application Part 1</h3>
+<h1>APPLICATION PART 1</h1>
 
-            <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-                    
-            <hr>
-            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
-            <iframe class="embed-responsive-item" src="questions.php" name="applicant_iframe" allowfullscreen></iframe>
-            </div>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+</div>
 
-            <hr>
-            <!-- <a href="/thesis_git/main.php" class="btn btn-danger" role="button">BACK</a>
-            <a href="applicant-page2.php" class="btn btn-primary" role="button">PROCEED</a> -->
-
+<hr>
+<a href="/thesis_git/main.php" class="btn btn-danger" role="button">BACK</a>
+<a href="applicant-page2.php" class="btn btn-info" role="button">PROCEED</a>
 
 </div>
-            
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

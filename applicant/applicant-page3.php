@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Page 3</title>
+    <title>Personality Test</title>
 
     <!-- Custom fonts for this template-->
     <link href="/thesis_git/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,8 +20,7 @@
 
 </head>
 <body>
-
-<!-- Topbar -->
+    <!-- Topbar -->
     
 
 <nav style="height: 100%; width : 100%; background: #4169e1;" class="navbar navbar-primary mb-4 static-top shadow">
@@ -32,17 +31,24 @@
 
 <div class="container">
 
-<h1>APPLICATION PART 3</h1>
+        <h4>Part 3 - Type Indicator Exam</h4>
 
-<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+            <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+                    
+            <hr>
+            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
+            <iframe class="embed-responsive-item" src="questions.php" name="applicant_iframe" allowfullscreen></iframe>
+            </div>
+
+            <hr>
+            <a href="applicant-page2.php" class="btn btn-danger" role="button">BACK</a>
+            <a href="applicant-page4.php" class="btn btn-primary" role="button">PROCEED</a>
+
+
 </div>
-
-<hr>
-<a href="applicant-page2.php" class="btn btn-danger" role="button">BACK</a>
-<a href="applicant-page4.php" class="btn btn-info" role="button">PROCEED</a>
-
-</div>
+            
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

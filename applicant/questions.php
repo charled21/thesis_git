@@ -61,7 +61,7 @@ else{
     
 }
 echo "
-    <p>$q_txt</p>
+    <p>Question $q_id : $q_txt</p>
     <input type=\"radio\" name=\"opt_$q_id\" value=\"2\">
     <label>Strongly-Agree</label><br>
 
@@ -76,6 +76,7 @@ echo "
         
     <input type=\"radio\" name=\"opt_$q_id\" value=\"-2\">
     <label>Strongly-Disagree</label><br>
+    <hr>
 ";
 
 if($q_id % 5 == 0){
@@ -98,10 +99,14 @@ if($q_id % 5 == 0){
 
 ?>
 
-<button type="submit" id="back_btn" class="btn btn-warning">Back</button>
-<button type="submit" id="proceed_btn" class="btn btn-primary">Proceed</button>
 
+<button type="submit" id="proceed_btn" class="btn btn-primary">Submit</button>
 </form>
+
+<hr>
+<h5>Dev Tools</h5>
+<button type="submit" id="reset_btn" class="btn btn-warning">Reset</button>
+<button type="submit" id="auto_radio" class="btn btn-success">AutoFill</button>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -127,8 +132,6 @@ if($q_id % 5 == 0){
 
     <script>
     $(document).ready(function(){
-    
-        
                 // $("#sect_1").show();
                 // $("#sect_6").hide();
                 // $("#sect_11").hide();
@@ -142,21 +145,27 @@ if($q_id % 5 == 0){
                 // $("#sect_51").hide();
                 // $("#sect_56").hide();
                 // $("#back_btn").hide();
-    
         });
     
     </script>
 
+
     <script>
-        // $('#proceed_btn').click(function(){
-            
-        //     if (typeof(Storage) !== "undefined") {
-        //         for(var i=1;i<6;i++){
-        //             var x = $("input[type='radio'][name=opt_"+i+"]:checked").val();
-        //             console.log(x);                    
-        //         }
-        //     }
-        // });
+    //function that autochecks random radio boxes on button (auto_radio) click -- because im lazy AF
+    $('#auto_radio').click(function(){
+        for(var i=1;i<=60;i++){
+            //randomizer for variation of radio box choices
+            var randomized = Math.random() < 0.5 ? -2 : 0;  
+            //end of randomizer
+            $('input[name=opt_'+i+'][value='+randomized+']').attr('checked', true); 
+        }
+    });
+
+    //function that resets the form on button (reset_btn) click
+    $('#reset_btn').click(function(){
+        window.location.href = window.location.href;  
+        $("form").trigger("reset");
+    });
     </script>
 
     <script>
@@ -167,11 +176,33 @@ if($q_id % 5 == 0){
 			if(valid){
 
                 answer = [];
+                choices = [];
 
-                for(var i=1;i<6;i++){
+                for(var i=1;i<=60;i++){
                     answer[i] = $("input[type='radio'][name=opt_"+i+"]:checked").val();
-                    console.log(answer[i]);                    
+                    //outputs all of the values / answer pts 
+                    //console.log("questions_answer_val["+i+"]= "+answer[i]);    
+                    
+                    //choice saver
+                    if(answer[i]==2){
+                        choices[i]=1;
+                    }
+                    else if(answer[i]==1){
+                        choices[i]=2;
+                    }
+                    else if(answer[i]==0){
+                        choices[i]=3;
+                    }
+                    else if(answer[i]==-1){
+                        choices[i]=4;
+                    }
+                    else if(answer[i]==-2){
+                        choices[i]=5;
+                    }
+                    //outputs all of the choices made / radio buttons clicked
+                    //console.log("choice_array["+i+"]= "+choices[i]);                             
                 }
+
 
                 var s = {
                     "message_pri": message_pri,
@@ -189,28 +220,8 @@ if($q_id % 5 == 0){
                 }
                 });
 
-
-
-				// var username = $('#username').val();
-				// var password = $('#password').val();
-				// var confirmPassword = $('#confirmPassword').val();
-
-				// $.ajax({
-				// 	type: 'POST',
-				// 	url: 'process.php',
-				// 	data: {username: username, password: password, confirmPassword: confirmPassword},
-				// 	success: function(data){
-				// 		alert('Success!');
-				// 	},
-				// 	error: function(data){
-				// 		alert('Error!');
-				// 	}
-				// });
-
-				//test if true displays all data from fields-----tester
-				//alert('true');
-				//alert(firstname+lastname+course);
-				$("form").trigger("reset");
+                //resets form and radio buttons checked
+				//$("form").trigger("reset");
 			}
 			else{
         
