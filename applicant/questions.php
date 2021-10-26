@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<form method="post" action="">
+<form method="post" action="/thesis_git/php/answer-process.php">
 
 <?php 
 
@@ -49,6 +49,8 @@ while($row = mysqli_fetch_array($result3))
 $q_id = $row['q_id'];
 $q_txt = $row['q_txt'];
 $sect_id = $q_id;
+
+
 
 if($q_id % 5 == 1){
     echo "<section id=\"sect_$sect_id\">";
@@ -94,10 +96,6 @@ if($q_id % 5 == 0){
 
 } //while loop
 
-$answers_arr=array('cat', 'dog', 'mouse', 'bird', 'crocodile', 'wombat', 'koala', 'kangaroo');
-
-// put the answer array in a session variable
-$_SESSION['answers']=$answers_arr;
 ?>
 
 <button type="submit" id="back_btn" class="btn btn-warning">Back</button>
@@ -131,34 +129,94 @@ $_SESSION['answers']=$answers_arr;
     $(document).ready(function(){
     
         
-                $("#sect_1").show();
-                $("#sect_6").hide();
-                $("#sect_11").hide();
-                $("#sect_16").hide();
-                $("#sect_21").hide();
-                $("#sect_26").hide();
-                $("#sect_31").hide();
-                $("#sect_36").hide();
-                $("#sect_41").hide();
-                $("#sect_46").hide();
-                $("#sect_51").hide();
-                $("#sect_56").hide();
-                $("#back_btn").hide();
+                // $("#sect_1").show();
+                // $("#sect_6").hide();
+                // $("#sect_11").hide();
+                // $("#sect_16").hide();
+                // $("#sect_21").hide();
+                // $("#sect_26").hide();
+                // $("#sect_31").hide();
+                // $("#sect_36").hide();
+                // $("#sect_41").hide();
+                // $("#sect_46").hide();
+                // $("#sect_51").hide();
+                // $("#sect_56").hide();
+                // $("#back_btn").hide();
     
         });
     
     </script>
 
     <script>
-        $('#proceed_btn').click(function(){
+        // $('#proceed_btn').click(function(){
             
-            if (typeof(Storage) !== "undefined") {
+        //     if (typeof(Storage) !== "undefined") {
+        //         for(var i=1;i<6;i++){
+        //             var x = $("input[type='radio'][name=opt_"+i+"]:checked").val();
+        //             console.log(x);                    
+        //         }
+        //     }
+        // });
+    </script>
+
+    <script>
+        //sending data to another page
+
+        $('#proceed_btn').click(function(){
+        var valid = this.form.checkValidity();
+			if(valid){
+
+                answer = [];
+
                 for(var i=1;i<6;i++){
-                    var x = $("input[type='radio'][name=opt_"+i+"]:checked").val();
-                    console.log(x);                    
+                    answer[i] = $("input[type='radio'][name=opt_"+i+"]:checked").val();
+                    console.log(answer[i]);                    
                 }
-            }
-        });
+
+                var s = {
+                    "message_pri": message_pri,
+                    "follow_pri": follow_pri,
+                    "post_pri": post_pri,
+                    "check": check7
+                }
+
+                $.ajax({
+                type: "POST",
+                data: {answer:answer},
+                url: "/thesis_git/php/answer-process.php",
+                success: function(answer){
+                    console.log(answer);
+                }
+                });
+
+
+
+				// var username = $('#username').val();
+				// var password = $('#password').val();
+				// var confirmPassword = $('#confirmPassword').val();
+
+				// $.ajax({
+				// 	type: 'POST',
+				// 	url: 'process.php',
+				// 	data: {username: username, password: password, confirmPassword: confirmPassword},
+				// 	success: function(data){
+				// 		alert('Success!');
+				// 	},
+				// 	error: function(data){
+				// 		alert('Error!');
+				// 	}
+				// });
+
+				//test if true displays all data from fields-----tester
+				//alert('true');
+				//alert(firstname+lastname+course);
+				$("form").trigger("reset");
+			}
+			else{
+        
+			}
+		});
+
     </script>
 
 

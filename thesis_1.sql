@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 21, 2021 at 01:46 PM
+-- Generation Time: Oct 26, 2021 at 08:10 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -19,29 +19,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rusty_db_01`
+-- Database: `thesis_1`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `account_details`
---
-
-CREATE TABLE `account_details` (
-  `acc_id` int(20) NOT NULL,
-  `firstname` varchar(30) DEFAULT NULL,
-  `middlename` varchar(30) DEFAULT NULL,
-  `lastname` varchar(30) DEFAULT NULL,
-  `suffix` varchar(10) DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `dateBirth` date DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `dateRegister` datetime DEFAULT NULL,
-  `username` varchar(30) DEFAULT NULL,
-  `account_privilege` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -84,63 +63,6 @@ INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `las
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cmp_history`
---
-
-CREATE TABLE `cmp_history` (
-  `cmp_id` int(30) DEFAULT NULL,
-  `cmp_share` double(10,2) DEFAULT NULL,
-  `cmp_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `game_accounts`
---
-
-CREATE TABLE `game_accounts` (
-  `bm_id` int(30) NOT NULL,
-  `bm_company` varchar(100) DEFAULT NULL,
-  `bm_region` varchar(50) DEFAULT NULL,
-  `bm_city` varchar(50) DEFAULT NULL,
-  `bm_user` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `game_accounts`
---
-
-INSERT INTO `game_accounts` (`bm_id`, `bm_company`, `bm_region`, `bm_city`, `bm_user`) VALUES
-(1, 'Bachelor Express Inc.', 'Caraga Region', 'Butuan City', 'admina'),
-(2, 'Land Car Inc.', 'Caraga Region', 'Butuan City', 'qwerty'),
-(3, 'Balbautog Inc..', 'Caraga Region', 'Butuan City', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gm_dest`
---
-
-CREATE TABLE `gm_dest` (
-  `gm_id` int(30) DEFAULT NULL,
-  `gm_place` varchar(100) DEFAULT NULL,
-  `gm_distance` double(10,2) DEFAULT NULL,
-  `gm_econ` double(10,2) DEFAULT NULL,
-  `gm_luxury` double(10,2) DEFAULT NULL,
-  `gm_fare` double(30,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `gm_dest`
---
-
-INSERT INTO `gm_dest` (`gm_id`, `gm_place`, `gm_distance`, `gm_econ`, `gm_luxury`, `gm_fare`) VALUES
-(1, 'Bayugan City', 43.50, 83.00, 13.00, 85.00);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `login_accounts`
 --
 
@@ -150,27 +72,16 @@ CREATE TABLE `login_accounts` (
   `password` varchar(50) DEFAULT NULL,
   `confirmpassword` varchar(50) DEFAULT NULL,
   `email_acct` varchar(50) DEFAULT NULL,
-  `acct_priv` varchar(50) DEFAULT NULL,
-  `game_id` varchar(50) DEFAULT NULL
+  `acct_priv` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login_accounts`
 --
 
-INSERT INTO `login_accounts` (`id`, `username`, `password`, `confirmpassword`, `email_acct`, `acct_priv`, `game_id`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@rustydev.com', NULL, NULL),
-(2, 'admina', 'bc5832de4d1698bcf6f07c366072a262892b4c25', 'bc5832de4d1698bcf6f07c366072a262892b4c25', 'admina@aol.com', NULL, NULL),
-(3, 'qwerty', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'qwerty@qwerty.com', NULL, NULL),
-(4, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(5, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(6, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(7, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(8, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(9, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(10, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(11, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL),
-(12, NULL, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', NULL, NULL, NULL);
+INSERT INTO `login_accounts` (`id`, `username`, `password`, `confirmpassword`, `email_acct`, `acct_priv`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@rustydev.com', '10'),
+(2, 'hr_admin', '08d928c3547ae46a3a44e028c7237d7daaa04c59', '08d928c3547ae46a3a44e028c7237d7daaa04c59', 'hr_admin@gmail.com', '5');
 
 -- --------------------------------------------------------
 
@@ -272,68 +183,109 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (81, 'admin', '2021-10-21 17:40:20'),
 (82, 'admin', '2021-10-21 17:51:57'),
 (83, 'admin', '2021-10-21 18:20:40'),
-(84, 'admin', '2021-10-21 19:42:41');
+(84, 'admin', '2021-10-21 19:42:41'),
+(85, 'admin', '2021-10-21 20:16:46'),
+(86, 'admin', '2021-10-22 10:27:49'),
+(87, 'admin', '2021-10-23 20:15:01'),
+(88, 'admin', '2021-10-23 20:19:21'),
+(89, 'admin', '2021-10-23 21:45:47'),
+(90, 'hr_admin', '2021-10-23 21:51:13'),
+(91, 'hr_admin', '2021-10-23 22:01:25'),
+(92, 'admin', '2021-10-23 22:01:34'),
+(93, 'admin', '2021-10-23 22:07:36'),
+(94, 'admin', '2021-10-23 22:08:11'),
+(95, 'admin', '2021-10-23 22:10:58'),
+(96, 'admin', '2021-10-23 22:11:29'),
+(97, 'admin', '2021-10-23 22:14:14'),
+(98, 'admin', '2021-10-23 22:14:34'),
+(99, 'admin', '2021-10-25 12:24:43');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_data`
+-- Table structure for table `questions`
 --
 
-CREATE TABLE `user_data` (
-  `ud_id` int(30) DEFAULT NULL,
-  `ud_user` varchar(50) DEFAULT NULL,
-  `ud_bal` double(30,2) DEFAULT NULL,
-  `ud_comp_share` double(10,2) DEFAULT NULL,
-  `ud_bus_total` int(30) DEFAULT NULL,
-  `ud_bus_used` int(30) DEFAULT NULL,
-  `ud_bus_vacant` int(30) DEFAULT NULL,
-  `ud_comp_rep` double(10,2) DEFAULT NULL,
-  `ud_staff_driver_tot` int(30) DEFAULT NULL,
-  `ud_staff_assist_tot` int(30) DEFAULT NULL,
-  `ud_staff_mech_tot` int(30) DEFAULT NULL,
-  `ud_staff_util_tot` int(30) DEFAULT NULL,
-  `ud_staff_driver_av` int(30) DEFAULT NULL,
-  `ud_staff_assist_av` int(30) DEFAULT NULL,
-  `ud_staff_mech_av` int(30) DEFAULT NULL,
-  `ud_staff_util_av` int(30) DEFAULT NULL,
-  `ud_staff_driver_used` int(30) DEFAULT NULL,
-  `ud_staff_assist_used` int(30) DEFAULT NULL,
-  `ud_staff_mech_used` int(30) DEFAULT NULL,
-  `ud_staff_util_used` int(30) DEFAULT NULL,
-  `ud_garage_cap` int(10) DEFAULT NULL,
-  `ud_fuel_av` double(30,2) DEFAULT NULL,
-  `ud_fuel_cap` double(30,2) DEFAULT NULL
+CREATE TABLE `questions` (
+  `q_id` int(11) NOT NULL,
+  `q_txt` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_data`
+-- Dumping data for table `questions`
 --
 
-INSERT INTO `user_data` (`ud_id`, `ud_user`, `ud_bal`, `ud_comp_share`, `ud_bus_total`, `ud_bus_used`, `ud_bus_vacant`, `ud_comp_rep`, `ud_staff_driver_tot`, `ud_staff_assist_tot`, `ud_staff_mech_tot`, `ud_staff_util_tot`, `ud_staff_driver_av`, `ud_staff_assist_av`, `ud_staff_mech_av`, `ud_staff_util_av`, `ud_staff_driver_used`, `ud_staff_assist_used`, `ud_staff_mech_used`, `ud_staff_util_used`, `ud_garage_cap`, `ud_fuel_av`, `ud_fuel_cap`) VALUES
-(1, 'admina', 33450.33, 255.68, 1, 0, 1, 50.00, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 12, 1000.00, 10000.00);
+INSERT INTO `questions` (`q_id`, `q_txt`) VALUES
+(1, 'You enjoy vibrant social events with lots of people'),
+(2, 'You often spend time exploring unrealistic yet intriguing ideas'),
+(3, 'Your travel plans are more likely to look like a rough list of ideas than a detailed itinerary'),
+(4, 'You often think about what you should have said in a conversation long after it has taken place'),
+(5, 'If your friend is sad about something, your first instinct is to support them emotionally, not try to solve their problem'),
+(6, 'People can rarely upset you'),
+(7, 'You often rely on other people to be the ones to start a conversation and keep it going'),
+(8, 'If you have to temporarily put your plans on hold, you make sure it is your top priority to get back on track as soon as possible'),
+(9, 'You rarely worry if you made a good impression on someone you met'),
+(10, 'It would be a challenge for you to spend the whole weekend all by yourself without feeling bored'),
+(11, 'You are more of a detail-oriented than a big picture person'),
+(12, 'You are very affectionate with people you care about'),
+(13, 'You have a careful and methodical approach to life'),
+(14, 'You are still bothered by the mistakes you made a long time ago'),
+(15, 'At parties and similar events you can mostly be found farther away from the action'),
+(16, 'You often find it difficult to relate to people who let their emotions guide them'),
+(17, 'When looking for a movie to watch, you can spend ages browsing the catalog'),
+(18, 'You can stay calm under a lot of pressure'),
+(19, 'When in a group of people you do not know, you have no problem jumping right into their conversation'),
+(20, 'When you sleep, your dreams tend to be bizarre and fantastical'),
+(21, 'In your opinion, it is sometimes OK to step on others to get ahead in life'),
+(22, 'You are dedicated and focused on your goals, only rarely getting sidetracked'),
+(23, 'If you make a mistake, you tend to start doubting yourself, your abilities, or your knowledge'),
+(24, 'When at a social event, you rarely try to introduce yourself to new people and mostly talk to the ones you already know'),
+(25, 'You usually lose interest in a discussion when it gets philosophical'),
+(26, 'You would never let yourself cry in front of others'),
+(27, 'You feel more drawn to places with a bustling and busy atmosphere than to more quiet and intimate ones'),
+(28, 'You like discussing different views and theories on what the world could look like in the future'),
+(29, 'When it comes to making life-changing choices, you mostly listen to your heart rather than your head'),
+(30, 'You cannot imagine yourself dedicating your life to the study of something that you cannot see, touch, or experience'),
+(31, 'You usually prefer to get your revenge rather than forgive'),
+(32, 'You often make decisions on a whim'),
+(33, 'The time you spend by yourself often ends up being more interesting and satisfying than the time you spend with other people'),
+(34, 'You often put special effort into interpreting the real meaning or the message of a song or a movie'),
+(35, 'You always know exactly what you want'),
+(36, 'You rarely think back on the choices you made and wonder what you could have done differently'),
+(37, 'When in a public place, you usually stick to quieter and less crowded areas'),
+(38, 'You tend to focus on present realities rather than future possibilities'),
+(39, 'You often have a hard time understanding other people’s feelings'),
+(40, 'When starting to work on a project, you prefer to make as many decisions upfront as possible'),
+(41, 'When you know someone thinks highly of you, you also wonder how long it will be until they become disappointed in you'),
+(42, 'You feel comfortable just walking up to someone you find interesting and striking up a conversation'),
+(43, 'You often drift away into daydreaming about various ideas or scenarios'),
+(44, 'You look after yourself first, and others come in second'),
+(45, 'Even when you have planned a particular daily routine, you usually just end up doing what you feel like at any given moment'),
+(46, 'Your mood can change very quickly'),
+(47, 'You often contemplate the reasons for human existence or the meaning of life'),
+(48, 'You often talk about your own feelings and emotions'),
+(49, 'You have got detailed education or career development plans stretching several years into the future'),
+(50, 'You rarely dwell on your regrets'),
+(51, 'Spending time in a dynamic atmosphere with lots of people around quickly makes you feel drained and in need of a getaway'),
+(52, 'You see yourself as more of a realist than a visionary'),
+(53, 'You find it easy to empathize with a person who has gone through something you never have '),
+(54, 'Your personal work style is closer to spontaneous bursts of energy than to organized and consistent efforts'),
+(55, 'Your emotions control you more than you control them'),
+(56, 'After a long and exhausting week, a fun party is just what you need'),
+(57, 'You frequently find yourself wondering how technological advancement could change everyday life'),
+(58, 'You always consider how your actions might affect other people before doing something'),
+(59, 'You still honor the commitments you have made even if you have a change of heart'),
+(60, 'You still honor the commitments you have made even if you have a change of heart');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `account_details`
---
-ALTER TABLE `account_details`
-  ADD PRIMARY KEY (`acc_id`);
-
---
 -- Indexes for table `applicant_details`
 --
 ALTER TABLE `applicant_details`
   ADD PRIMARY KEY (`applicant_id`);
-
---
--- Indexes for table `game_accounts`
---
-ALTER TABLE `game_accounts`
-  ADD PRIMARY KEY (`bm_id`);
 
 --
 -- Indexes for table `login_accounts`
@@ -348,26 +300,20 @@ ALTER TABLE `login_history`
   ADD PRIMARY KEY (`instance_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexes for table `questions`
 --
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`q_id`);
 
 --
--- AUTO_INCREMENT for table `account_details`
+-- AUTO_INCREMENT for dumped tables
 --
-ALTER TABLE `account_details`
-  MODIFY `acc_id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `applicant_details`
 --
 ALTER TABLE `applicant_details`
   MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `game_accounts`
---
-ALTER TABLE `game_accounts`
-  MODIFY `bm_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `login_accounts`
@@ -379,7 +325,13 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
