@@ -199,26 +199,17 @@
         state = $('#state').val();
         zip = $('#zip').val();
 
-
-        //debugger
-        //console.log("f"+fname+"m"+mname+"l"+lname+"g"+gender+"birth"+birthday+"add"+address1+address2+"city"+city+"state"+state+"zip"+zip+"status"+init_status);
-
 				e.preventDefault();
 
-
-                //data before 
-                //fname: fname, mname: mname, lname: lname, gender : gender, birthday : birthday, address1 : address1, address2: address2, city: city, state: state, zip: zip, init_status: init_status
-
-        
 
 				$.ajax({
 					type: 'POST',
 					url: "reg-process.php",
 					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip},
 					success: function(data){
-            console.log("passing :"+fname+mname+lname+gender+address1+ address2+city+state+ zip+"");
-						console.log("data= "+data);
-            alert('Success!');
+            //console.log("passing :"+fname+mname+lname+gender+address1+ address2+city+state+ zip+"");
+						//console.log("data= "+data);
+            alert('Registration Successful!');
 					},
 					error: function(data){
 						alert('Error!');

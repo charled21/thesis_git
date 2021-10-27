@@ -38,6 +38,10 @@
   <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
 </div>
         
+            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
+            <iframe class="embed-responsive-item" src="page2-process.php" name="applicant_iframe" allowfullscreen></iframe>
+            </div>
+
 <hr>
 <a href="applicant-page1.php" class="btn btn-danger" role="button">BACK</a>
 <a href="applicant-page3.php" class="btn btn-secondary" role="button">PROCEED</a>
@@ -65,6 +69,8 @@
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
+
+    
 
 </body>
 </html>
