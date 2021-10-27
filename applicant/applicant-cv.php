@@ -43,19 +43,19 @@
 
 <div class="container">
 
-<form method="POST" action="#">
+<form action="" method="POST">
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="firstName">Firstname</label>
-      <input type="text" class="form-control" id="firstName" placeholder="Firstname">
+      <input type="text" class="form-control" id="fname" placeholder="Firstname">
     </div>
     <div class="form-group col-md-3">
       <label for="middleName">Middlename</label>
-      <input type="text" class="form-control" id="middleName" placeholder="Middlename">
+      <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename">
     </div>
     <div class="form-group col-md-4">
       <label for="lastName">Lastname</label>
-      <input type="text" class="form-control" id="lastName" placeholder="Lastname">
+      <input type="text" class="form-control" id="lname" name="lname" placeholder="Lastname">
     </div>
     <!-- <div class="form-group col-md-1">
       <label for="suffix">Suffix</label>
@@ -67,7 +67,7 @@
   <div class="form-row">
     <div class="form-group col-md-3">
     <label for="inputGender">Gender</label>
-      <select id="inputGender" class="form-control">
+      <select id="gender" name="gender" class="form-control">
         <option selected>Choose Gender</option>
         <option>Male</option>
         <option>Female</option>
@@ -77,9 +77,9 @@
     <div class="form-group col-md-8 ml-4">  
     <label for="birthday">Birthday</label>
       <div class="form-group row">
-        <select id="month" data-flip="false" class="form-control col-sm-4"></select>									
-        <select id="day" class="form-control col-sm-2 ml-1"></select>
-        <select id="year" data-flip="false" class="form-control col-sm-3 ml-1"></select> 
+        <select id="month" name="month" data-flip="false" class="form-control col-sm-4"></select>									
+        <select id="day"  name="day" class="form-control col-sm-2 ml-1"></select>
+        <select id="year"  name="year" data-flip="false" class="form-control col-sm-3 ml-1"></select> 
       </div>
     </div>
    
@@ -89,16 +89,16 @@
 
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Street / Block No.">
+    <input type="text" class="form-control" id="address1" name="address1" placeholder="Street / Block No.">
   </div>
   <div class="form-group">
     <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
     <label for="inputCity">City</label>
-      <select id="inputCity" class="form-control">
+      <select id="city" name="city" class="form-control">
         <option selected>Choose City</option>
         <option data-zip="8502" value="Bayugan City">Bayugan City</option>
         <option data-zip="8600" value="Butuan City">Butuan City</option>
@@ -108,7 +108,7 @@
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
+      <select id="state" name="state" class="form-control">
         <option selected>Choose State</option>
         <option>Agusan del Norte</option>
         <option>Agusan del Sur</option>
@@ -117,8 +117,8 @@
       </select>
     </div>
     <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip" placeholder="ex: 8600">
+      <label for="inputZip" >Zip</label>
+      <input type="text" class="form-control" id="zip" name="zip" placeholder="ex: 8600">
     </div>
   </div>
   
@@ -156,11 +156,11 @@
 <script type="text/javascript">
 	$(function(){
 
-      $("#inputCity").change(function () {
+      $("#city").change(function () {
       city_z = $(this).children(':selected').data('zip');
       //console.log(city_z);
      
-      $("#inputZip").val(city_z);    
+      $("#zip").val(city_z);    
       });
 
    
@@ -182,44 +182,48 @@
 			var valid = this.form.checkValidity();
 			if(valid){
 
-				var fname = $('#firstName').val();
-				var mname = $('#middleName').val();
-        var lname = $('#lastName').val();
+				fname = $('#fname').val();
+				mname = $('#mname').val();
+        lname = $('#lname').val();
 
-        var gender = $('#inputGender').val();
+        gender = $('#gender').val();
 
-        var init_month = $('#month').val();
-        var month = parseInt(init_month)+1;
-        var day = $('#day').val();
-        var year = $('#year').val();
-        var birthday = ""+year+"-"+month+"-"+day+"";
+        month = $('#month').val();
+        day = $('#day').val();
+        year = $('#year').val();
 
-        var address1 = $('#inputAddress').val();
-        var address2 = $('#inputAddress2').val();
+        address1 = $('#address1').val();
+        address2 = $('#address2').val();
 
-        var city = $('#inputCity').val();
-        var state = $('#inputState').val();
-        var zip = $('#inputZip').val();
+        city = $('#city').val();
+        state = $('#state').val();
+        zip = $('#zip').val();
 
-        var init_status = 1;
 
         //debugger
         //console.log("f"+fname+"m"+mname+"l"+lname+"g"+gender+"birth"+birthday+"add"+address1+address2+"city"+city+"state"+state+"zip"+zip+"status"+init_status);
 
-				//e.preventDefault();
+				e.preventDefault();
+
+
+                //data before 
+                //fname: fname, mname: mname, lname: lname, gender : gender, birthday : birthday, address1 : address1, address2: address2, city: city, state: state, zip: zip, init_status: init_status
+
+        
 
 				$.ajax({
 					type: 'POST',
-					url: '/thesis_git/php/reg-process.php',
-					data: {fname: fname, mname: mname, lname: lname, gender : gender, birthday : birthday, address1 : address1, address2: address2, city: city, state: state, zip: zip, init_status: init_status},
+					url: "reg-process.php",
+					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip},
 					success: function(data){
-						alert('Success!');
+            console.log("passing :"+fname+mname+lname+gender+address1+ address2+city+state+ zip+"");
+						console.log("data= "+data);
+            alert('Success!');
 					},
 					error: function(data){
 						alert('Error!');
 					}
 				});
-
 				//test if true displays all data from fields-----tester
 				//alert('true');
 				//alert(firstname+lastname+course);
