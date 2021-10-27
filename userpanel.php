@@ -139,7 +139,9 @@ if(isset($logged_user)==null){
         </a>
     </li> -->
 
-    <li class="nav-item">
+
+    <!-- questionnaire tab start  -->
+    <!-- <li class="nav-item">
                 <a class="nav-link collapsed"href="#" data-toggle="collapse" data-target="#collapseQuestion"
                     aria-expanded="true" aria-controls="collapseQuestion">
                     <i class="fas fa-fw fa-wrench"></i>
@@ -155,8 +157,8 @@ if(isset($logged_user)==null){
                     </div>
                 </div>
 
-            </li>
-
+    </li> -->
+    <!-- questionnaire tab end  -->
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">

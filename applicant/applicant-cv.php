@@ -29,7 +29,7 @@
 <img style="height: 80%; width:15%;" src="/thesis1/img/logo-2.png">
 </nav> -->
         <!-- End of Topbar -->
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <div class="input-group rounded">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
             aria-describedby="search-addon" />
@@ -37,14 +37,13 @@
               <i class="fas fa-search"></i>
             </span>
           </div>
-      </div>
+        </div> -->
         
-        <h1 style="text-align: center;" class="mb-4 mt-4">APPLICANT #</h1>
-        <div style="height: 20px;"></div>
+        <div style="height: 60px;"></div>
 
 <div class="container">
 
-<form>
+<form method="POST" action="#">
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="firstName">Firstname</label>
@@ -58,10 +57,10 @@
       <label for="lastName">Lastname</label>
       <input type="text" class="form-control" id="lastName" placeholder="Lastname">
     </div>
-    <div class="form-group col-md-1">
+    <!-- <div class="form-group col-md-1">
       <label for="suffix">Suffix</label>
       <input type="text" class="form-control" id="suffix" placeholder="Jr,Sr, etc.">
-    </div>
+    </div> -->
   </div>
 
 
@@ -101,10 +100,10 @@
     <label for="inputCity">City</label>
       <select id="inputCity" class="form-control">
         <option selected>Choose City</option>
-        <option>Bayugan City</option>
-        <option>Butuan City</option>
-        <option>Cabadbaran City</option>
-        <option>Surigao City</option>
+        <option data-zip="8502" value="Bayugan City">Bayugan City</option>
+        <option data-zip="8600" value="Butuan City">Butuan City</option>
+        <option data-zip="8605" value="Cabadbaran City">Cabadbaran City</option>
+        <option data-zip="8400" value="Surigao City">Surigao City</option>
       </select>
     </div>
     <div class="form-group col-md-4">
@@ -125,7 +124,7 @@
   
   <hr>
   <div style="height: 30px;"></div>
-  <button type="submit" class="btn btn-primary">Proceed</button>
+  <button type="submit" class="btn btn-primary" id="reg_btn">Submit</button>
 </form>
 
     
@@ -156,101 +155,82 @@
 
 <script type="text/javascript">
 	$(function(){
-		$('#done').click(function(e){
 
+      $("#inputCity").change(function () {
+      city_z = $(this).children(':selected').data('zip');
+      //console.log(city_z);
+     
+      $("#inputZip").val(city_z);    
+      });
+
+   
+		$('#done').click(function(e){
 				var month = $('#month').val();
 				var day = $('#day').val();
 				var year = $('#year').val();
-
 				alert(month+"-"+day+"-"+year);
-			
-			
 		});
-
-		
 	});
-
 </script>
 
-
+<script type="text/javascript" src="/thesis_git/js/calendar-reg.js"></script>
 
 <script type="text/javascript">
-	
-	$(document).ready(function() {
+	$(function(){
+		$('#reg_btn').click(function(e){
 
+			var valid = this.form.checkValidity();
+			if(valid){
 
-		const monthNames = ["January", "February", "March", "April", "May", "June",
-		  "July", "August", "September", "October", "November", "December"
-		];
-		
-		  var qntYears = 40;
-		  var selectYear = $("#year");
-		  var selectMonth = $("#month");
-		  var selectDay = $("#day");
-		  var currentYear = new Date().getFullYear();
+				var fname = $('#firstName').val();
+				var mname = $('#middleName').val();
+        var lname = $('#lastName').val();
 
+        var gender = $('#inputGender').val();
 
-		  for (var y = 0; y < qntYears; y++){
-			let date = new Date(currentYear);
-			var yearElem = document.createElement("option");
-			yearElem.value = currentYear 
-			yearElem.textContent = currentYear;
-			selectYear.append(yearElem);
-			currentYear--;
-		  } 
-		
-		  for (var m = 0; m < 12; m++){
-			  let monthNum = new Date(2020, m).getMonth()
-			  let month = monthNames[monthNum];
-			  var monthElem = document.createElement("option");
-			  monthElem.value = monthNum; 
-			  monthElem.textContent = month;
-			  selectMonth.append(monthElem);
+        var init_month = $('#month').val();
+        var month = parseInt(init_month)+1;
+        var day = $('#day').val();
+        var year = $('#year').val();
+        var birthday = ""+year+"-"+month+"-"+day+"";
+
+        var address1 = $('#inputAddress').val();
+        var address2 = $('#inputAddress2').val();
+
+        var city = $('#inputCity').val();
+        var state = $('#inputState').val();
+        var zip = $('#inputZip').val();
+
+        var init_status = 1;
+
+        //debugger
+        //console.log("f"+fname+"m"+mname+"l"+lname+"g"+gender+"birth"+birthday+"add"+address1+address2+"city"+city+"state"+state+"zip"+zip+"status"+init_status);
+
+				//e.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/thesis_git/php/reg-process.php',
+					data: {fname: fname, mname: mname, lname: lname, gender : gender, birthday : birthday, address1 : address1, address2: address2, city: city, state: state, zip: zip, init_status: init_status},
+					success: function(data){
+						alert('Success!');
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+
+				//test if true displays all data from fields-----tester
+				//alert('true');
+				//alert(firstname+lastname+course);
+				$("form").trigger("reset");
 			}
-		
-			var d = new Date();
-			var month = d.getMonth();
-			var year = d.getFullYear();
-			var day = d.getDate();
-		
-			selectYear.val(year); 
-			selectYear.on("change", AdjustDays);  
-			selectMonth.val(month);    
-			selectMonth.on("change", AdjustDays);
-		
-			AdjustDays();
-			selectDay.val(day)
-			
-			function AdjustDays(){
-			  var year = selectYear.val();
-			  var month = parseInt(selectMonth.val());
-			  selectDay.empty();
-			  
-			  if(m==1){
-			   	var febDays = new Date(year, month, 28).getDate();
-
-			   	for (var d = 1; d <= febDays; d++){
-				 var dayElem = document.createElement("option");
-				 dayElem.value = d; 
-				 dayElem.textContent = d;
-				 selectDay.append(dayElem);
-			   	}
-			   }
-
-			  var fullDays = new Date(year, month, 0).getDate(); 
-			  
-			  
-			  for (var d = 1; d <= fullDays; d++){
-				var dayElem = document.createElement("option");
-				dayElem.value = d; 
-				dayElem.textContent = d;
-				selectDay.append(dayElem);
-			  }
-
-			}    
+			else{
+        
+			}
 		});
-		
-		</script>
+	});
+</script>
 
 </body>
 </html>

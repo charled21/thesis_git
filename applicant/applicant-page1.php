@@ -38,6 +38,10 @@
   <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
 </div>
 
+            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
+            <iframe class="embed-responsive-item" src="applicant-cv.php" name="applicant_iframe" allowfullscreen></iframe>
+            </div>
+
 <hr>
 <a href="/thesis_git/main.php" class="btn btn-danger" role="button">BACK</a>
 <a href="applicant-page2.php" class="btn btn-info" role="button">PROCEED</a>
