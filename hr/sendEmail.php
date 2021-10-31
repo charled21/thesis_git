@@ -9,8 +9,9 @@ if(isset($_POST['name']) && isset($_POST['email'])){
     $email=$_POST['email'];
     $subject=$_POST['subject'];
     $body=$_POST['body'];
+    $email2=$_POST['email2'];
 
-    echo "<script>console.log(\"data = $name + $email + $subject + $body\");</script>";
+    echo "<script>console.log(\"data = $name + $email + $subject + $body + $email2\");</script>";
 
     require_once "PHPMailer/PHPMailer.php";
     require_once "PHPMailer/SMTP.php";
@@ -32,7 +33,7 @@ $mail->isHTML(true);
 $mail->SetFrom($email, $name);
 $mail->Subject = ("$email ($subject)");
 $mail->Body = $body;
-$mail->AddAddress('rodam.palmagil@urios.edu.ph');
+$mail->AddAddress($email2);
 
 // if($mail->send()){
 //     $status = "success";

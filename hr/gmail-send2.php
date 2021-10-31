@@ -12,15 +12,17 @@
         <form id="myForm" action="" method="POST">
         <label>Name</label>
         <br>
-        <input type="text" id="name" value="Motortrade Butuan">
+        <input type="text" id="name" value="Motor Trade Butuan">
         <br>
-        <input type="text" id="email" value="Pukeng Ina, pare si Optimum Pride!">
+        <input type="text" id="email" value="no-reply@motortrade.com.ph">
         <br>
-        <input type="text" id="subject" value="It's Dota 2 Time">
+        <input type="text" id="subject" value="Job Application - Phase 3">
+        <br>
+        <input type="text" id="email2" value="ralph.alfaras@urios.edu.ph">
         <br><br>
         <label>Message</label>
         <br>
-        <textarea id="body" cols="30" rows="5">Pag login na kay mag login na ko</textarea>
+        <textarea id="body" cols="30" rows="5">You are scheduled for an interview on MM-DD-YYYY 00:00PM.&#13;&#10;&#13;&#10;Your token is Y3YY.&#13;&#10;&#13;&#10;To join the video meeting, click this link: https://meet.google.com/xxx-xxxx-xxx&#13;&#10;&#13;&#10;Otherwise, to join by phone, dial +1 999-999-9999 and enter this PIN: 999 999 999#</textarea>
         <br>
         <button type="button" id="send_email">Submit</button>
         </form>
@@ -43,15 +45,16 @@
 				email = $('#email').val();
                 subject = $('#subject').val();
                 body = $('#body').val();
+                email2 = $('#email2').val();
 
 				e.preventDefault();
                 
-                console.log(name+email+subject+body);
+                console.log(name+email+subject+body+email2);
 
 				$.ajax({
 					type: 'POST',
 					url: "sendEmail.php",
-					data: {name : name, email : email, subject : subject, body : body},
+					data: {name : name, email : email, subject : subject, body : body, email2 : email2},
 					success: function(data){
             //console.log("passing :"+fname+mname+lname+gender+address1+ address2+city+state+ zip+"");
 						console.log("data= "+data);
