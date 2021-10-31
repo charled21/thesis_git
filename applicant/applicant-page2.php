@@ -37,17 +37,19 @@
 <div class="progress">
   <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
 </div>
-        
+
             <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
-            <iframe class="embed-responsive-item" src="page2-process.php" name="applicant_iframe" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="applicant-educ.php" name="applicant_iframe" allowfullscreen></iframe>
             </div>
+
 
 <hr>
 <a href="applicant-page1.php" class="btn btn-danger" role="button">BACK</a>
 <a href="applicant-page3.php" class="btn btn-secondary" role="button">PROCEED</a>
 
-</div>
 
+
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -69,8 +71,6 @@
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
-
-    
 
 </body>
 </html>

@@ -38,7 +38,7 @@
   <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
 </div>
 
-            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
+            <div class="embed-responsive embed-responsive-16by9" style="height: 100vh">
             <iframe class="embed-responsive-item" src="applicant-cv.php" name="applicant_iframe" allowfullscreen></iframe>
             </div>
 
