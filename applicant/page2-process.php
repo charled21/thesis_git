@@ -22,26 +22,15 @@
     <link href="/thesis_git/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body>
-    
 
-<form>
-    <div class="img_1">
-        <div class="form-group">
-            <label for="img_file">Upload Credentials</label>
-            <input type="file" class="form-control-file" id="img_file">
-            <img id="preview" src="#">
-        </div>
-    </div>
+    <div>
+        <label for="files">Select multiple files: </label>
+        <input id="files" type="file" multiple/>
+        <output id="result"> </output>
+</div>
 
 
-    
-
-</form>
-<!-- 
-<input type='file' />
-<br><img id="img1" src="#"> -->
-
-
+<button type="button" id="btn_pts">Total Pts</button>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -67,30 +56,54 @@
 
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 
-    <script>
-        //script for uploading image
-        var img_file = document.getElementById("img_file"),
-        preview = document.getElementById("preview");
-    
-        img_file.addEventListener("change", function() {
-        changeImage(this);
+<script>
+window.onload = function(){
+    var points = 0;
+
+        if(window.File && window.FileList && window.FileReader)
+        {
+            var filesInput = document.getElementById("files"); 
+            filesInput.addEventListener("change", function(event){ 
+                var files = event.target.files; 
+                var output = document.getElementById("result");
+                
+                for(var i = 0; i< files.length; i++)
+                {
+                    var file = files[i]; 
+                    var file_name = file.name;
+                    
+                    //console.log("file = "+file.name);
+                    if(!file.type.match('image'))
+                      continue;
+                      points += 2;
+                      console.log(points);
+                    var reader = new FileReader();
+                    reader.addEventListener("load",function(event){
+                        var file = event.target;
+                        var div = document.createElement("div");
+                        div.innerHTML = "<br><h5>Image:"+file_name+"</h5><img style='height: 50%; width: 50%;' id='img_id"+i+"'class='thumbnail' src='" + file.result + "'" +
+                                "title='" + file_name + "'/>";
+                        output.insertBefore(div,null);        
+
+                         
+                    });
+                    reader.readAsDataURL(file);
+                }                               
+            });
+        }
+        else
+        {
+            console.log("Your browser does not support File API");
+        }
+
+        $('#btn_pts').click(function(e){
+            alert("Total Points: "+points);
         });
-
-        function changeImage(input) {
-        var reader;
-
-        if (input.files && input.files[0]) {
-            reader = new FileReader();
-
-            reader.onload = function(e) {
-            preview.setAttribute('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-        }
-
+    }
+        
     </script>
+
+
 
 </body>
 </html>
