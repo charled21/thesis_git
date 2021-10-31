@@ -172,7 +172,7 @@ if(isset($logged_user)==null){
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="hr/gmail-send.php" 
+        <a class="nav-link collapsed" href="hr/gmail-send2.php" 
             aria-expanded="true" aria-controls="collapseExport">
             <i class="fas fa-fw fa-envelope-open-text"></i>
             <span>Send Email</span>

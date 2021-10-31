@@ -25,38 +25,16 @@
     
 
 <form>
-    <!-- <div class="img_1">
+    <div class="img_1">
         <div class="form-group">
             <label for="img_file">Upload Credentials</label>
             <input type="file" class="form-control-file" id="img_file">
             <img id="preview" src="#">
         </div>
-    </div> -->
+    </div>
 
-    <form method="post" enctype="multipart/form-data">
-            <input type="file" name="my_file[]" multiple>
-            <input type="submit" value="Upload">
-        </form>
 
-    <?php
-            if (isset($_FILES['my_file'])) {
-                $myFile = $_FILES['my_file'];
-                $fileCount = count($myFile["name"]);
-
-                for ($i = 0; $i < $fileCount; $i++) {
-                    ?>
-                        <p>File #<?= $i+1 ?>:</p>
-                        <p>
-                            Name: <?= $myFile["name"][$i] ?><br>
-                            Temporary file: <?= $myFile["tmp_name"][$i] ?><br>
-                            Type: <?= $myFile["type"][$i] ?><br>
-                            Size: <?= $myFile["size"][$i] ?><br>
-                            Error: <?= $myFile["error"][$i] ?><br>
-                        </p>
-                    <?php
-                }
-            }
-        ?>
+    
 
 </form>
 <!-- 
@@ -91,26 +69,26 @@
 
     <script>
         //script for uploading image
-        // var img_file = document.getElementById("img_file"),
-        // preview = document.getElementById("preview");
+        var img_file = document.getElementById("img_file"),
+        preview = document.getElementById("preview");
     
-        // img_file.addEventListener("change", function() {
-        // changeImage(this);
-        // });
+        img_file.addEventListener("change", function() {
+        changeImage(this);
+        });
 
-        // function changeImage(input) {
-        // var reader;
+        function changeImage(input) {
+        var reader;
 
-        // if (input.files && input.files[0]) {
-        //     reader = new FileReader();
+        if (input.files && input.files[0]) {
+            reader = new FileReader();
 
-        //     reader.onload = function(e) {
-        //     preview.setAttribute('src', e.target.result);
-        //     }
+            reader.onload = function(e) {
+            preview.setAttribute('src', e.target.result);
+            }
 
-        //     reader.readAsDataURL(input.files[0]);
-        // }
-        // }
+            reader.readAsDataURL(input.files[0]);
+        }
+        }
 
     </script>
 
