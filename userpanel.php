@@ -162,8 +162,8 @@ if(isset($logged_user)==null){
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
-            aria-expanded="true" aria-controls="collapseExport">
+        <a class="nav-link collapsed" href="php/csv-export.php" 
+            aria-expanded="true" aria-controls="collapseExport" target="accounts_iframe">
             <i class="fas fa-fw fa-save"></i>
             <span>CSV Export</span>
         </a>

@@ -153,7 +153,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $(document).ready(function(){
     $('button').click(function() {
     let xhr = new XMLHttpRequest();
-    let url = new URL('https://localhost/thesis_git/php/inbox-review.php');
+    let url2 = new URL('https://localhost/thesis_git/php/inbox-review.php');
     var row = $(this).closest("tr");
     var tds2 = row.find("td:nth-child(1)").text();
 
@@ -166,7 +166,7 @@ $(document).ready(function(){
         data: {tds2 : tds2},
         success: function (data) {
             console.log(data);
-                    xhr.open('GET', url);
+                    xhr.open('GET', url2);
                     
             }        
         });
