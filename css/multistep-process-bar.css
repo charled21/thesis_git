@@ -1,0 +1,65 @@
+#mp_bar {  
+    text-align: center;  
+    position: relative;  
+    margin-top: 20px  
+}  
+#mp_prog_bar {  
+    margin-bottom: 30px;  
+    overflow: hidden;  
+    color: lightgrey  
+}  
+#mp_prog_bar .active {  
+    color: #3710c5  
+}  
+#mp_prog_bar li {  
+    list-style-type: none;  
+    font-size: 15px;  
+    width: 25%;  
+    float: left;  
+    position: relative;  
+    font-weight: 400  
+}  
+#mp_prog_bar #step1:before {  
+    content: "PI"  
+}  
+#mp_prog_bar #step2:before {  
+    content: "EA"  
+}  
+#mp_prog_bar #step3:before {  
+    content: "CS"  
+}  
+#mp_prog_bar #step4:before {  
+    content: "PT"  
+}  
+#mp_prog_bar li:before {  
+    width: 50px;  
+    height: 50px;  
+    line-height: 45px;  
+    display: block;  
+    font-size: 20px;  
+    color: #ffffff;  
+    background: lightgray;  
+    border-radius: 50%;  
+    margin: 0 auto 10px auto;  
+    padding: 2px  
+}  
+#mp_prog_bar li:after {  
+    content: '';  
+    width: 100%;  
+    height: 2px;  
+    background: lightgray;  
+    position: absolute;  
+    left: 0;  
+    top: 25px;  
+    z-index: -1  
+}  
+#mp_prog_bar li.active:before  
+{  
+    background: #3710c5 
+}  
+#mp_prog_bar li.active:after {  
+    background: #3710c5 
+}  
+#mp_prog_bar li.active:after {  
+    background: #3710c5 
+}  

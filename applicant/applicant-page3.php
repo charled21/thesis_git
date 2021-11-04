@@ -13,6 +13,7 @@
         rel="stylesheet">
 
     <link href="/thesis_git/css/main.css" rel="stylesheet">
+    <link href="/thesis_git/css/multistep-process-bar.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/thesis_git/css/sb-admin-2.min.css" rel="stylesheet">
@@ -32,15 +33,27 @@
 
 <div class="container">
 
-<h1>APPLICATION PART 3</h1>
+<!-- progressbar start-->
 
-<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+        <div id="mp_bar">  
+                    <ul id="mp_prog_bar">  
+                        <li class="active" id="step1">  <h5> Personal Information </h5>  </li>  
+                        <li class="active" id="step2"> <h5> Educational Attainment </h5> </li>  
+                        <li class="active" id="step3"> <h5> Certificates and Seminars </h5> </li>  
+                        <li id="step4"> <h5>  </h5> </li>  
+                    </ul>  
+        </div> 
+
+<!-- progressbar end -->
+
+<div>
+        <label for="files">Select multiple files: </label>
+        <input id="files" type="file" multiple/>
+        <output id="result"> </output>
 </div>
-        
-            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
-            <iframe class="embed-responsive-item" src="page3-process.php" name="applicant_iframe" allowfullscreen></iframe>
-            </div>
+
+
+<button type="button" id="btn_pts">Total Pts</button>
 
 <hr>
 <a href="applicant-page2.php" class="btn btn-danger" role="button">BACK</a>
@@ -69,6 +82,54 @@
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
+
+    <script>
+window.onload = function(){
+    var points = 0;
+
+        if(window.File && window.FileList && window.FileReader)
+        {
+            var filesInput = document.getElementById("files"); 
+            filesInput.addEventListener("change", function(event){ 
+                var files = event.target.files; 
+                var output = document.getElementById("result");
+                
+                for(var i = 0; i< files.length; i++)
+                {
+                    var file = files[i]; 
+                    var file_name = file.name;
+                    
+                    //console.log("file = "+file.name);
+                    if(!file.type.match('image'))
+                      continue;
+                      points += 2;
+                      console.log(points);
+                    var reader = new FileReader();
+                    reader.addEventListener("load",function(event){
+                        var file = event.target;
+                        var div = document.createElement("div");
+                        div.innerHTML = "<br><h5>Image:"+file_name+"</h5><img style='height: 50%; width: 50%;' id='img_id"+i+"'class='thumbnail' src='" + file.result + "'" +
+                                "title='" + file_name + "'/>";
+                        output.insertBefore(div,null);        
+
+                         
+                    });
+                    reader.readAsDataURL(file);
+                }                               
+            });
+        }
+        else
+        {
+            console.log("Your browser does not support File API");
+        }
+
+        $('#btn_pts').click(function(e){
+            alert("Total Points: "+points);
+        });
+    }
+        
+    </script>
+
 
     
 

@@ -13,6 +13,7 @@
         rel="stylesheet">
 
     <link href="/thesis_git/css/main.css" rel="stylesheet">
+    <link href="/thesis_git/css/multistep-process-bar.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/thesis_git/css/sb-admin-2.min.css" rel="stylesheet">
@@ -32,20 +33,99 @@
 
 <div class="container">
 
-<h1>APPLICATION PART 2</h1>
 
-<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+<!-- progressbar start-->
+
+        <div id="mp_bar">  
+                    <ul id="mp_prog_bar">  
+                        <li class="active" id="step1">  <h5> Personal Information </h5>  </li>  
+                        <li class="active" id="step2"> <h5> Educational Attainment </h5> </li>  
+                        <li id="step3"> <h5>  </h5> </li>  
+                        <li id="step4"> <h5>  </h5> </li>  
+                    </ul>  
+        </div> 
+
+<!-- progressbar end -->
+
+<form action="" method="POST">
+<div class="container">
+
+<div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Educational Attainment</label>
+      <input type="text" class="form-control" id="educ_attain" placeholder="ex. College Graduate">
+    </div>
+    <div class="form-group col-md-4">
+      <label>Degree Received</label>
+      <input type="text" class="form-control" id="educ_attain_deg" name="educ_attain_deg" placeholder="ex. Cum Laude">
+    </div>
 </div>
 
-            <div class="embed-responsive embed-responsive-16by9" style="height: 65vh">
-            <iframe class="embed-responsive-item" src="applicant-educ.php" name="applicant_iframe" allowfullscreen></iframe>
-            </div>
+<div class="form-row">
+    <div class="form-group col-md-4">
+      <label>University / School</label>
+      <input type="text" class="form-control" id="univ" placeholder="ex. Father Saturnino Urios University">
+    </div>
+    <div class="form-group col-md-4">
+      <label>Year Graduated</label>
+      <input type="text" class="form-control" id="yr_grad" name="yr_grad_3" placeholder="ex. 1988">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Secondary Education</label>
+      <input type="text" class="form-control" id="hs" placeholder="ex. Agusan National High School">
+    </div>
+    <div class="form-group col-md-4">
+      <label>Year Graduated</label>
+      <input type="text" class="form-control" id="yr_grad_2" name="yr_grad_2" placeholder="ex. 1984">
+    </div>
+</div>
+
+<hr class="mb-4 mt-4">
+
+<h5>Contact Details</h5>
+<div class="form-row">
+    <div class="form-group col-md-3">
+      <label>Telephone / Landline</label>
+      <input type="text" class="form-control" id="landline" placeholder="ex. 341-4111">
+    </div>
+    <div class="form-group col-md-3">
+      <label>Cellphone / Mobile No.</label>
+      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="ex. 0999-999-9999">
+    </div>
+    <div class="form-group col-md-3">
+      <label>Email</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="ex. email@sample.com">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+      <label>Civil Status</label>
+      <input type="text" class="form-control" id="civil" placeholder="ex. Married">
+    </div>
+    <div class="form-group col-md-3">
+      <label>Citizenship</label>
+      <input type="text" class="form-control" id="citizen" name="citizen" placeholder="ex. Filipino">
+    </div>
+    <div class="form-group col-md-3">
+      <label>Religion</label>
+      <input type="text" class="form-control" id="religion" name="religion" placeholder="ex.Roman Catholic">
+    </div>
+</div>
+
+
+</div>
+
+
+</form>
 
 
 <hr>
 <a href="applicant-page1.php" class="btn btn-danger" role="button">BACK</a>
-<a href="applicant-page3.php" class="btn btn-secondary" role="button">PROCEED</a>
+<a href="applicant-page3.php" class="btn btn-success" role="button" id="sub_btn">SUBMIT</a>
 
 
 
@@ -71,6 +151,42 @@
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
+
+    <script>
+
+$(function(){
+		$('#sub_btn').click(function(e){
+
+			var valid = this.form.checkValidity();
+			if(valid){
+
+				
+				e.preventDefault();
+
+
+				$.ajax({
+					type: 'POST',
+					url: "reg-process.php",
+					data: { info : info},
+					success: function(data){
+
+                    alert('Registration Successful!');
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+				$("form").trigger("reset");
+                window.location.href = "/thesis_git/applicant/applicant-page3.php";
+			}
+			else{
+        
+			}
+		});
+	});
+
+    </script>
+
 
 </body>
 </html>
