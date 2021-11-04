@@ -27,6 +27,8 @@
     <form action="inbox-review.php" method="post">
         <?php 
 
+$row_cnt = 0;
+
 $ft_tables="applicant_details";
 if (isset($_POST['ft_tables2'])) {
     $ft_tables = $_POST['ft_tables2'];
@@ -47,7 +49,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         WHERE TABLE_NAME = '$ft_tables'";
 
                         //start of display
-                        $dataQuery = "SELECT * FROM $ft_tables";
+                        //$dataQuery = "SELECT applicant_id, firstname, lastname, DATE_FORMAT(date_applied, '%a %b, %d %Y') as applydate, app_status FROM $ft_tables";
+                        $dataQuery = "SELECT applicant_id, firstname, lastname, DATEDIFF(CURDATE(),date_applied) as applydate, app_status FROM $ft_tables";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -80,9 +83,13 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             //moved the headers here
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
                             echo "<hr>";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant ID";
+                            echo "<hr>";
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
                             echo "<hr>";
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Pending";
                             echo "<hr>";
                             //moved the headers here
 
@@ -96,27 +103,32 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             if($ft_tables=="applicant_details"){
                                 while($row = mysqli_fetch_array($result3))
                                 {
+                                
                                 $row_num = $row['applicant_id'];
+                                
 
-                                if($row['status']>3){
-
+                                if($row['app_status']>3){
+                                    
                                 }
                                 else{
-                                    echo "<tr>";                                
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row['applicant_id'] . "</font>"."</td>";
+                                    $row_cnt++;
+                                    echo "<tr>";   
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row_cnt . "</font>"."</td>";                             
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . "00".$row['applicant_id'] . "</font>"."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['applydate'] . " day(s)". "</font>" ."</td>";
     
                                     //status changer start
                                     $current_status="";
-                                        if($row['status']==1){
+                                        if($row['app_status']==1){
+                                            $current_status = "Lacking Requirements";
+                                        }
+                                        else if($row['app_status']==2){
                                             $current_status = "Pending Exam";
                                         }
-                                        else if($row['status']==2){
+                                        else if($row['app_status']==3){
                                             $current_status = "Awaiting Interview";
-                                        }
-                                        else if($row['status']==3){
-                                            $current_status = "Hired";
                                         }
                                     //status changer end
     

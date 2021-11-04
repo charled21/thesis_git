@@ -95,18 +95,25 @@ if(isset($logged_user)==null){
     <li class="nav-item">
         <a class="nav-link collapsed" href="php/inbox.php" 
             aria-expanded="true" aria-controls="collapseInbox" target="accounts_iframe">
-            <i class="fas fa-fw fa-inbox"></i>
+            <i class="fas fa-fw fa-inbox">
+            </i>
+            
             <span>Inbox</span>
+            <span class="badge badge-pill badge-danger">8</span> 
+            
+            
         </a>
+        
        
     </li>
+    
 
     <li class="nav-item">
         
         <a class="nav-link collapsed" href="userpanel.php" 
             aria-expanded="true" aria-controls="collapseStatistics">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Statistics</span>
+            <span>Data Analytics</span>
         </a>
     </li>
 
