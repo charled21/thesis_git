@@ -98,8 +98,10 @@ if(isset($logged_user)==null){
             <i class="fas fa-fw fa-inbox">
             </i>
             
+            
             <span>Inbox</span>
-            <span class="badge badge-pill badge-danger">8</span> 
+            <span class="badge badge-pill badge-danger" style="margin-left: 100px;">8</span> 
+            
             
             
         </a>
@@ -119,21 +121,32 @@ if(isset($logged_user)==null){
 
 
     <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfiles"
+                <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProfiles"
+                    aria-expanded="true" aria-controls="collapseProfiles"> -->
+                <a class="nav-link collapsed" href="hr/recruit.php" target="accounts_iframe"  data-target="#collapseProfiles"
                     aria-expanded="true" aria-controls="collapseProfiles">
                 <!-- <a class="nav-link collapsed" href="#" >
                     <i class="fas fa-fw fa-user"></i> -->
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Applicant Profiles</span>
+                    <i class="fas fa-fw fa-briefcase"></i>
+                    <span>Recruitment</span>
                 </a>
-                <div id="collapseProfiles" class="collapse" aria-labelledby="headingProfiles"
+                <!-- <div id="collapseProfiles" class="collapse" aria-labelledby="headingProfiles"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="applicant\applicant-profiles.php" target="accounts_iframe">Profiles</a>
                         <a class="collapse-item" href="#">Evaluation</a>
                     </div>
-                </div>
+                </div> -->
             </li>
+
+    <li class="nav-item">
+        
+        <a class="nav-link collapsed" href="applicant\applicant-profiles.php" target="accounts_iframe" 
+            aria-expanded="true" aria-controls="collapseStatistics">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Personnel</span>
+        </a>
+    </li>
 
 
 
