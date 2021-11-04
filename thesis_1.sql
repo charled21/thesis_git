@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 04, 2021 at 11:58 AM
+-- Generation Time: Nov 04, 2021 at 06:41 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -106,6 +106,62 @@ INSERT INTO `eval_details` (`instance_id`, `applicant_id`, `eval_datetime`, `eva
 (23, 11, '2021-10-20 07:47:00', 1),
 (24, 11, '2021-10-21 07:51:55', 1),
 (25, 11, '2021-10-22 07:38:36', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_history`
+--
+
+CREATE TABLE `job_history` (
+  `job_history_id` int(100) NOT NULL,
+  `job_id` int(11) NOT NULL,
+  `job_applicants` int(100) NOT NULL,
+  `job_date` datetime NOT NULL,
+  `job_city` varchar(255) NOT NULL,
+  `branch_no` int(11) NOT NULL,
+  `emp_type` varchar(50) NOT NULL,
+  `emp_term` int(11) NOT NULL,
+  `job_exp` int(11) NOT NULL,
+  `min_rate` int(255) NOT NULL,
+  `max_rate` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `job_history`
+--
+
+INSERT INTO `job_history` (`job_history_id`, `job_id`, `job_applicants`, `job_date`, `job_city`, `branch_no`, `emp_type`, `emp_term`, `job_exp`, `min_rate`, `max_rate`) VALUES
+(1, 5, 0, '2021-10-27 08:34:25', 'Butuan City', 1, 'Full-time', 1, 1, 12000, 18000),
+(2, 3, 0, '2021-10-27 09:14:25', 'Cabadbaran City', 3, 'Full-time', 1, 1, 12000, 15000),
+(3, 2, 0, '2021-10-29 08:44:09', 'Butuan City', 3, 'Full-time', 1, 1, 12000, 15000),
+(4, 4, 4, '2021-10-29 09:08:20', 'Butuan City', 3, 'Full-time', 1, 1, 9000, 12000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_req`
+--
+
+CREATE TABLE `job_req` (
+  `job_id` int(11) NOT NULL,
+  `job_name` varchar(255) NOT NULL,
+  `job_score` int(11) NOT NULL,
+  `job_priv` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `job_req`
+--
+
+INSERT INTO `job_req` (`job_id`, `job_name`, `job_score`, `job_priv`) VALUES
+(1, 'Manager', 100, 7),
+(2, 'Mechanic', 80, 1),
+(3, 'Treasury Staff', 80, 1),
+(4, 'IT Staff', 50, 1),
+(5, 'Cost Engineer', 100, 3),
+(6, 'HR Staff', 100, 5),
+(7, 'Store Clerk', 50, 1);
 
 -- --------------------------------------------------------
 
@@ -254,7 +310,9 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (105, 'admin', '2021-11-01 16:41:57'),
 (106, 'admin', '2021-11-04 09:25:10'),
 (107, 'admin', '2021-11-04 09:26:20'),
-(108, 'admin', '2021-11-04 17:31:35');
+(108, 'admin', '2021-11-04 17:31:35'),
+(109, 'admin', '2021-11-04 23:09:58'),
+(110, 'admin', '2021-11-05 00:00:45');
 
 -- --------------------------------------------------------
 
@@ -350,6 +408,18 @@ ALTER TABLE `eval_details`
   ADD PRIMARY KEY (`instance_id`);
 
 --
+-- Indexes for table `job_history`
+--
+ALTER TABLE `job_history`
+  ADD PRIMARY KEY (`job_history_id`);
+
+--
+-- Indexes for table `job_req`
+--
+ALTER TABLE `job_req`
+  ADD PRIMARY KEY (`job_id`);
+
+--
 -- Indexes for table `login_accounts`
 --
 ALTER TABLE `login_accounts`
@@ -384,6 +454,18 @@ ALTER TABLE `eval_details`
   MODIFY `instance_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT for table `job_history`
+--
+ALTER TABLE `job_history`
+  MODIFY `job_history_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `job_req`
+--
+ALTER TABLE `job_req`
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `login_accounts`
 --
 ALTER TABLE `login_accounts`
@@ -393,7 +475,7 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `questions`
