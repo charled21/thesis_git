@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 26, 2021 at 08:10 AM
+-- Generation Time: Nov 04, 2021 at 11:58 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -33,7 +33,6 @@ CREATE TABLE `applicant_details` (
   `firstname` varchar(255) NOT NULL,
   `middlename` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
-  `suffix` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `dateBirth` date NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -41,24 +40,72 @@ CREATE TABLE `applicant_details` (
   `city` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
   `zipcode` varchar(255) NOT NULL,
-  `status` int(4) NOT NULL
+  `app_status` int(4) NOT NULL,
+  `date_applied` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `applicant_details`
 --
 
-INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `lastname`, `suffix`, `gender`, `dateBirth`, `address`, `address2`, `city`, `state`, `zipcode`, `status`) VALUES
-(1, 'Jejomar', 'Mondejar', 'Binay', 'Jr.', 'M', '2000-05-10', 'Kurog St.', 'J.C Aparment, 3rd floor', 'Cabadbaran City', 'Agusan del Norte', '8605', 1),
-(2, 'Junard', 'Reyes', 'Miranda', '', 'M', '1980-02-06', 'P-6 Leon Kilat', 'JC Aquino', 'Butuan City', 'Agusan del Norte', '8600', 1),
-(3, 'Juan ', 'Aguilar', 'Dela Cruz', '', 'M', '1998-10-10', 'P-1 Obrero', 'Montilla Blvd.', 'Butuan City', 'Agusan del Norte', '8600', 1),
-(4, 'Angela', 'Macabugto', 'Luso', '', 'F', '1988-06-27', 'P-8 Libertad', 'JC Aquino ', 'Butuan City', 'Agusan del Norte', '8600', 2),
-(5, 'Dhanika', 'Sugbo', 'Cagas', '', 'F', '1997-08-18', 'Blk 34 Lot 18', 'Northtown Subdivision', 'Butuan City', 'Agusan del Norte', '8600', 1),
-(7, 'Teofisto', 'Tuman', 'Lumad', '', 'M', '1989-07-29', 'P-1 Bading', 'Bading Rampa Road', 'Butuan City', 'Agusan del Norte', '8600', 4),
-(8, 'Raymart', 'Naquila', 'Norberte', '', 'M', '1991-01-05', 'P-1 San Agustin ', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4),
-(9, 'Jhuanna', 'Avenido', 'Dampa', '', 'F', '1994-12-21', 'P-3 San Agustin', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4),
-(10, 'Arthur', 'Yantoc', 'Pajo', '', 'M', '1990-08-08', 'San Isidro I', 'Sibagat', 'Sibagat', 'Agusan del Sur', '8503', 4),
-(11, 'Jennifer', 'Macadulot', 'Pacyas', '', 'F', '1992-02-05', 'Libertad', 'San Isidro I', 'Sibagat', 'Agusan del Sur', '8503', 4);
+INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `lastname`, `gender`, `dateBirth`, `address`, `address2`, `city`, `state`, `zipcode`, `app_status`, `date_applied`) VALUES
+(1, 'Jejomar', 'Mondejar', 'Binay', 'M', '2000-05-10', 'Kurog St.', 'J.C Aparment, 3rd floor', 'Cabadbaran City', 'Agusan del Norte', '8605', 1, '2021-10-25'),
+(2, 'Junard', 'Reyes', 'Miranda', 'M', '1980-02-06', 'P-6 Leon Kilat', 'JC Aquino', 'Butuan City', 'Agusan del Norte', '8600', 2, '2021-10-22'),
+(3, 'Juan ', 'Aguilar', 'Dela Cruz', 'M', '1998-10-10', 'P-1 Obrero', 'Montilla Blvd.', 'Butuan City', 'Agusan del Norte', '8600', 1, '2021-10-25'),
+(4, 'Angela', 'Macabugto', 'Luso', 'F', '1988-06-27', 'P-8 Libertad', 'JC Aquino ', 'Butuan City', 'Agusan del Norte', '8600', 2, '2021-10-22'),
+(5, 'Dhanika', 'Sugbo', 'Cagas', 'F', '1997-08-18', 'Blk 34 Lot 18', 'Northtown Subdivision', 'Butuan City', 'Agusan del Norte', '8600', 3, '2021-10-18'),
+(7, 'Teofisto', 'Tuman', 'Lumad', 'M', '1989-07-29', 'P-1 Bading', 'Bading Rampa Road', 'Butuan City', 'Agusan del Norte', '8600', 4, '2017-03-03'),
+(8, 'Raymart', 'Naquila', 'Norberte', 'M', '1991-01-05', 'P-1 San Agustin ', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4, '2016-03-12'),
+(9, 'Jhuanna', 'Avenido', 'Dampa', 'F', '1994-12-21', 'P-3 San Agustin', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4, '2015-04-02'),
+(10, 'Arthur', 'Yantoc', 'Pajo', 'M', '1990-08-08', 'San Isidro I', 'Sibagat', 'Sibagat', 'Agusan del Sur', '8503', 4, '2017-02-27'),
+(11, 'Jennifer', 'Macadulot', 'Pacyas', 'F', '1992-02-05', 'Libertad', 'San Isidro I', 'Sibagat', 'Agusan del Sur', '8503', 4, '2017-03-04'),
+(12, 'Ralph', 'Cep', 'Alf', 'M', '1993-03-01', 'P5', 'B4', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-27'),
+(13, 'Dwight', 'Macabaca', 'Howard', 'M', '1984-09-01', 'P41', 'B27', 'Butuan City', 'Agusan del Norte', '8600', 1, '2021-10-28'),
+(14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eval_details`
+--
+
+CREATE TABLE `eval_details` (
+  `instance_id` int(100) NOT NULL,
+  `applicant_id` int(100) NOT NULL,
+  `eval_datetime` datetime DEFAULT NULL,
+  `eval_status` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `eval_details`
+--
+
+INSERT INTO `eval_details` (`instance_id`, `applicant_id`, `eval_datetime`, `eval_status`) VALUES
+(1, 7, '2021-10-18 07:55:54', 1),
+(2, 7, '2021-10-19 07:35:46', 1),
+(3, 7, '2021-10-20 07:58:01', 1),
+(4, 7, '2021-10-21 08:05:24', 2),
+(5, 7, '2021-10-22 08:12:26', 2),
+(6, 8, '2021-10-18 07:39:45', 1),
+(7, 8, '2021-10-19 07:40:01', 1),
+(8, 8, '2021-10-20 07:57:57', 1),
+(9, 8, '2021-10-21 07:49:10', 1),
+(10, 8, '2021-10-22 07:46:35', 1),
+(11, 9, '2021-10-18 08:01:34', 2),
+(12, 9, '2021-10-19 08:03:00', 2),
+(13, 9, '2021-10-20 07:58:27', 1),
+(14, 9, '2021-10-21 08:00:58', 2),
+(15, 9, '2021-10-22 07:53:48', 1),
+(16, 10, '2021-10-18 07:42:50', 1),
+(17, 10, '2021-10-19 08:22:31', 2),
+(18, 10, '2021-10-20 08:08:12', 2),
+(19, 10, '2021-10-21 08:02:01', 2),
+(20, 10, '2021-10-22 08:18:11', 2),
+(21, 11, '2021-10-18 07:21:34', 1),
+(22, 11, '2021-10-19 07:31:55', 1),
+(23, 11, '2021-10-20 07:47:00', 1),
+(24, 11, '2021-10-21 07:51:55', 1),
+(25, 11, '2021-10-22 07:38:36', 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +245,16 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (96, 'admin', '2021-10-23 22:11:29'),
 (97, 'admin', '2021-10-23 22:14:14'),
 (98, 'admin', '2021-10-23 22:14:34'),
-(99, 'admin', '2021-10-25 12:24:43');
+(99, 'admin', '2021-10-25 12:24:43'),
+(100, 'admin', '2021-10-27 11:12:36'),
+(101, 'admin', '2021-10-31 20:33:11'),
+(102, 'admin', '2021-11-01 00:51:41'),
+(103, 'admin', '2021-11-01 14:05:12'),
+(104, 'admin', '2021-11-01 15:37:29'),
+(105, 'admin', '2021-11-01 16:41:57'),
+(106, 'admin', '2021-11-04 09:25:10'),
+(107, 'admin', '2021-11-04 09:26:20'),
+(108, 'admin', '2021-11-04 17:31:35');
 
 -- --------------------------------------------------------
 
@@ -288,6 +344,12 @@ ALTER TABLE `applicant_details`
   ADD PRIMARY KEY (`applicant_id`);
 
 --
+-- Indexes for table `eval_details`
+--
+ALTER TABLE `eval_details`
+  ADD PRIMARY KEY (`instance_id`);
+
+--
 -- Indexes for table `login_accounts`
 --
 ALTER TABLE `login_accounts`
@@ -313,7 +375,13 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `applicant_details`
 --
 ALTER TABLE `applicant_details`
-  MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `eval_details`
+--
+ALTER TABLE `eval_details`
+  MODIFY `instance_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `login_accounts`
@@ -325,7 +393,7 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `questions`
