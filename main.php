@@ -26,6 +26,7 @@ else {
      <link href="css/main.css" rel="stylesheet">
      <!-- -------------- Bootstrap ----------------------->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -148,6 +149,88 @@ else {
                 </div>
             </section>
 
+            <section>
+                <!-- modal start-->
+
+                <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <?php 
+                $ft_tables="job_history";
+                $hostname = "localhost";
+                $username = "root";
+                $password = "";
+                $databaseName = "thesis_1";
+                $app_stat_cnt=0;
+
+                $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+                $rec_Query = "SELECT job_id, job_city, DATEDIFF(CURDATE(),job_date) as datepassed, emp_type FROM $ft_tables";
+                $result3 = mysqli_query($connect, $rec_Query);
+                ?>
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header bg-primary">
+                                                <h5 class="modal-title text-light">Job Opportunities</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <?php 
+                                                while($row = mysqli_fetch_array($result3))
+                                                {
+                                                    $row_num = $row['job_id'];
+                                                    $city = $row['job_city'];
+                                                    $emp_type = $row['emp_type'];
+                                                    $date =$row['datepassed'];
+                                                    if($row_num==1){
+                                                        $job_id='Manager';
+                                                    }
+                                                    else if($row_num==2)
+                                                    {
+                                                        $job_id='Mechanic';
+                                                    }
+                                                    else if($row_num==3)
+                                                    {
+                                                        $job_id='Treasury Staff';
+                                                    }
+                                                    else if($row_num==4)
+                                                    {
+                                                        $job_id='IT Staff';
+                                                    }
+                                                    else if($row_num==5)
+                                                    {
+                                                        $job_id='Cost Engineer';
+                                                    }
+                                                    else if($row_num==6)
+                                                    {
+                                                        $job_id='HR Staff';
+                                                    }
+                                                    else if($row_num==7)
+                                                    {
+                                                        $job_id='Store Clerk';
+                                                    }
+                                                    echo "<h4 class=\"mb-3\">$job_id</h4>";
+                                                    echo "<div class=\"form-row\">";
+                                                    echo "<p class=\"ml-2 text-secondary\">$city<p><i class=\"ml-3 fas fa-briefcase text-secondary\"></i> <p class=\"ml-1 text-secondary\">$emp_type </p>";
+                                                    echo "</div>";
+                                                    echo "<div class=\"form-row d-flex justify-content-between\">";
+                                                    echo "<p class=\"ml-2 text-secondary\">Over $date day(s) ago</p>";
+                                                    echo "<a type=\"button\" class=\"mr-4 btn btn-info\" href=\"applicant\applicant-page1.php\" id=\"$job_id\">Apply</a>";
+                                                    echo "</div>";
+                                                    echo "<hr>";
+                                                }
+                                                
+                                                ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <!-- modal end -->
+            </section>
+
             <!--php login wrap close begin-->
             <?php } ?>
             <!--php login wrap close end-->
@@ -190,7 +273,7 @@ else {
                                     <a class=\"nav-link\" href=\"#services\" id=\"srv-btn\">PRODUCT</a>
                                     </li>";
                                     echo "<li>
-                                    <a class=\"nav-link\" href=\"#porttwo\" id=\"prt-btn\">PORTFOLIO</a>
+                                    <a class=\"nav-link\" data-toggle=\"modal\" data-target=\"#jobModal\" id=\"jobs-btn\">JOBS</a>
                                     </li>";
                                     echo "<li>
                                     <a class=\"nav-link\" data-toggle=\"modal\" data-target=\"#accountmodal\" id=\"contact-us\">LOGIN</a>
@@ -209,7 +292,7 @@ else {
                                     <a class=\"nav-link\" href=\"#services\" id=\"srv-btn\">PRODUCT</a>
                                     </li>";
                                     echo "<li>
-                                    <a class=\"nav-link\" href=\"#porttwo\" id=\"prt-btn\">PORTFOLIO</a>
+                                    <a class=\"nav-link\" data-toggle=\"modal\" data-target=\"#jobModal\" id=\"prt-btn\">JOBS</a>
                                     </li>";
                                     echo "<li>
                                     <a class=\"nav-link\" href=\"userpanel.php\" id=\"contact-us\">ACCOUNT</a>
@@ -246,7 +329,7 @@ else {
          
                                     <?php 
                                     if(!isset($_SESSION["username"])){
-                                        echo "<a role=\"button\" href=\"applicant\applicant-page1.php\" class=\"btn btn-warning button-style \"  id=\"gs-btn\" style=\"font-family: 'Nunito'; font-size: 20px;\";>GET STARTED</a>";
+                                        echo "<a role=\"button\" data-toggle=\"modal\" data-target=\"#jobModal\" class=\"btn btn-warning button-style \"  id=\"gs-btn\" style=\"font-family: 'Nunito'; font-size: 20px;\";>APPLY NOW</a>";
                                     }
                                     else {
                                         //if logged in, welcomes user

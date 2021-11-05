@@ -10,10 +10,10 @@ $data = isset($_REQUEST['myData'])?$_REQUEST['myData']:"";
 
 
 if($data==1){
-    $emp_query = "SELECT applicant_id, firstname, lastname, gender, city FROM applicant_details WHERE status < 4;";
+    $emp_query = "SELECT applicant_id, firstname, lastname, gender, city FROM applicant_details WHERE app_status < 4;";
 }
 else if($data==2){
-    $emp_query = "SELECT applicant_id, firstname, lastname, gender, city FROM applicant_details WHERE status = 4;";
+    $emp_query = "SELECT applicant_id, firstname, lastname, gender, city FROM applicant_details WHERE app_status = 4;";
 }
 
     //probation employees print start

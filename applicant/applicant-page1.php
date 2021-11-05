@@ -238,7 +238,7 @@
 					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip},
 					success: function(data){
             //console.log("passing :"+fname+mname+lname+gender+address1+ address2+city+state+ zip+"");
-						//console.log("data= "+data);
+						console.log("data= "+data);
             alert('Registration Successful!');
 					},
 					error: function(data){
@@ -249,7 +249,7 @@
 				//alert('true');
 				//alert(firstname+lastname+course);
 				$("form").trigger("reset");
-                window.location.href = "/thesis_git/applicant/applicant-page2.php";
+                //window.location.href = "/thesis_git/applicant/applicant-page2.php";
 			}
 			else{
         

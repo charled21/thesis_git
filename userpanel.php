@@ -50,17 +50,32 @@ if(isset($logged_user)==null){
 
 <!-- Sidebar -->
 <?php 
-// if($priv >= 10){
-// echo "<ul class=\"navbar-nav bg-gradient-warning sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
-// }
-// else if($priv > 4 && $priv < 10){
-// echo "<ul class=\"navbar-nav bg-gradient-success sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
-// }
-// else{
-// echo "<ul class=\"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
-// }
+$ft_tables="job_history";
+$rec_Table = "applicant_details";
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$databaseName = "thesis_1";
+$app_stat_cnt=0;
 
-// echo "priv dapat dri + $priv";
+$connect = mysqli_connect($hostname, $username, $password, $databaseName);
+$inboxQuery = "SELECT applicant_id, app_status FROM $rec_Table";
+$rec_Query = "SELECT job_history_id FROM $ft_tables";
+$result3 = mysqli_query($connect, $rec_Query);
+$inbx = mysqli_query($connect, $inboxQuery);
+while($row2 = mysqli_fetch_array($inbx))
+{
+    
+    $app_stat = $row2['app_status'];
+    if($app_stat<4){
+        $app_stat_cnt++;
+    }
+    
+}
+while($row = mysqli_fetch_array($result3))
+{
+    $rec_cnt = $row['job_history_id'];
+}
 ?>
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -100,7 +115,7 @@ if(isset($logged_user)==null){
             
             
             <span>Inbox</span>
-            <span class="badge badge-pill badge-danger" style="margin-left: 100px;">8</span> 
+            <span class="badge badge-pill badge-danger" ><?php echo $app_stat_cnt;?></span> 
             
             
             
@@ -129,6 +144,7 @@ if(isset($logged_user)==null){
                     <i class="fas fa-fw fa-user"></i> -->
                     <i class="fas fa-fw fa-briefcase"></i>
                     <span>Recruitment</span>
+                    <span class="badge badge-pill badge-danger"><?php  echo  $rec_cnt;?></span> 
                 </a>
                 <!-- <div id="collapseProfiles" class="collapse" aria-labelledby="headingProfiles"
                     data-parent="#accordionSidebar">
@@ -476,8 +492,8 @@ if(isset($logged_user)==null){
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/thesis_git/js/demo/chart-area-demo.js"></script>
-    <script src="/thesis_git/js/demo/chart-pie-demo.js"></script>
+    <!-- <script src="/thesis_git/js/demo/chart-area-demo.js"></script>
+    <script src="/thesis_git/js/demo/chart-pie-demo.js"></script> -->
 
    
 </body>

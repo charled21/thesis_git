@@ -30,7 +30,7 @@ require_once(__DIR__.'/../php/db-config.php');
 				$final_month=intval($month)+1;
 				$birthday = "$year-$final_month-$day";
 
-				$sql = "INSERT INTO applicant_details (firstname,middlename,lastname,gender,dateBirth,address,address2,city,state,zipcode,status) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+				$sql = "INSERT INTO applicant_details (firstname,middlename,lastname,gender,dateBirth,address,address2,city,state,zipcode,app_status) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 				$stmtinsert = $db->prepare($sql);
 				$result = $stmtinsert->execute([$fname, $mname, $lname, $final_gender, $birthday,$address1,$address2,$city,$state,$zip,$status]);
 

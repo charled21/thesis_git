@@ -18,6 +18,45 @@ session_start();
  <!-- Begin Page Content -->
  <div class="container-fluid">
 
+ <?php 
+$ft_tables="job_history";
+$rec_Table = "applicant_details";
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$databaseName = "thesis_1";
+$app_stat_cnt=0;
+$total_no_applicants = 0;
+$pending_req = 0;
+$completed_jobs = 0;
+
+$connect = mysqli_connect($hostname, $username, $password, $databaseName);
+$inboxQuery = "SELECT applicant_id, app_status FROM $rec_Table";
+$rec_Query = "SELECT job_history_id, job_status FROM $ft_tables";
+$result3 = mysqli_query($connect, $rec_Query);
+$inbx = mysqli_query($connect, $inboxQuery);
+while($row2 = mysqli_fetch_array($inbx))
+{
+    $total_no_applicants++;
+    $app_stat = $row2['app_status'];
+    if($app_stat>3){
+        $app_stat_cnt++;
+    }
+    else if($app_stat<4){
+        $pending_req++;
+    }
+    
+}
+while($row = mysqli_fetch_array($result3))
+{
+    $rec_cnt = $row['job_history_id'];
+    $job_status = $row['job_status'];
+    if($job_status>0){
+        $completed_jobs++;
+    }
+}
+?>
+
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">DATA ANALYTICS</h1>
@@ -34,7 +73,7 @@ session_start();
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Phase-2 Pending Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$pending_req";?></div>
                     </div>
                     <div class="col-auto">
                         <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
@@ -58,7 +97,7 @@ session_start();
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Completed</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$completed_jobs";?></div>
                     </div>
                     <div class="col-auto">
                         <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
@@ -85,7 +124,7 @@ session_start();
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">121</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo "$total_no_applicants";?></div>
                             </div>
                             <!-- <div class="col">
                                 <div class="progress progress-sm mr-2">
@@ -112,7 +151,7 @@ session_start();
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Total Number of Accepted Applicants</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">23</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$app_stat_cnt";?></div>
                     </div>
                     <div class="col-auto">
                         <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
