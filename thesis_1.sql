@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 04, 2021 at 06:41 PM
+-- Generation Time: Nov 05, 2021 at 05:49 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -61,7 +61,8 @@ INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `las
 (11, 'Jennifer', 'Macadulot', 'Pacyas', 'F', '1992-02-05', 'Libertad', 'San Isidro I', 'Sibagat', 'Agusan del Sur', '8503', 4, '2017-03-04'),
 (12, 'Ralph', 'Cep', 'Alf', 'M', '1993-03-01', 'P5', 'B4', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-27'),
 (13, 'Dwight', 'Macabaca', 'Howard', 'M', '1984-09-01', 'P41', 'B27', 'Butuan City', 'Agusan del Norte', '8600', 1, '2021-10-28'),
-(14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-28');
+(14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-28'),
+(23, 'Janry', 'Pongase', 'Tandayag', 'M', '1992-01-01', 'P6', 'B16', 'Butuan City', 'Agusan del Norte', '8600', 1, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -122,20 +123,26 @@ CREATE TABLE `job_history` (
   `branch_no` int(11) NOT NULL,
   `emp_type` varchar(50) NOT NULL,
   `emp_term` int(11) NOT NULL,
-  `job_exp` int(11) NOT NULL,
   `min_rate` int(255) NOT NULL,
-  `max_rate` int(255) NOT NULL
+  `max_rate` int(255) NOT NULL,
+  `job_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `job_history`
 --
 
-INSERT INTO `job_history` (`job_history_id`, `job_id`, `job_applicants`, `job_date`, `job_city`, `branch_no`, `emp_type`, `emp_term`, `job_exp`, `min_rate`, `max_rate`) VALUES
-(1, 5, 0, '2021-10-27 08:34:25', 'Butuan City', 1, 'Full-time', 1, 1, 12000, 18000),
-(2, 3, 0, '2021-10-27 09:14:25', 'Cabadbaran City', 3, 'Full-time', 1, 1, 12000, 15000),
-(3, 2, 0, '2021-10-29 08:44:09', 'Butuan City', 3, 'Full-time', 1, 1, 12000, 15000),
-(4, 4, 4, '2021-10-29 09:08:20', 'Butuan City', 3, 'Full-time', 1, 1, 9000, 12000);
+INSERT INTO `job_history` (`job_history_id`, `job_id`, `job_applicants`, `job_date`, `job_city`, `branch_no`, `emp_type`, `emp_term`, `min_rate`, `max_rate`, `job_status`) VALUES
+(1, 5, 0, '2021-10-27 08:34:25', 'Butuan City', 1, 'Full-time', 1, 12000, 18000, 0),
+(2, 3, 0, '2021-10-27 09:14:25', 'Cabadbaran City', 3, 'Full-time', 1, 12000, 15000, 0),
+(3, 2, 0, '2021-10-29 08:44:09', 'Butuan City', 3, 'Full-time', 1, 12000, 15000, 0),
+(4, 4, 4, '2021-10-29 09:08:20', 'Butuan City', 3, 'Full-time', 1, 9000, 12000, 0),
+(5, 4, 0, '2021-11-05 22:33:29', 'Butuan City', 1, 'Full-time', 1, 0, 0, 0),
+(6, 7, 0, '2021-11-05 22:35:59', 'Butuan City', 3, 'Full-time', 1, 0, 0, 0),
+(7, 7, 0, '2021-11-06 00:31:38', 'Butuan City', 3, 'Part-time', 2, 0, 0, 0),
+(8, 4, 0, '2021-11-06 00:32:58', 'Butuan City', 2, 'Full-time', 2, 0, 0, 0),
+(9, 2, 0, '2021-11-06 00:33:45', 'Butuan City', 3, 'Full-time', 1, 0, 0, 0),
+(10, 4, 0, '2021-11-06 00:34:15', 'Butuan City', 2, 'Part-time', 2, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -312,7 +319,12 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (107, 'admin', '2021-11-04 09:26:20'),
 (108, 'admin', '2021-11-04 17:31:35'),
 (109, 'admin', '2021-11-04 23:09:58'),
-(110, 'admin', '2021-11-05 00:00:45');
+(110, 'admin', '2021-11-05 00:00:45'),
+(111, 'admin', '2021-11-05 21:00:29'),
+(112, 'admin', '2021-11-06 00:09:20'),
+(113, 'admin', '2021-11-06 00:10:42'),
+(114, 'admin', '2021-11-06 00:16:12'),
+(115, 'admin', '2021-11-06 00:29:26');
 
 -- --------------------------------------------------------
 
@@ -445,7 +457,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `applicant_details`
 --
 ALTER TABLE `applicant_details`
-  MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `eval_details`
@@ -457,7 +469,7 @@ ALTER TABLE `eval_details`
 -- AUTO_INCREMENT for table `job_history`
 --
 ALTER TABLE `job_history`
-  MODIFY `job_history_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `job_history_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `job_req`
@@ -475,7 +487,7 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `questions`
