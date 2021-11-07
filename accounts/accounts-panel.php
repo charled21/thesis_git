@@ -18,7 +18,7 @@ session_start();
  <!-- Begin Page Content -->
  <div class="container-fluid">
 
- <?php 
+<?php 
 $ft_tables="job_history";
 $rec_Table = "applicant_details";
 $hostname = "localhost";

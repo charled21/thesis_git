@@ -50,7 +50,43 @@ else {
             // }
             //debug end
 
-            $con = mysqli_connect("localhost","root","","thesis_1");
+            $ft_tables="job_history";
+            $rec_Table = "applicant_details";
+            $hostname = "localhost";
+            $username = "root";
+            $password = "";
+            $databaseName = "thesis_1";
+            $app_stat_cnt=0;
+            $total_no_applicants = 0;
+            $pending_req = 0;
+            $completed_jobs = 0;
+            $job_counter= 0;
+
+            $con = mysqli_connect($hostname, $username, $password, $databaseName);
+            $inboxQuery = "SELECT applicant_id, app_status FROM $rec_Table";
+            $rec_Query = "SELECT job_history_id, job_status FROM $ft_tables";
+            $result3 = mysqli_query($con, $rec_Query);
+            $inbx = mysqli_query($con, $inboxQuery);
+            while($row2 = mysqli_fetch_array($inbx))
+            {
+                $total_no_applicants++;
+                $app_stat = $row2['app_status'];
+                if($app_stat>3){
+                    $app_stat_cnt++;
+                }
+                else if($app_stat<4){
+                    $pending_req++;
+                }
+                
+            }
+            while($row = mysqli_fetch_array($result3))
+            {
+                $rec_cnt = $row['job_history_id'];
+                $job_status = $row['job_status'];
+                if($job_status>0){
+                    $completed_jobs++;
+                }
+            }
 
             if (isset($_POST['username'])){
             
@@ -208,13 +244,14 @@ else {
                                                     {
                                                         $job_id='Store Clerk';
                                                     }
+                                                    $job_counter++;
                                                     echo "<h4 class=\"mb-3\">$job_id</h4>";
                                                     echo "<div class=\"form-row\">";
                                                     echo "<p class=\"ml-2 text-secondary\">$city<p><i class=\"ml-3 fas fa-briefcase text-secondary\"></i> <p class=\"ml-1 text-secondary\">$emp_type </p>";
                                                     echo "</div>";
                                                     echo "<div class=\"form-row d-flex justify-content-between\">";
-                                                    echo "<p class=\"ml-2 text-secondary\">Over $date day(s) ago</p>";
-                                                    echo "<a type=\"button\" class=\"mr-4 btn btn-info\" href=\"applicant\applicant-page1.php\" id=\"$job_id\">Apply</a>";
+                                                    echo "<p class=\"text-secondary\">[#$job_counter]  Over $date day(s) ago</p>";
+                                                    echo "<a type=\"button\" class=\"mr-4 btn btn-info\" href=\"applicant\applicant-page1.php\" value=\"$job_id\" id=\"apply_btn\">Apply</a>";
                                                     echo "</div>";
                                                     echo "<hr>";
                                                 }
@@ -348,8 +385,8 @@ else {
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Available Slots</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">13</div>
+                                                    Job Openings</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo  $rec_cnt;?></div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
@@ -367,7 +404,7 @@ else {
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                     Total Number of Applicants</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">121</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$total_no_applicants";?></div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
@@ -407,5 +444,16 @@ else {
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <!-----------------------scripts end-------------------------- -->
 
+            <script>
+                $(function(){
+		            $('#apply_btn').click(function(e){
+                        var btn_val = $('#apply_btn').val();
+                        console.log(btn_val);
+                    });
+	            });
+            </script>
+
         </body>
+
+        
 </html>

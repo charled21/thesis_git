@@ -35,6 +35,7 @@
 //$row_cnt = 0;
 
 $ft_tables="job_history";
+$applicants="applicant_details";
 $hostname = "localhost";
 $username = "root";
 $password = "";
@@ -45,16 +46,31 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         
                         $job_id = "";
                         $job_hist_id="";
+                        $app_id = "";
+                        $app_job_hist = "";
+                        $job_app_cnt=0;
+                        $candidates = array();
+
+                        $dataQuery = "SELECT job_history_id,job_id, job_applicants, DATE_FORMAT(job_date, '%b, %d %Y') as applydate, DATEDIFF(CURDATE(),job_date) as datepassed, job_city, branch_no FROM $ft_tables";
+                        $applicant_query = "SELECT applicant_id, job_history_id FROM $applicants WHERE app_status < 4";
+                        $jobQuery = "SELECT * FROM job_req";
                         //start of display
                         //$dataQuery = "SELECT applicant_id, firstname, lastname, DATE_FORMAT(date_applied, '%a %b, %d %Y') as applydate, app_status FROM $ft_tables";
-                        $dataQuery = "SELECT job_history_id,job_id, job_applicants, DATE_FORMAT(job_date, '%b, %d %Y') as applydate, DATEDIFF(CURDATE(),job_date) as datepassed, job_city, branch_no FROM $ft_tables";
+                        
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
                         <tr>";
                         $result3 = mysqli_query($connect, $dataQuery);
+                        
+                        $app_cnt_query = mysqli_query($connect, $applicant_query);
+                        
+                                  while($app_cnt_row = mysqli_fetch_array($app_cnt_query))
+                                    {
+                                      $app_job_hist = $app_cnt_row['job_history_id']; 
+                                        $candidates[] = $app_job_hist; 
+                                    }
 
-                        $jobQuery = "SELECT * FROM job_req";
                         $result_job_id = mysqli_query($connect, $jobQuery);
 
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">All Jobs";
@@ -73,15 +89,21 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             echo "<hr>";
                         echo "</th> </tr>";
 
-                            
+                        // for ($i = 0; $i < count($candidates); $i++) {
+                                  
+                        //   if($job_hist_id==$candidates[$i]){
+                        //     $job_app_cnt++;
+                        //   }
+                        //   else{
+
+                        //   }
+                        // }
                             if($ft_tables=="job_history"){
                                 while($row = mysqli_fetch_array($result3))
                                 {
                                 $row_num = $row['job_id'];         
-                                $job_hist_id = $row['job_history_id'];     
-                                               
-                                //echo "<script> console.log($job_hist_id);</script>";
-                                
+                                $job_hist_id = $row['job_history_id'];
+                                                                
                                 if($row['job_history_id']<0){
                                     
                                 }
@@ -117,8 +139,11 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     {
                                         $job_id='Store Clerk';
                                     }
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $job_id . "</font>"."</td>";                             
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row['job_applicants'] . "</font>"."</td>";
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $job_id . "</font>"."</td>";  
+                                                            
+                                    
+                                    
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $job_app_cnt . "</font>"."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['applydate'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['datepassed'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['job_city'] . "</font>" ."</td>";
@@ -136,10 +161,11 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     echo "<td>" . "<button type=\"submit\" class=\"btn btn-primary mb-2\" value=$job_hist_id id=\"tds2\" name=\"tds2\" >View</button>"."</td>";
                                     echo "</tr>";
                                    
-                                
                                     
                                     } //else end
-                                }
+                                    
+                                }// while end
+
                                 
                             }
                             
