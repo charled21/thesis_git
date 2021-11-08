@@ -10,8 +10,8 @@ if(!isset($_SESSION["username"])){
 else {
     //if logged in, welcomes user
     $logged_user = $_SESSION["username"];
-    $priv = $_SESSION['acctpriv'];
-    echo "<script type=\"text/javascript\">alert(\"Welcome back $logged_user $priv!\")</script>";
+    $priv = $_SESSION['acct_priv'];
+    echo "<script type=\"text/javascript\">alert(\"Welcome back $logged_user!\")</script>";
 }
 ?>
 
@@ -35,20 +35,6 @@ else {
     <!-- php for login start-->
 
             <?php
-
-            //debug start
-            // $ftable2 = 'login_accounts';
-            // $hostname = "localhost";
-            // $username = "root";
-            // $password = "";
-            // $databaseName = "thesis_1";
-            // $dataQuery = "SELECT * FROM  $ftable2 WHERE username ='$username'; ";
-            // $result3 = mysqli_query($connect, $dataQuery);
-            // while($row2 = mysqli_fetch_array($result3)){
-            //     $priv = $row2['acct_priv'];
-                
-            // }
-            //debug end
 
             $ft_tables="job_history";
             $rec_Table = "applicant_details";
@@ -98,9 +84,14 @@ else {
             $query = "SELECT * FROM `login_accounts` WHERE username='$username'
             and password='".($password)."'";
              $result = mysqli_query($con,$query) or die(mysql_error());
+             while($priv_rows = mysqli_fetch_array($result))
+             {
+                $priv = $priv_rows['acct_priv'];
+             }
              $rows = mysqli_num_rows($result);
                     if($rows==1){
                  $_SESSION['username'] = $username;
+                 $_SESSION['acct_priv'] = $priv;
 
             
                  
@@ -379,7 +370,7 @@ else {
                                 <!-- # of statistics start -->         
                                 <div class="form-row col-lg-6">
                                     
-                                <div class="col-xl-5 col-md-12 mb-4 mr-4">
+                                <div class="col-xl-4 col-md-8 mb-4 mr-4">
                                     <div class="card border-left-success shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
@@ -403,7 +394,7 @@ else {
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Total Number of Applicants</div>
+                                                    Total Applicants</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$total_no_applicants";?></div>
                                                 </div>
                                                 <div class="col-auto">

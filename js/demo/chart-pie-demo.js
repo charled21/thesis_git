@@ -7,14 +7,23 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["INTJ", "ISTP", "ESFP"],
+    labels: [personality_data],
     datasets: [{
-      data: [30, 30, 40],
+      data: [personality_cnt],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
+  // data: {
+  //   labels: ["INTJ", "ISTP", "ESFP"],
+  //   datasets: [{
+  //     data: [30, 30, 40],
+  //     backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+  //     hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+  //     hoverBorderColor: "rgba(234, 236, 244, 1)",
+  //   }],
+  // },
   options: {
     maintainAspectRatio: false,
     tooltips: {
@@ -33,3 +42,5 @@ var myPieChart = new Chart(ctx, {
     cutoutPercentage: 80,
   },
 });
+
+

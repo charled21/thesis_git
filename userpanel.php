@@ -1,7 +1,7 @@
 <?php  
 session_start();
 $logged_user = $_SESSION['username'];
-//$priv = $_SESSION['acctpriv'];
+$priv = $_SESSION['acct_priv'];
 
 //var_dump($_SESSION);
 
@@ -78,7 +78,15 @@ while($row = mysqli_fetch_array($result3))
 }
 ?>
 
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <?php 
+    if($priv>5){
+    echo"<ul class=\"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
+    }
+    else{
+    echo "<ul class=\"navbar-nav bg-gradient-success sidebar sidebar-dark accordion\" id=\"accordionSidebar\">";
+    }
+    ?>
+
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main.php">
         <div class="sidebar-brand-icon rotate-n-15">
