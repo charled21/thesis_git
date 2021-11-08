@@ -39,8 +39,12 @@ $result3 = mysqli_query($connect, $rec_Query);
 $inbx = mysqli_query($connect, $inboxQuery);
 while($row2 = mysqli_fetch_array($inbx))
 {
-    $total_no_applicants++;
+    
+    
     $app_stat = $row2['app_status'];
+    if($app_stat<4){
+        $total_no_applicants++;
+    }
     if($app_stat>3){
         $app_stat_cnt++;
     }

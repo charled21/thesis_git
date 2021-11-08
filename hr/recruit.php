@@ -51,7 +51,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         $job_app_cnt=0;
                         $candidates = array();
 
-                        $dataQuery = "SELECT job_history_id,job_id, job_applicants, DATE_FORMAT(job_date, '%b, %d %Y') as applydate, DATEDIFF(CURDATE(),job_date) as datepassed, job_city, branch_no FROM $ft_tables";
+                        $dataQuery = "SELECT job_history_id,job_id, job_applicants, DATE_FORMAT(job_date, '%b, %d %Y') as applydate, DATEDIFF(CURDATE(),job_date) as datepassed, job_city, branch_no FROM $ft_tables WHERE job_status < 1";
                         $applicant_query = "SELECT applicant_id, job_history_id FROM $applicants WHERE app_status < 4";
                         $jobQuery = "SELECT * FROM job_req";
                         //start of display

@@ -57,10 +57,11 @@ $username = "root";
 $password = "";
 $databaseName = "thesis_1";
 $app_stat_cnt=0;
+$rec_cnt=0;
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $inboxQuery = "SELECT applicant_id, app_status FROM $rec_Table";
-$rec_Query = "SELECT job_history_id FROM $ft_tables";
+$rec_Query = "SELECT job_history_id FROM $ft_tables WHERE job_status < 1";
 $result3 = mysqli_query($connect, $rec_Query);
 $inbx = mysqli_query($connect, $inboxQuery);
 while($row2 = mysqli_fetch_array($inbx))
@@ -74,7 +75,10 @@ while($row2 = mysqli_fetch_array($inbx))
 }
 while($row = mysqli_fetch_array($result3))
 {
-    $rec_cnt = $row['job_history_id'];
+    if($row['job_history_id']!=null){
+        $rec_cnt++;
+    }
+    //$rec_cnt = $row['job_history_id'];
 }
 ?>
 
