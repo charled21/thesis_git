@@ -21,11 +21,12 @@
 <body>
 
     <div class="col-sm-12">
-        <h3 class="mb-4 mt-4">Recruitment Page</h3>
+        
 
         
         
         <div class="container">
+        <h3 class="mb-4 mt-4">Recruitment Page</h3>
         <a class="btn btn-pill btn-primary mb-4" type="button" data-toggle="modal" data-target="#job_modal">
         <span class="fas fa-plus"></span>    
         Add New Job</a>

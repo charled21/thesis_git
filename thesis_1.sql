@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 08, 2021 at 10:29 AM
+-- Generation Time: Nov 09, 2021 at 08:53 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -63,8 +63,81 @@ INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `las
 (12, 'Ralph', 'Cep', 'Alf', 'M', '1993-03-01', 'P5', 'B4', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-27', 10),
 (13, 'Dwight', 'Macabaca', 'Howard', 'M', '1984-09-01', 'P41', 'B27', 'Butuan City', 'Agusan del Norte', '8600', 1, '2021-10-28', 10),
 (14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-28', 10),
-(23, 'Janry', 'Pongase', 'Tandayag', 'M', '1992-01-01', 'P6', 'B16', 'Butuan City', 'Agusan del Norte', '8600', 1, '0000-00-00', 10),
-(24, '', '', '', 'U', '2021-11-07', '', '', 'Choose City', 'Choose State', '', 1, '0000-00-00', 0);
+(23, 'Janry', 'Pongase', 'Tandayag', 'M', '1992-01-01', 'P6', 'B16', 'Butuan City', 'Agusan del Norte', '8600', 1, '0000-00-00', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_add_details`
+--
+
+CREATE TABLE `app_add_details` (
+  `app_details_id` int(11) NOT NULL,
+  `app_email` varchar(255) NOT NULL,
+  `app_religion` int(11) NOT NULL,
+  `app_citizenship` int(11) NOT NULL,
+  `app_civil_status` int(11) NOT NULL,
+  `app_landline` int(50) NOT NULL,
+  `app_mobile` int(50) NOT NULL,
+  `applicant_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `app_add_details`
+--
+
+INSERT INTO `app_add_details` (`app_details_id`, `app_email`, `app_religion`, `app_citizenship`, `app_civil_status`, `app_landline`, `app_mobile`, `applicant_id`) VALUES
+(1, 'email_1@sample.com', 1, 1, 1, 3000000, 999999999, 1),
+(2, 'email_2@sample.com', 1, 1, 1, 3000000, 999999999, 2),
+(3, 'email_3@sample.com', 1, 1, 1, 3000000, 999999999, 3),
+(4, 'email_4@sample.com', 1, 1, 1, 3000000, 999999999, 4),
+(5, 'email_5@sample.com', 1, 1, 1, 3000000, 999999999, 5),
+(6, 'email_7@sample.com', 1, 1, 1, 3000000, 999999999, 7),
+(7, 'email_8@sample.com', 1, 1, 1, 3000000, 999999999, 8),
+(8, 'email_9@sample.com', 1, 1, 1, 3000000, 999999999, 9),
+(9, 'email_10@sample.com', 1, 1, 1, 3000000, 999999999, 10),
+(10, 'email_11@sample.com', 1, 1, 1, 3000000, 999999999, 11),
+(11, 'email_12@sample.com', 1, 1, 1, 3000000, 999999999, 12),
+(12, 'email_13@sample.com', 1, 1, 1, 3000000, 999999999, 13),
+(13, 'email_14@sample.com', 1, 1, 1, 3000000, 999999999, 14),
+(14, 'email_23@sample.com', 1, 1, 1, 3000000, 999999999, 23);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_educ_bg`
+--
+
+CREATE TABLE `app_educ_bg` (
+  `educ_id` int(11) NOT NULL,
+  `educ_attain` int(11) NOT NULL,
+  `educ_deg` int(11) NOT NULL,
+  `educ_univ` varchar(255) NOT NULL,
+  `educ_univ_yr` int(11) NOT NULL,
+  `educ_hs` varchar(255) NOT NULL,
+  `educ_hs_grad` int(11) NOT NULL,
+  `applicant_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `app_educ_bg`
+--
+
+INSERT INTO `app_educ_bg` (`educ_id`, `educ_attain`, `educ_deg`, `educ_univ`, `educ_univ_yr`, `educ_hs`, `educ_hs_grad`, `applicant_id`) VALUES
+(1, 1, 1, 'Caraga State University - Cabadbaran Campus', 2011, 'Cabadbaran City National High School', 2007, 1),
+(2, 1, 1, 'Father Saturnino Urios University', 2014, 'Agusan National High School', 2010, 2),
+(3, 1, 1, 'Father Saturnino Urios University', 2016, 'Agusan National High School', 2012, 3),
+(4, 1, 1, 'Philippine Electronics and Communication Institute of Technology', 2016, 'Agusan National High School', 2012, 4),
+(5, 1, 1, 'Philippine Electronics and Communication Institute of Technology', 2017, 'Libertad National High School', 2012, 5),
+(6, 1, 1, 'Caraga State University', 2015, 'Tiniwisan National High School', 2011, 7),
+(7, 1, 1, 'AMA Computer Learning Center', 2017, 'Talacogon National High School', 2013, 8),
+(8, 1, 1, 'Father Saturnino Urios University', 2017, 'Talacogon National High School', 2013, 9),
+(9, 1, 1, 'Holy Child Colleges of Butuan', 2017, 'Sibagat National High School Home of Industries', 2013, 10),
+(10, 1, 1, 'Butuan City Colleges', 2017, 'Sibagat National High School Home of Industries', 2013, 11),
+(11, 1, 1, 'Caraga State University - Main Campus', 2018, 'Bayugan National Comprehensive High School', 2014, 12),
+(12, 1, 1, 'Caraga State University - Main Campus', 2018, 'Agusan National High School', 2014, 13),
+(13, 1, 1, 'Caraga State University - Main Campus', 2019, 'Bayugan National Comprehensive High School', 2015, 14),
+(14, 1, 1, 'Father Saturnino Urios University', 2020, 'Agusan National High School', 2016, 23);
 
 -- --------------------------------------------------------
 
@@ -135,8 +208,8 @@ CREATE TABLE `job_history` (
 --
 
 INSERT INTO `job_history` (`job_history_id`, `job_id`, `job_applicants`, `job_date`, `job_city`, `branch_no`, `emp_type`, `emp_term`, `min_rate`, `max_rate`, `job_status`) VALUES
-(1, 5, 0, '2021-10-27 08:34:25', 'Butuan City', 1, 'Full-time', 1, 12000, 18000, 0),
-(2, 3, 0, '2021-10-27 09:14:25', 'Cabadbaran City', 3, 'Full-time', 1, 12000, 15000, 0),
+(1, 5, 0, '2021-10-27 08:34:25', 'Butuan City', 1, 'Full-time', 1, 12000, 18000, 1),
+(2, 3, 0, '2021-10-27 09:14:25', 'Cabadbaran City', 3, 'Full-time', 1, 12000, 15000, 1),
 (3, 2, 0, '2021-10-29 08:44:09', 'Butuan City', 3, 'Full-time', 1, 12000, 15000, 0),
 (4, 4, 0, '2021-10-29 09:08:20', 'Butuan City', 3, 'Full-time', 1, 9000, 12000, 0),
 (5, 4, 0, '2021-11-05 22:33:29', 'Butuan City', 1, 'Full-time', 1, 0, 0, 0),
@@ -349,7 +422,10 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (135, 'hr_admin', '2021-11-08 14:24:52'),
 (136, 'admin', '2021-11-08 14:36:25'),
 (137, 'hr_admin', '2021-11-08 14:36:34'),
-(138, 'admin', '2021-11-08 14:36:46');
+(138, 'admin', '2021-11-08 14:36:46'),
+(139, 'admin', '2021-11-09 13:01:25'),
+(140, 'hr_admin', '2021-11-09 13:01:50'),
+(141, 'admin', '2021-11-09 13:56:03');
 
 -- --------------------------------------------------------
 
@@ -473,6 +549,18 @@ ALTER TABLE `applicant_details`
   ADD PRIMARY KEY (`applicant_id`);
 
 --
+-- Indexes for table `app_add_details`
+--
+ALTER TABLE `app_add_details`
+  ADD PRIMARY KEY (`app_details_id`);
+
+--
+-- Indexes for table `app_educ_bg`
+--
+ALTER TABLE `app_educ_bg`
+  ADD PRIMARY KEY (`educ_id`);
+
+--
 -- Indexes for table `eval_details`
 --
 ALTER TABLE `eval_details`
@@ -525,6 +613,18 @@ ALTER TABLE `applicant_details`
   MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `app_add_details`
+--
+ALTER TABLE `app_add_details`
+  MODIFY `app_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `app_educ_bg`
+--
+ALTER TABLE `app_educ_bg`
+  MODIFY `educ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT for table `eval_details`
 --
 ALTER TABLE `eval_details`
@@ -552,7 +652,7 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `questions`

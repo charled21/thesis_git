@@ -53,7 +53,7 @@
 </div>
 
 
-<button type="button" id="btn_pts">Total Pts</button>
+<button type="button" class="btn btn-success" id="btn_pts">Total Pts</button>
 
 <hr>
 <a href="applicant-page2.php" class="btn btn-danger" role="button">BACK</a>

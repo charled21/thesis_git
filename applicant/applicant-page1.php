@@ -43,7 +43,7 @@
 
         <div id="mp_bar">  
                     <ul id="mp_prog_bar">  
-                        <li class="active" id="step1">  <h5> Personal Information </h5>  </li>  
+                        <li class="active" id="step1"> <h5> Personal Information </h5> </li>  
                         <li id="step2"> <h5>  </h5> </li>  
                         <li id="step3"> <h5>  </h5> </li>  
                         <li id="step4"> <h5>  </h5> </li>  
