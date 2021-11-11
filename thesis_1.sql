@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 09, 2021 at 08:53 AM
+-- Generation Time: Nov 11, 2021 at 09:10 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -79,28 +79,29 @@ CREATE TABLE `app_add_details` (
   `app_civil_status` int(11) NOT NULL,
   `app_landline` int(50) NOT NULL,
   `app_mobile` int(50) NOT NULL,
-  `applicant_id` int(11) NOT NULL
+  `applicant_id` int(11) NOT NULL,
+  `per_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `app_add_details`
 --
 
-INSERT INTO `app_add_details` (`app_details_id`, `app_email`, `app_religion`, `app_citizenship`, `app_civil_status`, `app_landline`, `app_mobile`, `applicant_id`) VALUES
-(1, 'email_1@sample.com', 1, 1, 1, 3000000, 999999999, 1),
-(2, 'email_2@sample.com', 1, 1, 1, 3000000, 999999999, 2),
-(3, 'email_3@sample.com', 1, 1, 1, 3000000, 999999999, 3),
-(4, 'email_4@sample.com', 1, 1, 1, 3000000, 999999999, 4),
-(5, 'email_5@sample.com', 1, 1, 1, 3000000, 999999999, 5),
-(6, 'email_7@sample.com', 1, 1, 1, 3000000, 999999999, 7),
-(7, 'email_8@sample.com', 1, 1, 1, 3000000, 999999999, 8),
-(8, 'email_9@sample.com', 1, 1, 1, 3000000, 999999999, 9),
-(9, 'email_10@sample.com', 1, 1, 1, 3000000, 999999999, 10),
-(10, 'email_11@sample.com', 1, 1, 1, 3000000, 999999999, 11),
-(11, 'email_12@sample.com', 1, 1, 1, 3000000, 999999999, 12),
-(12, 'email_13@sample.com', 1, 1, 1, 3000000, 999999999, 13),
-(13, 'email_14@sample.com', 1, 1, 1, 3000000, 999999999, 14),
-(14, 'email_23@sample.com', 1, 1, 1, 3000000, 999999999, 23);
+INSERT INTO `app_add_details` (`app_details_id`, `app_email`, `app_religion`, `app_citizenship`, `app_civil_status`, `app_landline`, `app_mobile`, `applicant_id`, `per_id`) VALUES
+(1, 'email_1@sample.com', 1, 1, 1, 3000000, 999999999, 1, 12),
+(2, 'email_2@sample.com', 1, 1, 1, 3000000, 999999999, 2, 12),
+(3, 'email_3@sample.com', 1, 1, 1, 3000000, 999999999, 3, 8),
+(4, 'email_4@sample.com', 1, 1, 1, 3000000, 999999999, 4, 12),
+(5, 'email_5@sample.com', 1, 1, 1, 3000000, 999999999, 5, 7),
+(6, 'email_7@sample.com', 1, 1, 1, 3000000, 999999999, 7, 12),
+(7, 'email_8@sample.com', 1, 1, 1, 3000000, 999999999, 8, 12),
+(8, 'email_9@sample.com', 1, 1, 1, 3000000, 999999999, 9, 11),
+(9, 'email_10@sample.com', 1, 1, 1, 3000000, 999999999, 10, 7),
+(10, 'email_11@sample.com', 1, 1, 1, 3000000, 999999999, 11, 7),
+(11, 'email_12@sample.com', 1, 1, 1, 3000000, 999999999, 12, 8),
+(12, 'email_13@sample.com', 1, 1, 1, 3000000, 999999999, 13, 12),
+(13, 'email_14@sample.com', 1, 1, 1, 3000000, 999999999, 14, 8),
+(14, 'email_23@sample.com', 1, 1, 1, 3000000, 999999999, 23, 12);
 
 -- --------------------------------------------------------
 
@@ -425,7 +426,20 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (138, 'admin', '2021-11-08 14:36:46'),
 (139, 'admin', '2021-11-09 13:01:25'),
 (140, 'hr_admin', '2021-11-09 13:01:50'),
-(141, 'admin', '2021-11-09 13:56:03');
+(141, 'admin', '2021-11-09 13:56:03'),
+(142, 'admin', '2021-11-09 15:55:23'),
+(143, 'hr_admin', '2021-11-09 15:55:48'),
+(144, 'admin', '2021-11-11 02:20:31'),
+(145, 'admin', '2021-11-11 03:56:35'),
+(146, 'admin', '2021-11-11 10:53:19'),
+(147, 'hr_admin', '2021-11-11 11:01:47'),
+(148, 'admin', '2021-11-11 11:04:38'),
+(149, 'admin', '2021-11-11 11:05:40'),
+(150, 'admin', '2021-11-12 00:09:22'),
+(151, 'admin', '2021-11-12 01:37:28'),
+(152, 'hr_admin', '2021-11-12 02:35:12'),
+(153, 'admin', '2021-11-12 02:35:21'),
+(154, 'admin', '2021-11-12 02:46:00');
 
 -- --------------------------------------------------------
 
@@ -616,13 +630,13 @@ ALTER TABLE `applicant_details`
 -- AUTO_INCREMENT for table `app_add_details`
 --
 ALTER TABLE `app_add_details`
-  MODIFY `app_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `app_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `app_educ_bg`
 --
 ALTER TABLE `app_educ_bg`
-  MODIFY `educ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `educ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `eval_details`
@@ -652,7 +666,7 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `questions`
