@@ -21,6 +21,22 @@
 
 </head>
 <body>
+<?php 
+$rec_Table = "applicant_details";
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$databaseName = "thesis_1";
+
+$connect = mysqli_connect($hostname, $username, $password, $databaseName);
+$last_id_query = "SELECT applicant_id FROM $rec_Table WHERE app_status < 4 ORDER BY applicant_id DESC LIMIT 1;";
+$result3 = mysqli_query($connect, $last_id_query);
+while($last_id_row = mysqli_fetch_array($result3))
+{
+    
+    $recent_id = $last_id_row['applicant_id'];
+}
+?>
 
  <!-- Topbar -->
     
@@ -49,37 +65,54 @@
 
 <form action="" method="POST">
 <div class="container">
+  <input type="text" class="form-control" id="recent_id" name="recent_id" value="<?php echo $recent_id; ?>" hidden>
 
 <div class="form-row">
     <div class="form-group col-md-4">
-      <label>Educational Attainment</label>
-      <input type="text" class="form-control" id="educ_attain" placeholder="ex. College Graduate">
+    <label>Highest Educational Attainment</label>
+      <select id="educ_attain" name="educ_attain" class="form-control">
+        <option selected>Choose Option</option>
+        <option value="7">Doctorate</option>
+        <option value="6">Masters Degree</option>
+        <option value="5">Bachelors Degree</option>
+        <option value="4">Technical Vocational</option>
+        <option value="3">College Level</option>
+        <option value="2">High School Graduate</option>
+        <option value="1">Elementary Graduate</option>
+      </select>
     </div>
     <div class="form-group col-md-4">
-      <label>Degree Received</label>
-      <input type="text" class="form-control" id="educ_attain_deg" name="educ_attain_deg" placeholder="ex. Cum Laude">
+    <label>Educational Achievement</label>
+      <select id="educ_attain_deg" name="educ_attain_deg" class="form-control">
+        <option selected>Choose Achievement</option>
+        <option value="4">Summa Cum Laude</option>
+        <option value="3">Magna Cum Laude</option>
+        <option value="2">Cum Laude</option>
+        <option value="1">None</option>
+      </select>
     </div>
+
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-4">
       <label>University / School</label>
-      <input type="text" class="form-control" id="univ" placeholder="ex. Father Saturnino Urios University">
+      <input type="text" class="form-control" id="univ" name="univ" value="Father Saturnino Urios University">
     </div>
     <div class="form-group col-md-4">
       <label>Year Graduated</label>
-      <input type="text" class="form-control" id="yr_grad" name="yr_grad_3" placeholder="ex. 1988">
+      <input type="text" class="form-control" id="yr_grad" name="yr_grad" value="1988">
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-4">
       <label>Secondary Education</label>
-      <input type="text" class="form-control" id="hs" placeholder="ex. Agusan National High School">
+      <input type="text" class="form-control" id="hs" value="Agusan National High School">
     </div>
     <div class="form-group col-md-4">
       <label>Year Graduated</label>
-      <input type="text" class="form-control" id="yr_grad_2" name="yr_grad_2" placeholder="ex. 1984">
+      <input type="text" class="form-control" id="yr_grad_2" name="yr_grad_2" value="1984">
     </div>
 </div>
 
@@ -89,51 +122,63 @@
 <div class="form-row">
     <div class="form-group col-md-3">
       <label>Telephone / Landline</label>
-      <input type="text" class="form-control" id="landline" placeholder="ex. 341-4111">
+      <input type="text" class="form-control" id="landline" value="341-4111">
     </div>
     <div class="form-group col-md-3">
       <label>Cellphone / Mobile No.</label>
-      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="ex. 0999-999-9999">
+      <input type="text" class="form-control" id="mobile" name="mobile" value="0999-999-9999">
     </div>
     <div class="form-group col-md-3">
       <label>Email</label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="ex. email@sample.com">
+      <input type="email" class="form-control" id="email" name="email" value="email@sample.com">
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-3">
-      <label>Civil Status</label>
-      <input type="text" class="form-control" id="civil" placeholder="ex. Married">
+    <label>Civil Status</label>
+      <select id="civil" name="civil" class="form-control">
+        <option selected>Choose Civil Status</option>
+        <option value="4">Widowed</option>
+        <option value="3">Divorced</option>
+        <option value="2">Married</option>
+        <option value="1">Single</option>
+      </select>
     </div>
     <div class="form-group col-md-3">
-      <label>Citizenship</label>
-      <input type="text" class="form-control" id="citizen" name="citizen" placeholder="ex. Filipino">
+    <label>Citizenship</label>
+      <select id="citizen" name="citizen" class="form-control">
+        <option selected>Choose Citizenship</option>
+        <option value="2">Others</option>
+        <option value="1">Filipino</option>
+      </select>
     </div>
     <div class="form-group col-md-3">
-      <label>Religion</label>
-      <input type="text" class="form-control" id="religion" name="religion" placeholder="ex.Roman Catholic">
+    <label>Religion</label>
+      <select id="religion" name="religion" class="form-control">
+        <option selected>Choose Religion</option>
+        <option value="4">Islam</option>
+        <option value="3">Iglesia Ni Chris Brown</option>
+        <option value="2">Born Again Christian</option>
+        <option value="1">Roman Catholic</option>
+      </select>
     </div>
 </div>
 
 
 </div>
 
-
+<a href="applicant-page1.php" class="btn btn-danger" role="button">BACK</a>
+<a href="#" class="btn btn-success" role="button" id="sub_btn">SUBMIT</a>
 </form>
 
 
 <hr>
-<a href="applicant-page1.php" class="btn btn-danger" role="button">BACK</a>
-<a href="applicant-page3.php" class="btn btn-success" role="button" id="sub_btn">SUBMIT</a>
+
 
 
 
 </div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
@@ -152,36 +197,42 @@
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
 
-    <script>
+    <script type="text/javascript">
 
 $(function(){
 		$('#sub_btn').click(function(e){
+        educ_attain = $('#educ_attain').val();
+        educ_attain_deg = $('#educ_attain_deg').val();
+        univ = $('#univ').val();
+        yr_grad = $('#yr_grad').val();
+        hs = $('#hs').val();
+        yr_grad_2 = $('#yr_grad_2').val();
+        landline = $('#landline').val();
+        mobile = $('#mobile').val();
+        email = $('#email').val();
+        civil = $('#civil').val();
+        citizen = $('#citizen').val();
+        religion = $('#religion').val();
+        recent_id = $('#recent_id').val();
 
-			var valid = this.form.checkValidity();
-			if(valid){
-
+        //console.log(recent_id +educ_attain + educ_attain_deg + univ + yr_grad + hs + yr_grad_2 + landline + mobile + email + civil + citizen + religion);
 				
 				e.preventDefault();
-
-
+        
 				$.ajax({
 					type: 'POST',
-					url: "reg-process.php",
-					data: { info : info},
+					url: "educ-process.php",
+					data: { educ_attain : educ_attain, educ_attain_deg : educ_attain_deg , univ : univ, yr_grad : yr_grad, hs : hs, yr_grad_2 : yr_grad_2, landline : landline, mobile : mobile, email : email, civil : civil, citizen : citizen, religion : religion, recent_id : recent_id},
 					success: function(data){
-
-                    alert('Registration Successful!');
+            console.log(data);
+                    alert('Additional Info Added!');
 					},
 					error: function(data){
 						alert('Error!');
 					}
 				});
 				$("form").trigger("reset");
-                window.location.href = "/thesis_git/applicant/applicant-page3.php";
-			}
-			else{
-        
-			}
+                //window.location.href = "/thesis_git/applicant/applicant-page3.php";
 		});
 	});
 

@@ -221,7 +221,7 @@ while($row = mysqli_fetch_array($result2))
   <div style="height: 30px;"></div>
   
 </form>
-<a href="inbox.php" class="btn btn-danger" role="button">Back</a>
+<!-- <a href="inbox.php" class="btn btn-danger" role="button">Back</a> -->
 <!-- <a href="#" class="btn btn-warning" id="edit_button" name="edit_button" role="button">Edit</a> -->
     
 </div>
