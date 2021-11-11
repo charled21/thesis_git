@@ -36,7 +36,11 @@
         <?php 
 
 $row_cnt = 0;
+$per_id_arr = array();
+$app_per_id = array();
+$i = 0;
 
+$length = count($per_id_arr);
 $ft_tables="applicant_details";
 if (isset($_POST['ft_tables2'])) {
     $ft_tables = $_POST['ft_tables2'];
@@ -52,17 +56,19 @@ $databaseName = "thesis_1";
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
+
                         $schemaQuery = "SELECT COLUMN_NAME FROM
                         INFORMATION_SCHEMA.COLUMNS 
                         WHERE TABLE_NAME = '$ft_tables'";
-
+                        $ratingQuery =  "SELECT per_id,applicant_id FROM app_add_details";
                         //start of display
                         //$dataQuery = "SELECT applicant_id, firstname, lastname, DATE_FORMAT(date_applied, '%a %b, %d %Y') as applydate, app_status FROM $ft_tables";
-                        $dataQuery = "SELECT applicant_id, firstname, lastname, DATEDIFF(CURDATE(),date_applied) as applydate, app_status FROM $ft_tables WHERE app_status < 4";
+                        $dataQuery = "SELECT applicant_id, firstname, lastname, app_status FROM $ft_tables WHERE app_status < 4";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
                         <tr>";
+                        $rating_result = mysqli_query($connect, $ratingQuery);
                         $result3 = mysqli_query($connect, $dataQuery);
                         $result2 = mysqli_query($connect, $schemaQuery);
                             $th2 = "";
@@ -76,17 +82,22 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             echo "<hr>";
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
                             echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Pending";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Rating";
                             echo "<hr>";
-                            //moved the headers here
-
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Status";
                             echo "<hr>";
+                            
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
                             echo "<hr>";
                         echo "</th> </tr>";
 
-                            
+                            while($rating_row = mysqli_fetch_array($rating_result))
+                                        {
+                                            
+                                            $per_id_arr[$i] = $rating_row['per_id'];
+                                            $app_per_id[$i] = $rating_row['applicant_id'];
+                                            $i++;
+                                        }
                             if($ft_tables=="applicant_details"){
                                 while($row = mysqli_fetch_array($result3))
                                 {
@@ -104,8 +115,23 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     echo "<td>" .  "<font style=\"font-size: 14px;\" >" . "00".$row['applicant_id'] . "</font>"."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['applydate'] . " day(s)". "</font>" ."</td>";
     
+                                    //rating part
+                                    $percentage = ($per_id_arr[$row_cnt])*7;
+                                    if($percentage > 70){
+                                        echo "<td>" .  "<font style=\"font-size: 14px; color: green;\"><b>" . $percentage ."%" ."</b></font>" ."</td>";
+                                    }
+                                    else if($percentage >50 && $percentage < 71){
+                                        echo "<td>" .  "<font style=\"font-size: 14px; color: orange;\"><b>" . $percentage ."%" ."</b></font>" ."</td>";
+                                    }
+                                    else if($percentage >0 && $percentage < 51){
+                                        echo "<td>" .  "<font style=\"font-size: 14px; color: red;\"><b>" . $percentage ."%" ."</b></font>" ."</td>";
+                                    }
+                                    else {
+
+                                    }
+                                    //rating end
+
                                     //status changer start
                                     $current_status="";
                                         if($row['app_status']==1){
@@ -120,6 +146,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     //status changer end
     
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $current_status . "</font>" ."</td>";
+
+                                    
                                     echo "<td>" . "<button type=\"button\" class=\"btn btn-primary mb-2\" data-id=$row_num data-toggle=\"modal\" data-target=\"#myModal\">Review</button>"."</td>";
                                     echo "</tr>";
                                     }

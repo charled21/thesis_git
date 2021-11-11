@@ -5,7 +5,7 @@
  if(isset($_POST["tds2"]))  
  {  
       $table_name = "applicant_details";
-      $query = "SELECT firstname,middlename,lastname,gender,dateBirth,address,address2,city,state,zipcode,app_status FROM $table_name WHERE applicant_id = $id ";  
+      $query = "SELECT firstname,middlename,lastname,gender,dateBirth,address,address2,city,state,zipcode,app_status,DATEDIFF(CURDATE(),date_applied) as pending_days FROM $table_name WHERE applicant_id = $id ";  
       $result = mysqli_query($connect, $query);  
       while($row = mysqli_fetch_array($result))
      {
@@ -20,6 +20,7 @@
           $state = $row['state'];
           $zip = $row['zipcode'];
           $status = $row['app_status'];
+          $pending_days = $row['pending_days'];
      }
      echo "<p>Firstname: $fname</p>";
      echo "<p>Middlename: $mname</p>";
@@ -33,6 +34,7 @@
      echo "<p>Zip: $zip</p>";
      if($status<4){
           echo "<p>Status:</p><p style=\"color: red\"> Ongoing</p>";
+          echo "<p>Pending:</p><p style=\"color: red\"> $pending_days day(s)</p>";
      }
      else{
           echo "<p>Status:</p><p style=\"color: green\"> Passed</p>";
