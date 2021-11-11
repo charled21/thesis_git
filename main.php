@@ -268,10 +268,10 @@ else {
                                     echo "<ul class=\"col-md-6 navbar-nav m-0 ml-lg-auto p-3 p-lg-0 justify-content-between\" >";
 
                                     echo "<li>
-                                    <a class=\"nav-link\" href=\"#about\" id=\"abt-btn\">ABOUT</a>
+                                    <a class=\"nav-link\" href=\"https://motortrade.com.ph/about-us/\" id=\"abt-btn\">ABOUT</a>
                                     </li>";
                                     echo "<li>
-                                    <a class=\"nav-link\" href=\"#services\" id=\"srv-btn\">PRODUCT</a>
+                                    <a class=\"nav-link\" href=\"https://www.facebook.com/pages/category/Product-Service/Motortrade-Butuan-Montilla-2503337789690685/\" id=\"srv-btn\">PRODUCT</a>
                                     </li>";
                                     echo "<li>
                                     <a class=\"nav-link\" data-toggle=\"modal\" data-target=\"#jobModal\" id=\"jobs-btn\">JOBS</a>
@@ -287,10 +287,10 @@ else {
                                     echo "<ul class=\"col-md-6 navbar-nav m-0 ml-lg-auto p-3 p-lg-0 justify-content-between\" >";
 
                                     echo "<li>
-                                    <a class=\"nav-link\" href=\"#about\" id=\"abt-btn\">ABOUT</a>
+                                    <a class=\"nav-link\" href=\"https://motortrade.com.ph/about-us/\" id=\"abt-btn\">ABOUT</a>
                                     </li>";
                                     echo "<li>
-                                    <a class=\"nav-link\" href=\"#services\" id=\"srv-btn\">PRODUCT</a>
+                                    <a class=\"nav-link\" href=\"https://www.facebook.com/pages/category/Product-Service/Motortrade-Butuan-Montilla-2503337789690685/\" id=\"srv-btn\">PRODUCT</a>
                                     </li>";
                                     echo "<li>
                                     <a class=\"nav-link\" data-toggle=\"modal\" data-target=\"#jobModal\" id=\"prt-btn\">JOBS</a>

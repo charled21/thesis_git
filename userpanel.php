@@ -209,24 +209,33 @@ while($row = mysqli_fetch_array($result3))
     <!-- questionnaire tab end  -->
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="php/csv-export.php" 
-            aria-expanded="true" aria-controls="collapseExport" target="accounts_iframe">
-            <i class="fas fa-fw fa-save"></i>
-            <span>CSV Export</span>
-        </a>
-       
-    </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="hr/gmail-send2.php" 
-            aria-expanded="true" aria-controls="collapseExport" target="accounts_iframe">
-            <i class="fas fa-fw fa-envelope-open-text"></i>
-            <span>Send Email</span>
-        </a>
+    <?php 
+    if($priv<10){
+    
+    }
+    else{
+      echo "  <li class=\"nav-item\">";
+      echo "  <a class=\"nav-link collapsed\" href=\"php/csv-export.php\" 
+            aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
+            <i class=\"fas fa-fw fa-save\"></i>
+            <span>CSV Export</span>
+            </a> ";
        
-    </li>
+    echo "</li>";
+
+    echo "<li class=\"nav-item\">";
+    echo "    <a class=\"nav-link collapsed\" href=\"hr/gmail-send2.php\" 
+            aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
+            <i class=\"fas fa-fw fa-envelope-open-text\"></i>
+            <span>Send Email</span>
+        </a> ";
+       
+    echo "</li>";
+    }
+    ?>
+
+    
 
    
 
