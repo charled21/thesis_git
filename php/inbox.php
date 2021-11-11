@@ -58,7 +58,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
                         //start of display
                         //$dataQuery = "SELECT applicant_id, firstname, lastname, DATE_FORMAT(date_applied, '%a %b, %d %Y') as applydate, app_status FROM $ft_tables";
-                        $dataQuery = "SELECT applicant_id, firstname, lastname, DATEDIFF(CURDATE(),date_applied) as applydate, app_status FROM $ft_tables";
+                        $dataQuery = "SELECT applicant_id, firstname, lastname, DATEDIFF(CURDATE(),date_applied) as applydate, app_status FROM $ft_tables WHERE app_status < 4";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -120,7 +120,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     //status changer end
     
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $current_status . "</font>" ."</td>";
-                                    echo "<td>" . "<button type=\"button\" class=\"btn btn-primary mb-2\" value=$row_num id=\"tds2\" data-toggle=\"modal\" data-target=\"#myModal\">Review</button>"."</td>";
+                                    echo "<td>" . "<button type=\"button\" class=\"btn btn-primary mb-2\" data-id=$row_num data-toggle=\"modal\" data-target=\"#myModal\">Review</button>"."</td>";
                                     echo "</tr>";
                                     }
                                 }
@@ -148,10 +148,6 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
             <div class="modal-body">
                 
             <div id="modal_content"></div>
-            <?php $id =  intval($_POST['tds2']); 
-            
-            echo $id;
-            ?>
 
             </div>
             <div class="modal-footer">
@@ -172,15 +168,17 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
 <script>
     $('button').click(function() {
-        var row = $(this).closest("tr");
-        var tds2 = row.find("td:nth-child(1)").text();
-        
+        // var row = $(this).closest("tr");
+        // var tds2 = row.find("td:nth-child(1)").val();
+        var tds2 =$(this).data('id');
+        //alert(tds2);
         $.ajax({
 					type: 'POST',
-					url: "inbox.php",
+					url: "data-fetch.php",
 					data: {tds2 : tds2},
 					success: function(data){
-                        $("#modal_content").html(result);                        
+                        $('#modal_content').html(data);  
+                        $('#myModal').modal('show');
 					},
 					error: function(data){
 						alert('Error!');

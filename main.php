@@ -135,39 +135,9 @@ else {
                                         <div class="col-md-10 col-xs-4 row"> <p class="modal-text mr-2">Don't have an account yet?<p> <a href="register/register.php">Click here</a></div>
                                         
                                         <div class="modal-footer">
-                                            <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="false" aria-controls="collapseExample">
-                                                Admin Login
-                                            </button> -->
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary" name="submit" id="modal-btn">Login</button>
-                                        </div>
-
-                                        <!-- collapse card start -->
-
-                                        <!-- <div class="collapse" id="collapseAdmin">
-                                        <div class="card card-body">
-
-                                            <div class="form-group row justify-content-center">
-                                                <div class="col-lg-10 col-sm-10">
-                                                    <p>USERNAME </p><input type="text" name="username" class="form-control input-txt-style" placeholder="username" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group row justify-content-center">
-                                                <div class="col-lg-10 col-sm-10">
-                                                    <p>PASSWORD</p><input type="password" name="password" class="form-control" placeholder="*********" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group row justify-content-center">
-                                                <div class="col-lg-10 col-sm-10">
-                                                    <p>KEY CODE</p><input type="password" name="keycode" class="form-control" placeholder="*********" >
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        </div> -->
-
-                                        <!-- collapse card end-->
-                                                                                
+                                        </div>                            
                                         </form>
                                 </div>
                             
@@ -189,7 +159,7 @@ else {
                 $app_stat_cnt=0;
 
                 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-                $rec_Query = "SELECT job_id, job_city, DATEDIFF(CURDATE(),job_date) as datepassed, emp_type FROM $ft_tables";
+                $rec_Query = "SELECT job_history_id, job_id, job_city, DATEDIFF(CURDATE(),job_date) as datepassed, emp_type FROM $ft_tables";
                 $result3 = mysqli_query($connect, $rec_Query);
                 ?>
                                         <div class="modal-dialog" role="document">
@@ -204,6 +174,7 @@ else {
                                                 <?php 
                                                 while($row = mysqli_fetch_array($result3))
                                                 {
+                                                    $job_history_id = $row['job_history_id'];
                                                     $row_num = $row['job_id'];
                                                     $city = $row['job_city'];
                                                     $emp_type = $row['emp_type'];
@@ -236,15 +207,17 @@ else {
                                                         $job_id='Store Clerk';
                                                     }
                                                     $job_counter++;
+                                                    
                                                     echo "<h4 class=\"mb-3\">$job_id</h4>";
                                                     echo "<div class=\"form-row\">";
                                                     echo "<p class=\"ml-2 text-secondary\">$city<p><i class=\"ml-3 fas fa-briefcase text-secondary\"></i> <p class=\"ml-1 text-secondary\">$emp_type </p>";
                                                     echo "</div>";
-                                                    echo "<div class=\"form-row d-flex justify-content-between\">";
+                                                    echo "<div id=\"job_cnt_div\" class=\"form-row d-flex justify-content-between\">";
                                                     echo "<p class=\"text-secondary\">[#$job_counter]  Over $date day(s) ago</p>";
-                                                    echo "<a type=\"button\" class=\"mr-4 btn btn-info\" href=\"applicant\applicant-page1.php\" value=\"$job_id\" id=\"apply_btn\">Apply</a>";
+                                                    echo "<button type=\"submit\" class=\"apply_btn mr-4 btn btn-info\" data-id=\"$job_history_id\">Apply</button>";
                                                     echo "</div>";
                                                     echo "<hr>";
+
                                                 }
                                                 
                                                 ?>
@@ -430,17 +403,16 @@ else {
             <script src="js/jquery-3.4.1.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script src="js/jquery.easing.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <!-----------------------scripts end-------------------------- -->
 
             <script>
                 $(function(){
-		            $('#apply_btn').click(function(e){
-                        var btn_val = $('#apply_btn').val();
-                        console.log(btn_val);
-                    });
+		            $('.apply_btn').click(function(e){
+                        var job_history_id = $(this).data('id');                        
+                        alert("job hist id : "+job_history_id);
+                        window.location.href = "/thesis_git/applicant/applicant-page1.php";
+                        
+                     });
 	            });
             </script>
 
