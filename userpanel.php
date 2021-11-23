@@ -232,9 +232,19 @@ while($row = mysqli_fetch_array($result3))
         </a> ";
        
     echo "</li>";
+
+    echo "<li class=\"nav-item\">";
+    echo "    <a class=\"nav-link collapsed\" href=\"hr/add-acct.php\" 
+            aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
+            <i class=\"fas fa-users\"></i>
+            <span>Add Account</span>
+        </a> ";
+       
+    echo "</li>";
     }
     ?>
 
+    
     
 
    

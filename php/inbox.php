@@ -63,7 +63,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         $ratingQuery =  "SELECT per_id,applicant_id FROM app_add_details";
                         //start of display
                         //$dataQuery = "SELECT applicant_id, firstname, lastname, DATE_FORMAT(date_applied, '%a %b, %d %Y') as applydate, app_status FROM $ft_tables";
-                        $dataQuery = "SELECT applicant_id, firstname, lastname, app_status FROM $ft_tables WHERE app_status < 4";
+                        $dataQuery = "SELECT applicant_id, firstname, lastname, app_status FROM $ft_tables";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -176,7 +176,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
             <div class="modal-body">
                 
             <div id="modal_content"></div>
-
+            
+            <button class="btn btn-success">Move Up</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
