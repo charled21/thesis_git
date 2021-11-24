@@ -249,7 +249,7 @@
 				//alert('true');
 				//alert(firstname+lastname+course);
 				$("form").trigger("reset");
-                //window.location.href = "/thesis_git/applicant/applicant-page2.php";
+                window.location.href = "/thesis_git/applicant/applicant-page2.php";
 			}
 			else{
         

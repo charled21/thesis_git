@@ -232,7 +232,7 @@ $(function(){
 					}
 				});
 				$("form").trigger("reset");
-                //window.location.href = "/thesis_git/applicant/applicant-page3.php";
+                window.location.href = "/thesis_git/applicant/applicant-page3.php";
 		});
 	});
 
