@@ -177,7 +177,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                 
             <div id="modal_content"></div>
             
-            <button class="btn btn-success">Move Up</button>
+            
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -159,7 +159,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                       $branch = 'Libertad';
                                     }
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $branch . "</font>" ."</td>";
-                                    echo "<td>" . "<button type=\"submit\" class=\"btn btn-primary mb-2\" value=$job_hist_id id=\"tds2\" name=\"tds2\" >View</button>"."</td>";
+                                    echo "<td>" . "<button type=\"submit\" class=\"btn btn-primary mb-2\" data-id=$job_hist_id  >View</button>"."</td>";
+                                    echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Drop</button>"."</td>";
                                     echo "</tr>";
                                    
                                     
@@ -328,13 +329,31 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 					}
 				});
 				$("form").trigger("reset");
-        setTimeout(function(){ location.reload(); }, 2000);
+        setTimeout(function(){ location.reload();window.top.location.reload(); }, 2000);
 			}
 			else{
         
 			}
 		});
 	});
+</script>
+
+<script>
+    $('button').click(function() {
+        var job_id =$(this).data('id');
+        alert("Firing!");
+        $.ajax({
+					type: 'POST',
+					url: "recruit-drop-proc.php",
+					data: {job_id :job_id},
+					success: function(data){
+            setTimeout(function(){ location.reload();window.top.location.reload(); }, 2000);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+    });
 </script>
   
 

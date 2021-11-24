@@ -216,6 +216,7 @@ while($row = mysqli_fetch_array($result2))
       <input type="text" class="form-control" id="inputZip" placeholder=<?php echo "$zip";?> >
     </div>
   </div>
+
   
   <hr>
   <div style="height: 30px;"></div>

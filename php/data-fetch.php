@@ -39,6 +39,7 @@
      else{
           echo "<p>Status:</p><p style=\"color: green\"> Passed</p>";
      }
+     echo "<button class=\"btn btn-success\" value\"$id\"=>Move Up</button>";
      
  }  
  ?>
