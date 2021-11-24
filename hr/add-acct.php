@@ -30,6 +30,8 @@
         Add New Account</a>
     <h3 class="mt-4">Existing Accounts</h3>
     <table class="table">
+      <th>Account Name</th>
+      <th>Privilege</th>
 
         <?php 
         $rec_Table = "login_accounts";
@@ -39,13 +41,21 @@
         $databaseName = "thesis_1";
 
         $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-        $acctQuery = "SELECT username FROM $rec_Table";
+        $acctQuery = "SELECT username,acct_priv FROM $rec_Table";
         $accts = mysqli_query($connect, $acctQuery);
         while($row2 = mysqli_fetch_array($accts))
         {
             $admin_accts = $row2['username'];  
+            $admin_priv = $row2['acct_priv'];
+            if($admin_priv>5){
+              $admin_priv = "High";
+            }
+            else{
+              $admin_priv = "Basic";
+            }
             echo "<tr>";
             echo "<td>$admin_accts</td>";
+            echo "<td>$admin_priv</td>";
             echo "</tr>";          
         }
         ?>

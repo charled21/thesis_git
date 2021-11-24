@@ -341,7 +341,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 <script>
     $('button').click(function() {
         var job_id =$(this).data('id');
-        alert("Firing!");
+        //alert("Firing!");
         $.ajax({
 					type: 'POST',
 					url: "recruit-drop-proc.php",

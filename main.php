@@ -69,7 +69,7 @@ else {
             {
                 $rec_cnt = $row['job_history_id'];
                 $job_status = $row['job_status'];
-                if($job_status>0){
+                if($job_status>=0){
                     $completed_jobs++;
                 }
             }
@@ -350,7 +350,7 @@ else {
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Job Openings</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo  $rec_cnt;?></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo  $completed_jobs;?></div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->

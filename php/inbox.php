@@ -216,6 +216,22 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
     });
 </script>
 
+<script>
+    $('button').click(function() {
+        var job_id =$(this).data('id');
+        $.ajax({
+					type: 'POST',
+					url: "inbox-drop-record.php",
+					data: {job_id :job_id},
+					success: function(data){
+                    setTimeout(function(){ window.top.location.reload();location.reload(); }, 2000);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+    });
+</script>
         
 
 </body>
