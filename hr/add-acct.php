@@ -48,10 +48,10 @@
             $admin_accts = $row2['username'];  
             $admin_priv = $row2['acct_priv'];
             if($admin_priv>5){
-              $admin_priv = "High";
+              $admin_priv = "Manager";
             }
             else{
-              $admin_priv = "Basic";
+              $admin_priv = "HR Personnel";
             }
             echo "<tr>";
             echo "<td>$admin_accts</td>";

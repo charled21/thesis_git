@@ -56,18 +56,15 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
 
 <!-- progressbar end -->
 
-<div>
-        <label for="files">Select multiple files: </label>
-        <input id="files" type="file" multiple/>
-        <output id="result"> </output>
-</div>
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="img_file" id="img_file">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
 
+<?php 
 
-<button type="button" class="btn btn-success" id="btn_pts">Total Pts</button>
-
-<hr>
-<a href="applicant-page2.php" class="btn btn-danger" role="button">BACK</a>
-<a href="applicant-page4.php" class="btn btn-primary" role="button">PROCEED</a>
+  ?>
 
 </div>
 
@@ -92,55 +89,6 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
-
-    <script>
-window.onload = function(){
-    var points = 0;
-
-        if(window.File && window.FileList && window.FileReader)
-        {
-            var filesInput = document.getElementById("files"); 
-            filesInput.addEventListener("change", function(event){ 
-                var files = event.target.files; 
-                var output = document.getElementById("result");
-                
-                for(var i = 0; i< files.length; i++)
-                {
-                    var file = files[i]; 
-                    var file_name = file.name;
-                    
-                    alert("file name = "+file.name);
-                    if(!file.type.match('image'))
-                      continue;
-                      points += 2;
-                      console.log(points);
-                    var reader = new FileReader();
-                    reader.addEventListener("load",function(event){
-                        var file = event.target;
-                        var div = document.createElement("div");
-                        div.innerHTML = "<br><h5>Image:"+file_name+"</h5><img style='height: 50%; width: 50%;' id='img_id"+i+"'class='thumbnail' src='" + file.result + "'" +
-                                "title='" + file_name + "'/>";
-                        output.insertBefore(div,null);        
-
-                         
-                    });
-                    reader.readAsDataURL(file);
-                }                               
-            });
-        }
-        else
-        {
-            console.log("Your browser does not support File API");
-        }
-
-        $('#btn_pts').click(function(e){
-            alert("Total Points: "+points);
-        });
-    }
-        
-    </script>
-
-
     
 
 </body>

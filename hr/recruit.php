@@ -160,7 +160,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     }
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $branch . "</font>" ."</td>";
                                     echo "<td>" . "<button type=\"submit\" class=\"btn btn-primary mb-2\" data-id=$job_hist_id  >View</button>"."</td>";
-                                    echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Drop</button>"."</td>";
+                                    echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Close</button>"."</td>";
                                     echo "</tr>";
                                    
                                     
