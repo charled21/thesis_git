@@ -4,6 +4,15 @@
  echo "<script>console.log($id);</script>";
  if(isset($_POST["tds2"]))  
  {  
+      $img_table = "images";
+      $img_query = "SELECT img_dir FROM $img_table WHERE applicant_id = $id";
+      $img_result = mysqli_query($connect, $img_query);
+      while($img_row = mysqli_fetch_array($img_result)){
+          $file_dest = $img_row['img_dir'];
+          //echo "$file_dest";
+          echo "<img src=\"$file_dest\" alt=\"Profile Pic\" width=\"150\" height=\"150\">";
+      }
+
       $table_name = "applicant_details";
       $query = "SELECT firstname,middlename,lastname,gender,DATE_FORMAT(dateBirth,'%b %d %Y') as birthday,address,address2,city,state,zipcode,app_status,DATEDIFF(CURDATE(),date_applied) as pending_days FROM $table_name WHERE applicant_id = $id ";  
       $result = mysqli_query($connect, $query);  

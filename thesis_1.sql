@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 11, 2021 at 09:10 PM
+-- Generation Time: Nov 26, 2021 at 03:40 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -50,9 +50,6 @@ CREATE TABLE `applicant_details` (
 --
 
 INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `lastname`, `gender`, `dateBirth`, `address`, `address2`, `city`, `state`, `zipcode`, `app_status`, `date_applied`, `job_history_id`) VALUES
-(1, 'Jejomar', 'Mondejar', 'Binay', 'M', '2000-05-10', 'Kurog St.', 'J.C Aparment, 3rd floor', 'Cabadbaran City', 'Agusan del Norte', '8605', 1, '2021-10-25', 8),
-(2, 'Junard', 'Reyes', 'Miranda', 'M', '1980-02-06', 'P-6 Leon Kilat', 'JC Aquino', 'Butuan City', 'Agusan del Norte', '8600', 2, '2021-10-22', 8),
-(3, 'Juan ', 'Aguilar', 'Dela Cruz', 'M', '1998-10-10', 'P-1 Obrero', 'Montilla Blvd.', 'Butuan City', 'Agusan del Norte', '8600', 1, '2021-10-25', 6),
 (4, 'Angela', 'Macabugto', 'Luso', 'F', '1988-06-27', 'P-8 Libertad', 'JC Aquino ', 'Butuan City', 'Agusan del Norte', '8600', 2, '2021-10-22', 2),
 (5, 'Dhanika', 'Sugbo', 'Cagas', 'F', '1997-08-18', 'Blk 34 Lot 18', 'Northtown Subdivision', 'Butuan City', 'Agusan del Norte', '8600', 3, '2021-10-18', 2),
 (7, 'Teofisto', 'Tuman', 'Lumad', 'M', '1989-07-29', 'P-1 Bading', 'Bading Rampa Road', 'Butuan City', 'Agusan del Norte', '8600', 4, '2017-03-03', 3),
@@ -62,8 +59,7 @@ INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `las
 (11, 'Jennifer', 'Macadulot', 'Pacyas', 'F', '1992-02-05', 'Libertad', 'San Isidro I', 'Sibagat', 'Agusan del Sur', '8503', 4, '2017-03-04', 7),
 (12, 'Ralph', 'Cep', 'Alf', 'M', '1993-03-01', 'P5', 'B4', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-27', 10),
 (13, 'Dwight', 'Macabaca', 'Howard', 'M', '1984-09-01', 'P41', 'B27', 'Butuan City', 'Agusan del Norte', '8600', 1, '2021-10-28', 10),
-(14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-28', 10),
-(23, 'Janry', 'Pongase', 'Tandayag', 'M', '1992-01-01', 'P6', 'B16', 'Butuan City', 'Agusan del Norte', '8600', 1, '0000-00-00', 10);
+(14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-28', 10);
 
 -- --------------------------------------------------------
 
@@ -101,7 +97,21 @@ INSERT INTO `app_add_details` (`app_details_id`, `app_email`, `app_religion`, `a
 (11, 'email_12@sample.com', 1, 1, 1, 3000000, 999999999, 12, 8),
 (12, 'email_13@sample.com', 1, 1, 1, 3000000, 999999999, 13, 12),
 (13, 'email_14@sample.com', 1, 1, 1, 3000000, 999999999, 14, 8),
-(14, 'email_23@sample.com', 1, 1, 1, 3000000, 999999999, 23, 12);
+(14, 'email_23@sample.com', 1, 1, 1, 3000000, 999999999, 23, 12),
+(18, 'email@sample.com', 1, 2, 2, 341, 999, 25, 0),
+(19, 'email@sample.com', 1, 2, 2, 341, 999, 27, 0),
+(20, 'email@sample.com', 1, 2, 2, 341, 999, 27, 0),
+(21, 'email@sample.com', 2, 2, 1, 341, 999, 23, 0),
+(22, 'email@sample.com', 2, 2, 1, 341, 999, 29, 0),
+(23, 'email@sample.com', 1, 2, 1, 341, 999, 14, 0),
+(24, 'email@sample.com', 1, 1, 1, 341, 999, 14, 0),
+(25, 'email@sample.com', 1, 1, 1, 341, 999, 31, 0),
+(26, 'email@sample.com', 1, 2, 1, 341, 999, 14, 0),
+(27, 'email@sample.com', 1, 1, 1, 341, 999, 34, 0),
+(28, 'email@sample.com', 1, 2, 1, 341, 999, 35, 0),
+(29, 'email@sample.com', 1, 1, 1, 341, 999, 14, 0),
+(30, 'email@sample.com', 1, 1, 1, 341, 999, 37, 0),
+(31, 'email@sample.com', 1, 1, 1, 341, 999, 14, 0);
 
 -- --------------------------------------------------------
 
@@ -138,7 +148,21 @@ INSERT INTO `app_educ_bg` (`educ_id`, `educ_attain`, `educ_deg`, `educ_univ`, `e
 (11, 1, 1, 'Caraga State University - Main Campus', 2018, 'Bayugan National Comprehensive High School', 2014, 12),
 (12, 1, 1, 'Caraga State University - Main Campus', 2018, 'Agusan National High School', 2014, 13),
 (13, 1, 1, 'Caraga State University - Main Campus', 2019, 'Bayugan National Comprehensive High School', 2015, 14),
-(14, 1, 1, 'Father Saturnino Urios University', 2020, 'Agusan National High School', 2016, 23);
+(14, 1, 1, 'Father Saturnino Urios University', 2020, 'Agusan National High School', 2016, 23),
+(32, 7, 4, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 25),
+(33, 7, 4, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 27),
+(34, 6, 3, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 27),
+(35, 6, 3, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 23),
+(36, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 29),
+(37, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
+(38, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
+(39, 2, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 31),
+(40, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
+(41, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 34),
+(42, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 35),
+(43, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
+(44, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 37),
+(45, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14);
 
 -- --------------------------------------------------------
 
@@ -187,6 +211,36 @@ INSERT INTO `eval_details` (`instance_id`, `applicant_id`, `eval_datetime`, `eva
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `img_id` int(11) NOT NULL,
+  `img_name` varchar(255) NOT NULL,
+  `img_dir` varchar(255) NOT NULL,
+  `applicant_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`img_id`, `img_name`, `img_dir`, `applicant_id`) VALUES
+(9, 'doggo1.jpg', '/thesis_git/img/uploads/2021-11-26-doggo1.jpg', 4),
+(10, 'doggo2.jpg', '/thesis_git/img/uploads/2021-11-26-doggo2.jpg', 5),
+(11, 'doggo3.jpg', '/thesis_git/img/uploads/2021-11-26-doggo3.jpg', 7),
+(12, 'img1.jpg', '/thesis_git/img/uploads/2021-11-26-img1.jpg', 8),
+(13, 'img2.jpg', '/thesis_git/img/uploads/2021-11-26-img2.jpg', 9),
+(14, 'img3.jpg', '/thesis_git/img/uploads/2021-11-26-img3.jpg', 10),
+(15, 'img4.jpg', '/thesis_git/img/uploads/2021-11-26-img4.jpg', 11),
+(16, 'img5.jpg', '/thesis_git/img/uploads/2021-11-26-img5.jpg', 12),
+(17, 'png1.png', '/thesis_git/img/uploads/2021-11-26-png1.png', 13),
+(18, 'img6.jpg', '/thesis_git/img/uploads/2021-11-26-img6.jpg', 14),
+(19, 'hedgehog1.jpg', '/thesis_git/img/uploads2021-11-26-hedgehog1.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `job_history`
 --
 
@@ -211,14 +265,8 @@ CREATE TABLE `job_history` (
 INSERT INTO `job_history` (`job_history_id`, `job_id`, `job_applicants`, `job_date`, `job_city`, `branch_no`, `emp_type`, `emp_term`, `min_rate`, `max_rate`, `job_status`) VALUES
 (1, 5, 0, '2021-10-27 08:34:25', 'Butuan City', 1, 'Full-time', 1, 12000, 18000, 1),
 (2, 3, 0, '2021-10-27 09:14:25', 'Cabadbaran City', 3, 'Full-time', 1, 12000, 15000, 1),
-(3, 2, 0, '2021-10-29 08:44:09', 'Butuan City', 3, 'Full-time', 1, 12000, 15000, 0),
-(4, 4, 0, '2021-10-29 09:08:20', 'Butuan City', 3, 'Full-time', 1, 9000, 12000, 0),
-(5, 4, 0, '2021-11-05 22:33:29', 'Butuan City', 1, 'Full-time', 1, 0, 0, 0),
-(6, 7, 0, '2021-11-05 22:35:59', 'Butuan City', 3, 'Full-time', 1, 0, 0, 0),
-(7, 7, 0, '2021-11-06 00:31:38', 'Butuan City', 3, 'Part-time', 2, 0, 0, 0),
-(8, 4, 0, '2021-11-06 00:32:58', 'Butuan City', 2, 'Full-time', 2, 0, 0, 0),
 (9, 2, 0, '2021-11-06 00:33:45', 'Butuan City', 3, 'Full-time', 1, 0, 0, 0),
-(10, 4, 0, '2021-11-06 00:34:15', 'Butuan City', 2, 'Part-time', 2, 0, 0, 0);
+(12, 4, 0, '2021-11-25 01:47:03', 'Butuan City', 1, 'Full-time', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -267,7 +315,9 @@ CREATE TABLE `login_accounts` (
 
 INSERT INTO `login_accounts` (`id`, `username`, `password`, `confirmpassword`, `email_acct`, `acct_priv`) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@rustydev.com', '10'),
-(2, 'hr_admin', '08d928c3547ae46a3a44e028c7237d7daaa04c59', '08d928c3547ae46a3a44e028c7237d7daaa04c59', 'hr_admin@gmail.com', '5');
+(2, 'hr_admin', '08d928c3547ae46a3a44e028c7237d7daaa04c59', '08d928c3547ae46a3a44e028c7237d7daaa04c59', 'hr_admin@gmail.com', '5'),
+(13, 'admin2', '315f166c5aca63a157f7d41007675cb44a948b33', '315f166c5aca63a157f7d41007675cb44a948b33', NULL, '10'),
+(14, 'admin3', '33aab3c7f01620cade108f488cfd285c0e62c1ec', '33aab3c7f01620cade108f488cfd285c0e62c1ec', 'admin_email@sample.com', '10');
 
 -- --------------------------------------------------------
 
@@ -439,7 +489,41 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (151, 'admin', '2021-11-12 01:37:28'),
 (152, 'hr_admin', '2021-11-12 02:35:12'),
 (153, 'admin', '2021-11-12 02:35:21'),
-(154, 'admin', '2021-11-12 02:46:00');
+(154, 'admin', '2021-11-12 02:46:00'),
+(155, 'admin', '2021-11-12 11:23:11'),
+(156, 'hr_admin', '2021-11-12 11:26:25'),
+(157, 'admin', '2021-11-13 08:46:35'),
+(158, 'admin', '2021-11-13 09:02:54'),
+(159, 'admin', '2021-11-13 09:48:08'),
+(160, 'hr_admin', '2021-11-13 09:50:40'),
+(161, 'admin', '2021-11-13 09:52:00'),
+(162, 'admin', '2021-11-23 19:51:20'),
+(163, 'hr_admin', '2021-11-23 21:29:24'),
+(164, 'admin', '2021-11-23 21:29:31'),
+(165, 'admin', '2021-11-23 21:59:26'),
+(166, 'admin', '2021-11-25 00:33:02'),
+(167, 'admin', '2021-11-25 01:14:10'),
+(168, 'admin', '2021-11-25 02:02:18'),
+(169, 'admin', '2021-11-25 02:20:53'),
+(170, 'admin', '2021-11-25 14:14:03'),
+(171, 'admin', '2021-11-25 14:25:37'),
+(172, 'admin', '2021-11-25 14:39:01'),
+(173, 'admin', '2021-11-25 14:44:23'),
+(174, 'admin', '2021-11-25 14:49:55'),
+(175, 'admin', '2021-11-25 14:56:54'),
+(176, 'admin', '2021-11-25 14:58:31'),
+(177, 'admin', '2021-11-25 15:02:32'),
+(178, 'admin', '2021-11-25 15:07:34'),
+(179, 'admin', '2021-11-25 15:20:13'),
+(180, 'admin', '2021-11-25 15:34:10'),
+(181, 'admin', '2021-11-25 15:58:11'),
+(182, 'admin', '2021-11-25 17:38:21'),
+(183, 'admin', '2021-11-25 18:09:19'),
+(184, 'hr_admin', '2021-11-25 19:01:08'),
+(185, 'admin', '2021-11-25 19:01:26'),
+(186, 'admin', '2021-11-26 03:22:08'),
+(187, 'admin', '2021-11-26 03:36:47'),
+(188, 'admin', '2021-11-26 03:37:19');
 
 -- --------------------------------------------------------
 
@@ -581,6 +665,12 @@ ALTER TABLE `eval_details`
   ADD PRIMARY KEY (`instance_id`);
 
 --
+-- Indexes for table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`img_id`);
+
+--
 -- Indexes for table `job_history`
 --
 ALTER TABLE `job_history`
@@ -624,19 +714,19 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `applicant_details`
 --
 ALTER TABLE `applicant_details`
-  MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `applicant_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `app_add_details`
 --
 ALTER TABLE `app_add_details`
-  MODIFY `app_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `app_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `app_educ_bg`
 --
 ALTER TABLE `app_educ_bg`
-  MODIFY `educ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `educ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `eval_details`
@@ -645,10 +735,16 @@ ALTER TABLE `eval_details`
   MODIFY `instance_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `job_history`
 --
 ALTER TABLE `job_history`
-  MODIFY `job_history_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `job_history_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `job_req`
@@ -660,13 +756,13 @@ ALTER TABLE `job_req`
 -- AUTO_INCREMENT for table `login_accounts`
 --
 ALTER TABLE `login_accounts`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT for table `questions`
