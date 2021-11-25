@@ -217,21 +217,35 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 </script>
 
 <script>
-    $('button').click(function() {
-        var job_id =$(this).data('id');
-        $.ajax({
+    function move_record() {
+            var job_id =$('#move_up').val();
+            alert("firing move record!");
+            window.location.href = "move-up.php";
+    }
+</script>
+
+<script>
+    
+        function del_record() {
+            var job_id =$('#del_btn').val();
+            $.ajax({
 					type: 'POST',
 					url: "inbox-drop-record.php",
 					data: {job_id :job_id},
 					success: function(data){
-                    setTimeout(function(){ window.top.location.reload();location.reload(); }, 2000);
+                        setTimeout(function(){ window.parent.location.reload(); }, 2000);
 					},
 					error: function(data){
 						alert('Error!');
 					}
 				});
-    });
+                
+    }
+
+    
 </script>
+
+
         
 
 </body>

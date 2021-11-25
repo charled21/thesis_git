@@ -63,6 +63,7 @@ $opt = array();
 <div>
     <p>Your personality type is :</p>
     <h4 id="per_result"></h4>
+    <a href="/thesis_git/main.php" role="button" class="btn btn-success">Main Page</a>
 </div>
 
 

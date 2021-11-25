@@ -5,7 +5,7 @@
  if(isset($_POST["tds2"]))  
  {  
       $table_name = "applicant_details";
-      $query = "SELECT firstname,middlename,lastname,gender,dateBirth,address,address2,city,state,zipcode,app_status,DATEDIFF(CURDATE(),date_applied) as pending_days FROM $table_name WHERE applicant_id = $id ";  
+      $query = "SELECT firstname,middlename,lastname,gender,DATE_FORMAT(dateBirth,'%b %d %Y') as birthday,address,address2,city,state,zipcode,app_status,DATEDIFF(CURDATE(),date_applied) as pending_days FROM $table_name WHERE applicant_id = $id ";  
       $result = mysqli_query($connect, $query);  
       while($row = mysqli_fetch_array($result))
      {
@@ -13,7 +13,7 @@
           $mname = $row['middlename'];
           $lname = $row['lastname'];
           $gender = $row['gender'];
-          $birth = $row['dateBirth'];
+          $birth = $row['birthday'];
           $address = $row['address'];
           $address2 = $row['address2'];
           $city = $row['city'];
@@ -22,25 +22,25 @@
           $status = $row['app_status'];
           $pending_days = $row['pending_days'];
      }
-     echo "<p>Firstname: $fname</p>";
-     echo "<p>Middlename: $mname</p>";
-     echo "<p>Lastname: $lname</p>";
-     echo "<p>gender: $gender</p>";
-     echo "<p>birthday: $birth</p>";
-     echo "<p>add: $address</p>";
-     echo "<p>add2: $address2</p>";
-     echo "<p>City: $city</p>";
-     echo "<p>State: $state</p>";
-     echo "<p>Zip: $zip</p>";
+     echo "<p><b>Fullname:</b> $fname"." $mname"." $lname</p>";
+     echo "<p><b>Gender:</b> $gender</p>";
+     echo "<p><b>Birthday:</b> $birth</p>";
+     echo "<p><b>Home Address:</b> $address</p>";
+     echo "<p><b>Present Address:</b> $address2</p>";
+     echo "<p><b>City:</b> $city</p>";
+     echo "<p><b>State:</b> $state</p>";
+     echo "<p><b>Zip:</b> $zip</p>";
      if($status<4){
-          echo "<p>Status:</p><p style=\"color: red\"> Ongoing</p>";
-          echo "<p>Pending:</p><p style=\"color: red\"> $pending_days day(s)</p>";
+          echo "<hr>";
+          echo "<p><b>Status:</b></p>". "<p style=\"color: red\"> <b>Ongoing</b></p>";
+          echo "<hr>";
+          echo "<p><b>Pending:</b></p><p style=\"color: red\"> <b>$pending_days day(s)</b></p>";
      }
      else{
           echo "<p>Status:</p><p style=\"color: green\"> Passed</p>";
      }
-     echo "<button class=\"btn btn-success\" data-id=$id>Move Up</button>";
-     echo "<button class=\"ml-2 btn btn-danger\" data-id=$id>Delete</button>";
+     echo "<button class=\"btn btn-success\" id=\"move_up\" value=$id onclick=\"move_record()\">Move Up</button>";
+     echo "<button class=\"ml-2 btn btn-danger\" id=\"del_btn\" value=$id onclick=\"del_record()\" >Delete</button>";
      
  }  
  ?>

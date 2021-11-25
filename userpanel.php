@@ -347,7 +347,7 @@ while($row = mysqli_fetch_array($result3))
         <!-- iframe -->
 
         <div class="embed-responsive embed-responsive-16by9" style="height: 80vh">
-        <iframe class="embed-responsive-item" src="accounts/accounts-panel.php" name="accounts_iframe" allowfullscreen></iframe>
+        <iframe class="embed-responsive-item" src="accounts/accounts-panel.php" name="accounts_iframe" id="accounts_iframe" allowfullscreen></iframe>
         </div>
 
 

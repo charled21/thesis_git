@@ -69,7 +69,7 @@ else {
             {
                 $rec_cnt = $row['job_history_id'];
                 $job_status = $row['job_status'];
-                if($job_status>=0){
+                if($job_status>0){
                     $completed_jobs++;
                 }
             }
@@ -409,7 +409,7 @@ else {
                 $(function(){
 		            $('.apply_btn').click(function(e){
                         var job_history_id = $(this).data('id');                        
-                        alert("job hist id : "+job_history_id);
+                        //alert("job hist id : "+job_history_id);
                         window.location.href = "/thesis_git/applicant/applicant-page1.php";
                         
                      });
