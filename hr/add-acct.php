@@ -32,6 +32,7 @@
     <table class="table">
       <th>Account Name</th>
       <th>Privilege</th>
+      <th>Actions</th>
 
         <?php 
         $rec_Table = "login_accounts";
@@ -41,23 +42,31 @@
         $databaseName = "thesis_1";
 
         $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-        $acctQuery = "SELECT username,acct_priv FROM $rec_Table";
+        $acctQuery = "SELECT id,username,acct_priv FROM $rec_Table";
         $accts = mysqli_query($connect, $acctQuery);
         while($row2 = mysqli_fetch_array($accts))
         {
+            $admin_id = $row2['id'];
             $admin_accts = $row2['username'];  
             $admin_priv = $row2['acct_priv'];
-            if($admin_priv>5){
+            $admin_priv2 = $admin_priv;
+            if($admin_priv>9){
+              $admin_priv = "Admin";
+            }
+            else if($admin_priv>5 && $admin_priv<10){
               $admin_priv = "Manager";
             }
             else{
               $admin_priv = "HR Personnel";
             }
             echo "<tr>";
-            echo "<td>$admin_accts</td>";
-            echo "<td>$admin_priv</td>";
+            echo "<td>". $admin_accts ."</td>";
+            echo "<td>". $admin_priv ."</td>";
+            echo "<td>" . "<button class=\"btn btn-pill btn-danger \" value=$admin_priv2 data-id=$admin_accts type=\"button\" data-toggle=\"modal\" data-target=\"#pass_modal\">  
+            Edit</button>" . "</td>";
             echo "</tr>";          
         }
+        mysqli_close($connect);
         ?>
 
     </table>
@@ -111,13 +120,76 @@
       <select id="admin_priv" class="form-control">
         <option selected>Choose Privilege</option>
         <option value="10">Admin</option>
-        <option value="5">HR</option>
+        <option value="5">HR Personnel</option>
       </select>
     </div>
   </div>
 
 
     <button class="btn btn-primary" type="submit" id="acct_sub">Add</button>
+
+  
+</form>
+
+    
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="pass_modal" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="job_modal_label">Change Password</h5>
+        <a type="button" class="close" data-dismiss="modal" aria-label="Close"></a>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+<div class="modal-body">
+
+<form action="" method="POST">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label>Username</label>
+            <input type="text" class="form-control" id="chng_user" disabled>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label>New Password</label>
+            <input type="password" class="form-control" id="chng_pass">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label>Confirm New Password</label>
+            <input type="password" class="form-control" id="chng_pass2">
+        </div>
+    </div>
+
+    
+
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <label>Privilege</label>
+      <select id="chng_priv" class="form-control">
+        <option value="10">Admin</option>
+        <option value="5">HR Personnel</option>
+      </select>
+    </div>
+  </div>
+
+
+    <a type="button" class="btn btn-danger" type="submit" id="change_pass">Change</a>
 
   
 </form>
@@ -166,8 +238,7 @@
 					url: "admin-acct-process.php",
 					data: {admin_user : admin_user, admin_pass : admin_pass, admin_pass2 : admin_pass2, admin_priv : admin_priv},
 					success: function(data){
-            alert('Account Added!');
-            console.log(data);
+
 					},
 					error: function(data){
 						alert('Error!');
@@ -181,6 +252,49 @@
 			}
 		});
 	});
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		$('#change_pass').click(function(e){
+      
+      
+        chng_user = $('#chng_user').val();
+        chng_pass = $('#chng_pass').val();
+        chng_pass2 = $('#chng_pass2').val();
+        chng_priv = $('#chng_priv').val();
+
+        e.preventDefault();
+
+        //console.log(chng_user +""+ chng_pass +""+ chng_pass2 +""+ chng_priv);
+
+				$.ajax({
+					type: 'POST',
+					url: "admin-change-pass.php",
+					data: {chng_user : chng_user, chng_pass : chng_pass, chng_pass2 : chng_pass2, chng_priv : chng_priv},
+					success: function(data){
+            alert("Success!");
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+
+      
+			
+		});
+	});
+</script>
+
+
+<script type="text/javascript">
+$('button').click(function() {
+  var tds2 =$(this).attr("data-id");
+  var priv2 =  $(this).val();
+  $('#chng_user').val(tds2);
+  $('#chng_priv').val(priv2);
+
+  });
 </script>
 
 </body>

@@ -237,7 +237,7 @@ while($row = mysqli_fetch_array($result3))
     echo "    <a class=\"nav-link collapsed\" href=\"hr/add-acct.php\" 
             aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
             <i class=\"fas fa-users\"></i>
-            <span>Add Account</span>
+            <span>Accounts</span>
         </a> ";
        
     echo "</li>";
