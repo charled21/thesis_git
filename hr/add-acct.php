@@ -96,6 +96,13 @@
         </div>
     </div>
 
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label>Confirm Password</label>
+            <input type="password" class="form-control" id="admin_pass2">
+        </div>
+    </div>
+
     
 
     <div class="form-row">
@@ -148,6 +155,7 @@
 
                 admin_user = $('#admin_user').val();
                 admin_pass = $('#admin_pass').val();
+                admin_pass2 = $('#admin_pass2').val();
                 admin_priv = $('#admin_priv').val();
 
 				e.preventDefault();
@@ -156,7 +164,7 @@
 				$.ajax({
 					type: 'POST',
 					url: "admin-acct-process.php",
-					data: {admin_user : admin_user, admin_pass : admin_pass, admin_priv : admin_priv},
+					data: {admin_user : admin_user, admin_pass : admin_pass, admin_pass2 : admin_pass2, admin_priv : admin_priv},
 					success: function(data){
             alert('Account Added!');
             console.log(data);

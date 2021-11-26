@@ -48,8 +48,8 @@ if ($uploadOk == 0) {
                 $img_name = $_FILES["img_file"]["name"];
                 $img_dir =  $valid_dir . $newfilename;;
                 $img_sql = "INSERT INTO images (img_name,img_dir) VALUES (?,?)";
-				$stmtinsert = $db->prepare($img_sql);
-				$result = $stmtinsert->execute([$img_name, $img_dir]);
+				        $stmtinsert = $db->prepare($img_sql);
+				        $result = $stmtinsert->execute([$img_name, $img_dir]);
 
                 if($result){
                     echo "<script>alert('Image Successfully Added to Database!');</script>";
@@ -63,6 +63,8 @@ if ($uploadOk == 0) {
 
   } else {
     echo "Sorry, there was an error uploading your file.";
+    header("Location: ../applicant/applicant-page3_2.php");
+    die();
   }
 }
 ?>
