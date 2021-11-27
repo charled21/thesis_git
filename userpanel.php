@@ -52,6 +52,7 @@ if(isset($logged_user)==null){
 <?php 
 $ft_tables="job_history";
 $rec_Table = "applicant_details";
+$accts_Table = "login_accounts";
 $hostname = "localhost";
 $username = "root";
 $password = "";
@@ -60,6 +61,24 @@ $app_stat_cnt=0;
 $rec_cnt=0;
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+
+$acctQuery = "SELECT email_acct,acct_priv FROM $accts_Table WHERE username = '$logged_user'";
+$accts = mysqli_query($connect, $acctQuery);
+while($accts_row = mysqli_fetch_array($accts))
+        {
+            $admin_email = $accts_row['email_acct'];
+            $admin_priv = $accts_row['acct_priv'];
+            if($admin_priv>9){
+              $admin_priv = "Admin";
+            }
+            else if($admin_priv>5 && $admin_priv<10){
+              $admin_priv = "Manager";
+            }
+            else{
+              $admin_priv = "HR Personnel";
+            }
+        }
+
 $inboxQuery = "SELECT applicant_id, app_status FROM $rec_Table";
 $rec_Query = "SELECT job_history_id FROM $ft_tables WHERE job_status < 1";
 $result3 = mysqli_query($connect, $rec_Query);
@@ -215,23 +234,23 @@ while($row = mysqli_fetch_array($result3))
     
     }
     else{
-      echo "  <li class=\"nav-item\">";
-      echo "  <a class=\"nav-link collapsed\" href=\"php/csv-export.php\" 
-            aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
-            <i class=\"fas fa-fw fa-save\"></i>
-            <span>CSV Export</span>
-            </a> ";
+    //   echo "  <li class=\"nav-item\">";
+    //   echo "  <a class=\"nav-link collapsed\" href=\"php/csv-export.php\" 
+    //         aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
+    //         <i class=\"fas fa-fw fa-save\"></i>
+    //         <span>CSV Export</span>
+    //         </a> ";
        
-    echo "</li>";
+    // echo "</li>";
 
-    echo "<li class=\"nav-item\">";
-    echo "    <a class=\"nav-link collapsed\" href=\"hr/gmail-send2.php\" 
-            aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
-            <i class=\"fas fa-fw fa-envelope-open-text\"></i>
-            <span>Send Email</span>
-        </a> ";
+    // echo "<li class=\"nav-item\">";
+    // echo "    <a class=\"nav-link collapsed\" href=\"hr/gmail-send2.php\" 
+    //         aria-expanded=\"true\" aria-controls=\"collapseExport\" target=\"accounts_iframe\">
+    //         <i class=\"fas fa-fw fa-envelope-open-text\"></i>
+    //         <span>Send Email</span>
+    //     </a> ";
        
-    echo "</li>";
+    // echo "</li>";
 
     echo "<li class=\"nav-item\">";
     echo "    <a class=\"nav-link collapsed\" href=\"hr/add-acct.php\" 
@@ -281,30 +300,6 @@ while($row = mysqli_fetch_array($result3))
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                <li class="nav-item dropdown no-arrow d-sm-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-search fa-fw"></i>
-                    </a>
-                    <!-- Dropdown - Messages -->
-                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                        aria-labelledby="searchDropdown">
-                        <form class="form-inline mr-auto w-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small"
-                                    placeholder="Search for..." aria-label="Search"
-                                    aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
@@ -316,23 +311,16 @@ while($row = mysqli_fetch_array($result3))
                         ?> 
                         </span>
 
-                        <!-- <div class="dropdown">
-                          <div class="justify-content-between">
-                          <button class="thumbnail-pic ml-3"></button>
-                          </div>
-                        
-                            
-                        </div> -->
 
                         
                         <img class="dropdown img-profile rounded-circle"
-                            src="img/undraw_profile.svg">
+                            src="img/undraw_profile_1.svg">
                           
                     </a>
 
                     <div class="dropdown-content">
                             
-                              <a href="#" class="col-sm-8 manage-acc-button"><p class="logout-text">MANAGE ACCOUNT</p></a>
+                              <a href="#" id="manage_accts" class="col-sm-8 manage-acc-button" data-toggle="modal" data-target="#manage_accounts"><p class="logout-text">MANAGE ACCOUNT</p></a>
                               <hr class="mb-1">
                               <a href="php/acct-logout.php" class="col-sm-8 logout-button"><p class="logout-text">LOGOUT</p></a>
                     </div>
@@ -350,160 +338,74 @@ while($row = mysqli_fetch_array($result3))
         <iframe class="embed-responsive-item" src="accounts/accounts-panel.php" name="accounts_iframe" id="accounts_iframe" allowfullscreen></iframe>
         </div>
 
-
-        <!-- <div class="container">
-          <div class="pos-f-t ml-12" style="height: 120vh">
-          <iframe frameBorder=0 height=100% width=100% src="accounts/accounts-panel.php" name="accounts_iframe">
-                          
-                          
-             </div>                    
-          </div> -->
-       <!-- iframe end -->
-
-                                       
-
-
-
-<!-- ########################## old page  #############################3 -->
-
-<!-- <div class="pos-f-t">
-  <div class="col-md-12 color-title top-header">
-    <div class="row col-sm-12 d-flex justify-content-between">
-
-        <div class="col-sm-4 mt-3 row">
-          <h3 class="logo-header-text">HRIS</h3><h3 class="logo-header-text-two">SUB-SYSTEM</h3><p class="logo-header-text-two">&reg;</p>
-          </div>
-
-          <div class="col-sm-8  row justify-content-end">
-                <div class="column  justify-content-center">
-                  
-                </div>
-
-            <div class="dropdown">
-              <div class="justify-content-between">
-              <button class="thumbnail-pic ml-3"></button>
-              </div>
-            
-                <div class="dropdown-content">
-                <button class="profile-pic"></button> -->
-                <?php 
-                //echo "<div class=\"col-sm-12 minimal-text \"> Username: $logged_user </div>";
-                ?>
-                  <!-- <a href="manageaccounts.php" class="col-sm-10 manage-acc-button">Manage Accounts</a>
-                  <hr class="mb-1">
-                  <a href="php/acct-logout.php" class="col-sm-10 logout-button"><p class="logout-text">Logout</p></a>
-                </div>
-            </div>
-          </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="col-md-12 row">
-<div class="col-md-2 sidebar-panel row">
-        <div class="col-md-2 mr-2">
         
-        </div>
-
-        <div class="col-md-1">
-        <hr class="mb-2">
-        <div class="sidebar-subs"><a class="link-color" href="main.php" style="text-decoration:none;"><p class="ss-text"><br>Home</p></a></div>
-        <div class="sidebar-subs"><a class="link-color" href="accounts/accounts-panel.php" style="text-decoration:none;" target="accounts_iframe"><p class="ss-text"><br>Accounts</p></div> -->
-        <!-- <div class="sidebar-subs"><a class="link-color" href="accounts/inventory.php" style="text-decoration:none;" target="accounts_iframe"><p class="ss-text"><br>Inventory</p></a></div> -->
-        <!-- <div class="sidebar-subs"><a class="link-color" href="accounts/logs.php" style="text-decoration:none;" target="accounts_iframe"><p class="ss-text"><br>Logs</p></a></div>
-        <hr class="my-6">
-        <div class="sidebar-subs"><a class="link-color" href="accounts/sample1.html" style="text-decoration:none;" target="accounts_iframe"><p class="ss-text"><br>Questionnaire</p></a></div>
-        <div class="sidebar-subs"><a class="link-color" href="tools/cpuinserter.php" style="text-decoration:none;" target="accounts_iframe"><p class="ss-text"><br>CPUTools</p></a></div>
-        <div class="sidebar-subs"><a class="link-color" href="tools/gpuinserter.php" style="text-decoration:none;" target="accounts_iframe"><p class="ss-text"><br>GPUTools</p></a></div>
-        </div>
-</div>
-        <div class="col-md-10">
-          <div class="pos-f-t ml-4" style="height: 100%">
-          <iframe frameBorder=0 height=100% width=100% src="accounts/accounts-panel.php" name="accounts_iframe">
-                          
-                          
-             </div>                    
-          </div> -->
-         
-                          
-                       
-                          
-                                 
-          
-         <!--add php file in include to run-->
-         <!-- include "php/history-display.php"; -->
-                        
-
-
-
-<!-- <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-info p-4">
-              <h4 class="text-white">Genres</h4>
-              <span class="text-white">Details about certain genres.</span>
-            </div>
-</div> -->
-
-
-
-      <!-- history modal start -->
-<!-- <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="manage_accounts" tabindex="-1" role="dialog"  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="gameModalLabel">Bored Are We?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="job_modal_label">Change Details</h5>
+        <a type="button" class="close" data-dismiss="modal" aria-label="Close"></a>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <p id="first-text"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+
+
+<div class="modal-body">
+
+<form action="" method="POST">
+
+    <div class="form-row">
+        <div class="form-group col-md-10">
+        <label>Username</label>
+            <input type="text" class="form-control" id="chng_user" value="<?php echo "$logged_user"; ?>" disabled>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-10">
+        <label>Email</label>
+            <input type="email" class="form-control" id="chng_email"  value="<?php echo "$admin_email"; ?>">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-10">
+        <label>New Password</label>
+            <input type="password" class="form-control" id="chng_pass" placeholder="*********">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-10">
+        <label>Confirm New Password</label>
+            <input type="password" class="form-control" id="chng_pass2" placeholder="*********">
+        </div>
+    </div>
+
+    
+
+    <div class="form-row">
+    <div class="form-group col-md-10">
+    <label>Privilege</label>
+    <input type="text" class="form-control" id="chng_priv" value="<?php echo "$admin_priv"; ?>" disabled>
+    </div>
+    </div>
+
+
+    <a type="button" class="btn btn-danger" type="submit" id="change_pass">Change</a>
+
+  
+</form>
+
+    
+</div>
       </div>
     </div>
   </div>
-</div> -->
-      <!--  history modal end -->
-
-
-    
-    <!-- <div class="col-sm-4">
-
-      <h3 class="position-absolute text-primary">OPTIONS</h3>
-      <hr class="mt-5 mb-0">
-      <div class="row justify-content-center">
-          <div class="contents_style">
-              <div class="mt-5  mx-5 content-boxes" onclick="box1()" id="box1">
-              <p id="box1-text">CPU</p>
-              </div>
-          </div> 
-      </div>
-      <div class="row justify-content-center">
-          <div class="contents_style">
-               <div class="mt-5  mx-5 content-boxes" id="box3"></div>
-          </div> 
-      </div>
-    </div> -->
-
-    <!-- <div class="col-sm-4">
-      <p class="position-absolute"></p>
-      <hr class="mt-5 mb-0">
-      <div class="row justify-content-center">
-          <div class="contents_style">
-            <div class="mt-5  mx-5 content-boxes" id="box2" onclick="box2()">
-            <p id="box2-text">Video Card</p></div>
-          </div> 
-      </div>
-      <div class="row justify-content-center">
-           <div class="contents_style">
-              <div class="mt-5  mx-5 content-boxes" id="box4"></div>
-           </div> 
-      </div>
-    </div> -->
-    
- 
+</div>
+<!-- modal end-->
+        
 
     <!-- Bootstrap core JavaScript-->
     <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
@@ -526,6 +428,39 @@ while($row = mysqli_fetch_array($result3))
     <!-- <script src="/thesis_git/js/demo/chart-area-demo.js"></script>
     <script src="/thesis_git/js/demo/chart-pie-demo.js"></script> -->
 
+    <script type="text/javascript">
+	$(function(){
+		$('#change_pass').click(function(e){
+      
+      
+        chng_user = $('#chng_user').val();
+        chng_pass = $('#chng_pass').val();
+        chng_pass2 = $('#chng_pass2').val();
+        chng_email = $('#chng_email').val();
+        chng_priv = $('#chng_priv').val();
+        
+
+        e.preventDefault();
+
+        //console.log(chng_user +""+ chng_pass +""+ chng_pass2 +""+ chng_priv);
+
+				$.ajax({
+					type: 'POST',
+					url: "hr/admin-change-pass.php",
+					data: {chng_user : chng_user, chng_pass : chng_pass, chng_pass2 : chng_pass2, chng_email : chng_email, chng_priv : chng_priv},
+					success: function(data){
+            setTimeout(function(){ location.reload(); }, 1000);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+
+      
+			
+		});
+	});
+</script>
    
 </body>
 </html>

@@ -31,6 +31,7 @@
     <h3 class="mt-4">Existing Accounts</h3>
     <table class="table">
       <th>Account Name</th>
+      <th>Account Email</th>
       <th>Privilege</th>
       <th>Actions</th>
 
@@ -42,12 +43,13 @@
         $databaseName = "thesis_1";
 
         $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-        $acctQuery = "SELECT id,username,acct_priv FROM $rec_Table";
+        $acctQuery = "SELECT id,username,email_acct,acct_priv FROM $rec_Table";
         $accts = mysqli_query($connect, $acctQuery);
         while($row2 = mysqli_fetch_array($accts))
         {
             $admin_id = $row2['id'];
-            $admin_accts = $row2['username'];  
+            $admin_accts = $row2['username'];    
+            $admin_email = $row2['email_acct'];          
             $admin_priv = $row2['acct_priv'];
             $admin_priv2 = $admin_priv;
             if($admin_priv>9){
@@ -61,8 +63,9 @@
             }
             echo "<tr>";
             echo "<td>". $admin_accts ."</td>";
+            echo "<td>". $admin_email ."</td>";
             echo "<td>". $admin_priv ."</td>";
-            echo "<td>" . "<button class=\"btn btn-pill btn-danger \" value=$admin_priv2 data-id=$admin_accts type=\"button\" data-toggle=\"modal\" data-target=\"#pass_modal\">  
+            echo "<td>" . "<button class=\"btn btn-pill btn-success \" value=$admin_priv2 data-id=$admin_accts data-email=$admin_email type=\"button\" data-toggle=\"modal\" data-target=\"#pass_modal\">  
             Edit</button>" . "</td>";
             echo "</tr>";          
         }
@@ -95,6 +98,13 @@
         <div class="form-group col-md-6">
         <label>Username</label>
             <input type="text" class="form-control" id="admin_user">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label>Email</label>
+            <input type="text" class="form-control" id="admin_email">
         </div>
     </div>
 
@@ -164,6 +174,13 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
+        <label>Email</label>
+            <input type="text" class="form-control" id="chng_email">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
         <label>New Password</label>
             <input type="password" class="form-control" id="chng_pass">
         </div>
@@ -225,10 +242,12 @@
 			var valid = this.form.checkValidity();
 			if(valid){
 
-                admin_user = $('#admin_user').val();
+                admin_user = $('#admin_user').val();                
                 admin_pass = $('#admin_pass').val();
                 admin_pass2 = $('#admin_pass2').val();
+                admin_email = $('#admin_email').val();
                 admin_priv = $('#admin_priv').val();
+                
 
 				e.preventDefault();
 
@@ -236,9 +255,9 @@
 				$.ajax({
 					type: 'POST',
 					url: "admin-acct-process.php",
-					data: {admin_user : admin_user, admin_pass : admin_pass, admin_pass2 : admin_pass2, admin_priv : admin_priv},
+					data: {admin_user : admin_user, admin_pass : admin_pass, admin_pass2 : admin_pass2, admin_email : admin_email , admin_priv : admin_priv},
 					success: function(data){
-
+            setTimeout(function(){ location.reload(); }, 1000);
 					},
 					error: function(data){
 						alert('Error!');
@@ -263,6 +282,7 @@
         chng_pass = $('#chng_pass').val();
         chng_pass2 = $('#chng_pass2').val();
         chng_priv = $('#chng_priv').val();
+        chng_email = $('#chng_email').val();
 
         e.preventDefault();
 
@@ -271,9 +291,9 @@
 				$.ajax({
 					type: 'POST',
 					url: "admin-change-pass.php",
-					data: {chng_user : chng_user, chng_pass : chng_pass, chng_pass2 : chng_pass2, chng_priv : chng_priv},
+					data: {chng_user : chng_user, chng_pass : chng_pass, chng_pass2 : chng_pass2, chng_email : chng_email, chng_priv : chng_priv},
 					success: function(data){
-            alert("Success!");
+            setTimeout(function(){ location.reload(); }, 1000);
 					},
 					error: function(data){
 						alert('Error!');
@@ -291,8 +311,10 @@
 $('button').click(function() {
   var tds2 =$(this).attr("data-id");
   var priv2 =  $(this).val();
+  var email2 = $(this).attr("data-email");
   $('#chng_user').val(tds2);
   $('#chng_priv').val(priv2);
+  $('#chng_email').val(email2);
 
   });
 </script>

@@ -61,11 +61,25 @@ while($last_id_row = mysqli_fetch_array($result3))
                     </ul>  
         </div> 
 
+        
+
 <!-- progressbar end -->
+
+<div class="embed-responsive embed-responsive-16by9" style="height: 25vh">
+        <iframe class="embed-responsive-item" src="upload-prof.php" name="accounts_iframe" id="accounts_iframe" allowfullscreen></iframe>
+        </div>
+
+
+<!-- collapse -->
+
+<hr>
 
 <form action="" method="POST">
 <div class="container">
   <input type="text" class="form-control" id="recent_id" name="recent_id" value="<?php echo $recent_id; ?>" hidden>
+
+  
+
 
 <div class="form-row">
     <div class="form-group col-md-4">
@@ -166,6 +180,7 @@ while($last_id_row = mysqli_fetch_array($result3))
 </div>
 
 
+
 </div>
 
 <a href="applicant-page1.php" class="btn btn-danger" role="button">BACK</a>
@@ -179,6 +194,8 @@ while($last_id_row = mysqli_fetch_array($result3))
 
 
 </div>
+
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
@@ -234,8 +251,16 @@ $(function(){
 				$("form").trigger("reset");
                 window.location.href = "/thesis_git/applicant/applicant-page3_2.php";
 		});
+
+    
 	});
 
+    </script>
+
+    <script>
+      $('#upload_img').click(function(e){
+      
+    });
     </script>
 
 

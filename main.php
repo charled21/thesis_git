@@ -69,7 +69,7 @@ else {
             {
                 $rec_cnt = $row['job_history_id'];
                 $job_status = $row['job_status'];
-                if($job_status>0){
+                if($job_status==0){
                     $completed_jobs++;
                 }
             }
@@ -159,7 +159,7 @@ else {
                 $app_stat_cnt=0;
 
                 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-                $rec_Query = "SELECT job_history_id, job_id, job_city, DATEDIFF(CURDATE(),job_date) as datepassed, emp_type FROM $ft_tables";
+                $rec_Query = "SELECT job_history_id, job_id, job_city, DATEDIFF(CURDATE(),job_date) as datepassed, emp_type FROM $ft_tables WHERE job_status = 0";
                 $result3 = mysqli_query($connect, $rec_Query);
                 ?>
                                         <div class="modal-dialog" role="document">
