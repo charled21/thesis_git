@@ -29,6 +29,20 @@ require_once(__DIR__.'/../php/db-config.php');
 
 <div class="container">
     <h3 class="mt-4 mb-4">LIST OF APPLICANT PROFILES</h3>
+
+    <!-- dropdown start-->
+    <div class="mt-2 mb-2">
+    <select name="cars" id="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+    </select>
+    </div>
+    
+    <!-- dropdown end -->
+
+
     <form action="inbox-review.php" method="post">
         <?php 
 
@@ -124,9 +138,6 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
                             //moved headers here end
 
-
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
-                            echo "<hr>";
                         echo "</th> </tr>";
 
                             
@@ -143,7 +154,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                 echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['city'] . "</font>" ."</td>";
                                 echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['state'] . "</font>" ."</td>";
                                 echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['zipcode'] . "</font>" ."</td>";
-                                echo "<td>" . "<button type=\"submit\" class=\"btn btn-warning mb-2\" value=$row_num id=\"tds2\" name=\"tds2\" >Edit</button>"."</td>";
+                                //echo "<td>" . "<button type=\"submit\" class=\"btn btn-warning mb-2\" value=$row_num id=\"tds2\" name=\"tds2\" >Edit</button>"."</td>";
                                 echo "</tr>";
                                 }
                             }

@@ -82,7 +82,7 @@
           $img_class_result = mysqli_query($connect, $img_class_query);
           while($img_class_row = mysqli_fetch_array($img_class_result)){
           $file_class_dest = $img_class_row['img_dir'];
-          echo "<img class=\"mt-2\" src=\"$file_class_dest\" alt=\"Profile Pic\" width=\"150\" height=\"150\">";
+          echo "<img class=\"mt-2 data-fetch-img\" src=\"$file_class_dest\" alt=\"Profile Pic\" width=\"150\" height=\"150\">";
           echo "<input type=\"checkbox\" name=\"approval_checkbox\" class=\"ml-4\" value=\"5\">";
           }
      
@@ -91,6 +91,9 @@
 
      </div>
 
+     
+     
+
      <?php 
      echo "<hr>";
      echo "<button class=\"btn btn-success\" id=\"move_up\" value=$id onclick=\"move_record()\">Move Up</button>";
@@ -98,4 +101,15 @@
      
  }  
  ?>
+
+<script>
+    $(document).ready(function(){
+    $("img").click(function(){
+          image_dest = $(this).attr('src');
+          image_resized = '<img class="mt-2 data-fetch-img" src="'+ image_dest+ '" alt="Profile Pic" width="400" height="400">';
+          $('#image_modal_content').html(image_resized);
+          $('#imageModal').modal('show');  
+    });
+    });
+</script>
 

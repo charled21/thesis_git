@@ -187,6 +187,21 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
     </div>
 </div>
 
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel">
+     <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+               <div id="image_modal_content" class="d-flex justify-content-center"></div>
+               
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+          </div>
+     </div>
+     </div>
+
 
 
 </div>
@@ -231,7 +246,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 					url: "move-up.php",
 					data: {total_pts : total_pts},
 					success: function(data){
-                        alert('Applicant Moved To Next Phase!');
+                        alert('Applicant Moved To Next Phase! Total pts = '+total_pts);
 					},
 					error: function(data){
 						alert('Error!');
@@ -260,6 +275,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
     
 </script>
+
+
 
 
         
