@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,13 +59,23 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
                     </ul>  
         </div> 
 
+        <?php print_r($_SESSION);?>
 <!-- progressbar end -->
+<div class="container mb-4">
+  <button class="btn btn-primary" type="button" id="prof_pic" data-toggle="collapse" href="#prof_pic_collapse">Add Certificate</button>
+</div>
+
+<!-- collapse -->
+<div class="container collapse" id="prof_pic_collapse">
 
 <form action="upload.php" method="post" enctype="multipart/form-data">
-  Select image to upload:
-  <input type="file" name="img_file" id="img_file">
-  <input type="submit" value="Upload Image" name="submit">
+  Select image:
+  <input class="btn btn-success" type="file" name="img_file" id="img_file">
+  <input class="btn btn-primary" type="submit" value="Upload Image" name="submit" id="upload_img">
 </form>
+
+<div class="container" id="img_content"></div>
+
 
 <?php 
 
@@ -68,10 +83,6 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
 
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>

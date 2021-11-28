@@ -5,12 +5,28 @@
  if(isset($_POST["tds2"]))  
  {  
       $img_table = "images";
-      $img_query = "SELECT img_dir FROM $img_table WHERE applicant_id = $id";
+      $hasCertificate = 0;
+      $img_class_query = "SELECT img_dir FROM $img_table WHERE applicant_id = $id AND img_class = 2";
+      $img_class_result = mysqli_query($connect, $img_class_query);
+      $img_query = "SELECT img_dir,img_class FROM $img_table WHERE applicant_id = $id";
       $img_result = mysqli_query($connect, $img_query);
+      while($img_class_row = mysqli_fetch_array($img_class_result)){
+           $file_class_dest = $img_class_row['img_dir'];
+           if($file_class_dest != NULL){
+               $hasCertificate = 1;
+           }
+           else{
+               $hasCertificate = 0;
+           }
+      }
       while($img_row = mysqli_fetch_array($img_result)){
           $file_dest = $img_row['img_dir'];
+          $img_class = $img_row['img_class'];
           //echo "$file_dest";
-          echo "<img src=\"$file_dest\" alt=\"Profile Pic\" width=\"150\" height=\"150\">";
+          if($img_class == 1){
+               echo "<img src=\"$file_dest\" alt=\"Profile Pic\" width=\"150\" height=\"150\">";
+          }
+          
       }
 
       $table_name = "applicant_details";
@@ -48,8 +64,38 @@
      else{
           echo "<p>Status:</p><p style=\"color: green\"> Passed</p>";
      }
+     echo "<hr>";
+     if($hasCertificate == 1){
+          echo "<a role=\"button\" data-toggle=\"collapse\" href=\"#cert_collapse\" class=\"btn btn-success\" id=\"see_cert\" >See Certificates</a>";
+     }
+     else{
+          echo "Has (0) Certificates Submitted";
+     }
+    
+     ?>
+
+     <div class="container collapse" id="cert_collapse">
+     
+          <div class="mt-4 mb-4">
+     <?php 
+          $img_class_query = "SELECT img_dir FROM $img_table WHERE applicant_id = $id AND img_class = 2";
+          $img_class_result = mysqli_query($connect, $img_class_query);
+          while($img_class_row = mysqli_fetch_array($img_class_result)){
+          $file_class_dest = $img_class_row['img_dir'];
+          echo "<img class=\"mt-2\" src=\"$file_class_dest\" alt=\"Profile Pic\" width=\"150\" height=\"150\">";
+          echo "<input type=\"checkbox\" name=\"approval_checkbox\" class=\"ml-4\" value=\"5\">";
+          }
+     
+     ?>
+          </div>
+
+     </div>
+
+     <?php 
+     echo "<hr>";
      echo "<button class=\"btn btn-success\" id=\"move_up\" value=$id onclick=\"move_record()\">Move Up</button>";
      echo "<button class=\"ml-2 btn btn-danger\" id=\"del_btn\" value=$id onclick=\"del_record()\" >Delete</button>";
      
  }  
  ?>
+

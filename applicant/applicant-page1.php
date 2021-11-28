@@ -148,6 +148,7 @@
   
   <hr>
   <div style="height: 30px;"></div>
+  <!-- <a href="applicant-page2.php" role="button" class="btn btn-primary">Submit</a> -->
   <button type="submit" class="btn btn-primary" id="sub_btn" >Submit</button>
 </form>
 
@@ -234,10 +235,9 @@
 
 				$.ajax({
 					type: 'POST',
-					url: "reg-process.php",
+					url: "tools/page1-tool.php",
 					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip},
 					success: function(data){
-            //console.log("passing :"+fname+mname+lname+gender+address1+ address2+city+state+ zip+"");
 						console.log("data= "+data);
             alert('Registration Successful!');
 					},
@@ -245,10 +245,13 @@
 						alert('Error!');
 					}
 				});
+
+
 				//test if true displays all data from fields-----tester
 				//alert('true');
 				//alert(firstname+lastname+course);
-				$("form").trigger("reset");
+        
+				//$("form").trigger("reset");
                 window.location.href = "/thesis_git/applicant/applicant-page2.php";
 			}
 			else{

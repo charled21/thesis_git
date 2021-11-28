@@ -61,7 +61,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         INFORMATION_SCHEMA.COLUMNS 
                         WHERE TABLE_NAME = '$ft_tables'";
                         //start of display
-                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.per_score,a.app_status,a.job_history_id,c.job_name FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id WHERE a.app_status < 4";
+                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id WHERE a.app_status < 4";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -101,10 +101,16 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     
                                 }
                                 else{
+                                    $max_score = 25;
                                     $row_cnt++;
                                     $init_score = $row['init_score'];
-                                    $per_score = $row['per_score'];
-                                    $total_score = $per_score + $init_score;
+                                    $add_score = ($init_score / $max_score)*100;
+                                    echo "<script>console.log('addscore = $add_score');</script>";
+                                    $per_score = $row['w_score'];                                    
+                                    $percentage = ($per_score / $max_score)*100;
+                                    echo "<script>console.log('% = $percentage');</script>";
+                                    $total_score = $percentage + $add_score;
+                                    echo "<script>console.log('total = $total_score');</script>";
                                     echo "<tr>";   
                                     echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row_cnt . "</font>"."</td>";                             
                                     echo "<td>" .  "<font style=\"font-size: 14px;\" >" . "00".$row['applicant_id'] . "</font>"."</td>";
@@ -113,10 +119,10 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
     
                                     //rating part
-                                    if($total_score > 79){
+                                    if($total_score > 80){
                                         echo "<td>" .  "<font style=\"font-size: 14px; color: green;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
                                     }
-                                    else if($total_score >50 && $total_score < 80){
+                                    else if($total_score >50 && $total_score < 81){
                                         echo "<td>" .  "<font style=\"font-size: 14px; color: orange;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
                                     }
                                     else if($total_score >0 && $total_score < 51){
@@ -130,13 +136,13 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     //status changer start
                                     $current_status="";
                                         if($row['app_status']==1){
-                                            $current_status = "Lacking Requirements";
+                                            $current_status = "Missing Personal Info";
                                         }
                                         else if($row['app_status']==2){
-                                            $current_status = "Pending Exam";
+                                            $current_status = "Lacking Examination";
                                         }
                                         else if($row['app_status']==3){
-                                            $current_status = "Awaiting Interview";
+                                            $current_status = "Ready - Interview";
                                         }
                                     //status changer end
     
@@ -212,10 +218,25 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 </script>
 
 <script>
+
     function move_record() {
+            total_pts = 0;
             var job_id =$('#move_up').val();
-            alert("firing move record!");
-            window.location.href = "move-up.php";
+            $('input:checkbox:checked').each(function(){ 
+                        total_pts += isNaN(parseInt($(this).val())) ? 0 : parseInt($(this).val());
+                    });  
+
+                    $.ajax({
+					type: 'POST',
+					url: "move-up.php",
+					data: {total_pts : total_pts},
+					success: function(data){
+                        alert('Applicant Moved To Next Phase!');
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
     }
 </script>
 

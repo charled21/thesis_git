@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +65,7 @@ while($last_id_row = mysqli_fetch_array($result3))
                     </ul>  
         </div> 
 
-        
+        <?php print_r($_SESSION);?>
 
 <!-- progressbar end -->
 
@@ -230,7 +234,6 @@ $(function(){
         civil = $('#civil').val();
         citizen = $('#citizen').val();
         religion = $('#religion').val();
-        recent_id = $('#recent_id').val();
 
         //console.log(recent_id +educ_attain + educ_attain_deg + univ + yr_grad + hs + yr_grad_2 + landline + mobile + email + civil + citizen + religion);
 				
@@ -238,8 +241,8 @@ $(function(){
         
 				$.ajax({
 					type: 'POST',
-					url: "educ-process.php",
-					data: { educ_attain : educ_attain, educ_attain_deg : educ_attain_deg , univ : univ, yr_grad : yr_grad, hs : hs, yr_grad_2 : yr_grad_2, landline : landline, mobile : mobile, email : email, civil : civil, citizen : citizen, religion : religion, recent_id : recent_id},
+					url: "tools/page2-tool.php",
+					data: { educ_attain : educ_attain, educ_attain_deg : educ_attain_deg , univ : univ, yr_grad : yr_grad, hs : hs, yr_grad_2 : yr_grad_2, landline : landline, mobile : mobile, email : email, civil : civil, citizen : citizen, religion : religion},
 					success: function(data){
             console.log(data);
                     alert('Additional Info Added!');

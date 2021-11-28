@@ -1,8 +1,9 @@
 <?php
 require_once(__DIR__.'/../php/db-config.php');
 
-$target_dir = __DIR__.'/../img/uploads/';
-$valid_dir = '/thesis_git/img/uploads';
+$target_dir = __DIR__.'/../img/uploads/certificates/';
+$valid_dir = '/thesis_git/img/uploads/certificates/';
+$img_class = 2;
 $newfilename= date('Y-m-d')."-".str_replace(" ", "", basename($_FILES["img_file"]["name"]));
 $target_file = $target_dir . $newfilename;
 //var_dump($_FILES);
@@ -47,9 +48,9 @@ if ($uploadOk == 0) {
 //store to db --start
                 $img_name = $_FILES["img_file"]["name"];
                 $img_dir =  $valid_dir . $newfilename;;
-                $img_sql = "INSERT INTO images (img_name,img_dir) VALUES (?,?)";
+                $img_sql = "INSERT INTO images (img_name,img_dir,img_class) VALUES (?,?,?)";
 				        $stmtinsert = $db->prepare($img_sql);
-				        $result = $stmtinsert->execute([$img_name, $img_dir]);
+				        $result = $stmtinsert->execute([$img_name, $img_dir, $img_class]);
 
                 if($result){
                     echo "<script>alert('Image Successfully Added to Database!');</script>";

@@ -182,39 +182,39 @@
 			var valid = this.form.checkValidity();
 			if(valid){
 
-				fname = $('#fname').val();
-				mname = $('#mname').val();
-        lname = $('#lname').val();
+				// fname = $('#fname').val();
+				// mname = $('#mname').val();
+        // lname = $('#lname').val();
 
-        gender = $('#gender').val();
+        // gender = $('#gender').val();
 
-        month = $('#month').val();
-        day = $('#day').val();
-        year = $('#year').val();
+        // month = $('#month').val();
+        // day = $('#day').val();
+        // year = $('#year').val();
 
-        address1 = $('#address1').val();
-        address2 = $('#address2').val();
+        // address1 = $('#address1').val();
+        // address2 = $('#address2').val();
 
-        city = $('#city').val();
-        state = $('#state').val();
-        zip = $('#zip').val();
+        // city = $('#city').val();
+        // state = $('#state').val();
+        // zip = $('#zip').val();
 
-				e.preventDefault();
+				// e.preventDefault();
 
 
-				$.ajax({
-					type: 'POST',
-					url: "reg-process.php",
-					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip},
-					success: function(data){
-            //console.log("passing :"+fname+mname+lname+gender+address1+ address2+city+state+ zip+"");
-						//console.log("data= "+data);
-            alert('Registration Successful!');
-					},
-					error: function(data){
-						alert('Error!');
-					}
-				});
+				// $.ajax({
+				// 	type: 'POST',
+				// 	url: "reg-process.php",
+				// 	data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip},
+				// 	success: function(data){
+        //     alert('Registration Successful!');
+				// 	},
+				// 	error: function(data){
+				// 		alert('Error!');
+				// 	}
+				// });
+
+        
 				//test if true displays all data from fields-----tester
 				//alert('true');
 				//alert(firstname+lastname+course);
