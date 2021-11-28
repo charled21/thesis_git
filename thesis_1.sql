@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2021 at 04:36 PM
+-- Generation Time: Nov 29, 2021 at 02:03 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -167,6 +167,67 @@ INSERT INTO `app_educ_bg` (`educ_id`, `educ_attain`, `educ_deg`, `educ_univ`, `e
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `citizenship`
+--
+
+CREATE TABLE `citizenship` (
+  `app_citizenship` int(11) NOT NULL,
+  `citizenship_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `citizenship`
+--
+
+INSERT INTO `citizenship` (`app_citizenship`, `citizenship_name`) VALUES
+(1, 'Filipino'),
+(2, 'Others');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `civil_status`
+--
+
+CREATE TABLE `civil_status` (
+  `app_civil_status` int(11) NOT NULL,
+  `app_civil_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `civil_status`
+--
+
+INSERT INTO `civil_status` (`app_civil_status`, `app_civil_name`) VALUES
+(1, 'Single'),
+(2, 'Married'),
+(3, 'Divorced'),
+(4, 'Widowed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employment_status`
+--
+
+CREATE TABLE `employment_status` (
+  `emp_status_id` int(11) NOT NULL,
+  `emp_status_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employment_status`
+--
+
+INSERT INTO `employment_status` (`emp_status_id`, `emp_status_name`) VALUES
+(1, 'Missing Personal Info'),
+(2, 'Lacking Examination'),
+(3, 'Awaiting Interview'),
+(4, 'Employed');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `eval_details`
 --
 
@@ -268,7 +329,8 @@ CREATE TABLE `job_history` (
 INSERT INTO `job_history` (`job_history_id`, `job_id`, `job_applicants`, `job_date`, `job_city`, `branch_no`, `emp_type`, `emp_term`, `min_rate`, `max_rate`, `job_status`) VALUES
 (1, 5, 0, '2021-10-27 08:34:25', 'Butuan City', 1, 'Full-time', 1, 12000, 18000, 1),
 (2, 3, 0, '2021-10-27 09:14:25', 'Cabadbaran City', 3, 'Full-time', 1, 12000, 15000, 1),
-(9, 2, 0, '2021-11-16 00:33:45', 'Butuan City', 3, 'Full-time', 1, 0, 0, 0),
+(3, 2, 0, '2021-10-13 08:41:03', 'Butuan City', 2, 'Permanent', 1, 0, 0, 1),
+(9, 7, 0, '2021-11-16 00:33:45', 'Butuan City', 3, 'Full-time', 1, 0, 0, 0),
 (12, 4, 0, '2021-11-25 01:47:03', 'Butuan City', 1, 'Full-time', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -545,7 +607,8 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (202, 'admin', '2021-11-28 01:49:11'),
 (203, 'admin', '2021-11-28 13:21:54'),
 (204, 'admin', '2021-11-28 15:09:09'),
-(205, 'admin', '2021-11-28 15:28:29');
+(205, 'admin', '2021-11-28 15:28:29'),
+(206, 'admin', '2021-11-29 01:24:35');
 
 -- --------------------------------------------------------
 
@@ -660,6 +723,27 @@ INSERT INTO `questions` (`q_id`, `q_txt`) VALUES
 (59, 'You still honor the commitments you have made even if you have a change of heart'),
 (60, 'You still honor the commitments you have made even if you have a change of heart');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `religion`
+--
+
+CREATE TABLE `religion` (
+  `app_religion_id` int(11) NOT NULL,
+  `religion_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `religion`
+--
+
+INSERT INTO `religion` (`app_religion_id`, `religion_name`) VALUES
+(1, 'Roman Catholic'),
+(2, 'Christian'),
+(3, 'Protestant'),
+(4, 'Islam');
+
 --
 -- Indexes for dumped tables
 --
@@ -681,6 +765,24 @@ ALTER TABLE `app_add_details`
 --
 ALTER TABLE `app_educ_bg`
   ADD PRIMARY KEY (`educ_id`);
+
+--
+-- Indexes for table `citizenship`
+--
+ALTER TABLE `citizenship`
+  ADD PRIMARY KEY (`app_citizenship`);
+
+--
+-- Indexes for table `civil_status`
+--
+ALTER TABLE `civil_status`
+  ADD PRIMARY KEY (`app_civil_status`);
+
+--
+-- Indexes for table `employment_status`
+--
+ALTER TABLE `employment_status`
+  ADD PRIMARY KEY (`emp_status_id`);
 
 --
 -- Indexes for table `eval_details`
@@ -731,6 +833,12 @@ ALTER TABLE `questions`
   ADD PRIMARY KEY (`q_id`);
 
 --
+-- Indexes for table `religion`
+--
+ALTER TABLE `religion`
+  ADD PRIMARY KEY (`app_religion_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -751,6 +859,24 @@ ALTER TABLE `app_add_details`
 --
 ALTER TABLE `app_educ_bg`
   MODIFY `educ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `citizenship`
+--
+ALTER TABLE `citizenship`
+  MODIFY `app_citizenship` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `civil_status`
+--
+ALTER TABLE `civil_status`
+  MODIFY `app_civil_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `employment_status`
+--
+ALTER TABLE `employment_status`
+  MODIFY `emp_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `eval_details`
@@ -786,13 +912,19 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
   MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT for table `religion`
+--
+ALTER TABLE `religion`
+  MODIFY `app_religion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
