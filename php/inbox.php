@@ -142,7 +142,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                             $current_status = "Lacking Examination";
                                         }
                                         else if($row['app_status']==3){
-                                            $current_status = "Ready - Interview";
+                                            $current_status = "Awaiting Interview";
                                         }
                                     //status changer end
     

@@ -176,7 +176,7 @@ while($last_id_row = mysqli_fetch_array($result3))
       <select id="religion" name="religion" class="form-control">
         <option selected>Choose Religion</option>
         <option value="4">Islam</option>
-        <option value="3">Iglesia Ni Chris Brown</option>
+        <option value="3">Protestant</option>
         <option value="2">Born Again Christian</option>
         <option value="1">Roman Catholic</option>
       </select>

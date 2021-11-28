@@ -12,9 +12,9 @@ require_once(__DIR__.'/../php/db-config.php');
 
     <!-- Custom fonts for this template-->
     <link href="/thesis_git/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
+    <!-- <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        rel="stylesheet"> -->
 
     <link href="/thesis_git/css/main.css" rel="stylesheet">
 
@@ -28,17 +28,50 @@ require_once(__DIR__.'/../php/db-config.php');
 
 
 <div class="container">
-    <h3 class="mt-4 mb-4">LIST OF APPLICANT PROFILES</h3>
+    <h3 class="mt-4 mb-4">PERSONNEL RECORDS</h3>
 
     <!-- dropdown start-->
     <div class="mt-2 mb-2">
-    <select name="cars" id="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="mercedes">Mercedes</option>
-    <option value="audi">Audi</option>
+    <select id="records_view">
+    <option value="1" >All Records</option>
+    <option value="2">Employed</option>
+    <option value="3">Ongoing Application</option>
     </select>
+    <a role="button" class="btn btn-primary" id="view_btn">View</a>
     </div>
+
+    <div class="mb-4">
+    <a class="btn btn-success" role="button" type="button" id="criteria" data-toggle="collapse" href="#criteria_collapse"> Criterias</a>
+    </div>
+
+    <!-- collapse start -->
+    <div class="container collapse" id="criteria_collapse">
+
+    <div class="d-flex justify-content-between mb-4">
+        <div class="form group-row"><input type="checkbox" id="fullname" name="fullname" value="1" checked disabled> Fullname</div>
+        <div class="form group-row"><input type="checkbox" id="gender" name="gender" value="2" checked> Gender</div>
+        <div class="form group-row"><input type="checkbox" id="city" name="city" value="3" checked> City</div>
+        <div class="form group-row"><input type="checkbox" id="bday" name="bday" value="4"> Birthday</div>
+        <div class="form group-row"><input type="checkbox" id="zip" name="zip" value="5"> Zip</div>
+        <div class="form group-row"><input type="checkbox" id="mobile_no" name="mobile_no" value="6" checked> Mobile No.</div>
+        <div class="form group-row"><input type="checkbox" id="email_chkbox" name="email_chkbox" value="7"> Email</div>
+        <div class="form group-row"><input type="checkbox" id="religion_chkbox" name="religion_chkbox" value="8"> Religion</div>
+        <div class="form group-row"><input type="checkbox" id="civ_status_chkbox" name="civ_status_chkbox" value="9"> Civil Status</div>
+        
+        
+    
+    </div>
+    <hr>
+    <div class="d-flex justify-content-between mb-4">
+        <div class="form group-row"><input type="checkbox" id="position_applied" name="position_applied" value="10" checked> Position Applied</div>
+        <div class="form group-row"><input type="checkbox" id="assign_city" name="assign_city" value="11" checked> City Assigned</div>
+        <div class="form group-row"><input class="" type="checkbox" id="per_chkbox" name="per_chkbox" value="12"> Personality type</div>
+        <div class="form group-row"><input type="checkbox" id="score_chkbox" name="score_chkbox" value="13"> Total Score</div>
+        <div class="form group-row"><input type="checkbox" id="emp_status" name="emp_status" value="14"> Employment Status</div>
+    </div>
+
+    </div>
+    <!-- collapse end -->
     
     <!-- dropdown end -->
 
@@ -58,6 +91,7 @@ $hostname = "localhost";
 $username = "root";
 $password = "";
 $databaseName = "thesis_1";
+$display = 0;
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
@@ -68,95 +102,58 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         //start of display
                         //$schemaQuery = "SELECT * FROM $ft_tables";
                         //DATE_FORMAT((dateBirth),'%b %d, %Y')
-                        $schemaQuery = "SELECT applicant_id, firstname, lastname, gender,  DATE_FORMAT(dateBirth,'%b %d, %Y') as birthday, city, state, zipcode FROM $ft_tables";
+                        $schemaQuery = "SELECT a.applicant_id, a.firstname, a.middlename, a.lastname, a.gender,  DATE_FORMAT(a.dateBirth,'%b %d, %Y') as birthday, a.address, a.address2, a.city, a.state, a.zipcode FROM $ft_tables a";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
-                        echo "<table class='col-sm-12'>
+                        echo "<table class='col-sm-12' border=\"0px\">
                         <tr>";
                         $result3 = mysqli_query($connect, $schemaQuery);
                         $result2 = mysqli_query($connect, $employeeQuery);
                             $th2 = "";
                             
-                            //while($row2 = mysqli_fetch_array($result2))
-                            //{
-                                // $fetchedCol= $row2['COLUMN_NAME'];
-                                // // if($row2['COLUMN_NAME']=="applicant_id"){
-                                // //     //echo "<th style=\"font-size:16px;\">$fetchedCol";
-                                // //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
-                                // //     echo "<hr>";
-                                // // }
-                                // if($row2['COLUMN_NAME']=="firstname"){
-                                //     echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
-                                //     echo "<hr>";
-                                // }
-                                // else if($row2['COLUMN_NAME']=="lastname"){
-                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
-                                //     echo "<hr>";
-                                // }
-                                // else if($row2['COLUMN_NAME']=="gender"){
-                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Gender";
-                                //     echo "<hr>";
-                                // }
-                                // else if($row2['COLUMN_NAME']=="dateBirth"){
-                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Date of Birth";
-                                //     echo "<hr>";
-                                // }
-                                // else if($row2['COLUMN_NAME']=="city"){
-                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">City";
-                                //     echo "<hr>";
-                                // }
-                                // else if($row2['COLUMN_NAME']=="state"){
-                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Province";
-                                //     echo "<hr>";
-                                // }
-                                // else if($row2['COLUMN_NAME']=="zipcode"){
-                                //     echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Postal Code";
-                                //     echo "<hr>";
-                                // }
-                                // else{
-                                    
-                                // }
-                                
-                            //}
-
 
                             //moved headers here
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Gender";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Date of Birth";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">City";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Province";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Postal Code";
-                            echo "<hr>";
+                            if($display == 1){
+                                echo "<th>Fullname";
+                                echo "<hr>";
+                                echo "<th>Gender";
+                                echo "<hr>";
+                                echo "<th>Birthday";
+                                echo "<hr>";
+                                echo "<th>City";
+                                echo "<hr>";
+                                echo "<th>Province";
+                                echo "<hr>";
+                                echo "<th>Zipcode";
+                                echo "<hr>";
+                            }
+                            else{
+
+                            }
+                            
 
                             //moved headers here end
 
                         echo "</th> </tr>";
 
                             
-                            if($ft_tables=="applicant_details"){
+                            if($display == 1){
                                 while($row = mysqli_fetch_array($result3))
                                 {
+                                $fullname = $row['firstname'] ." ". $row['lastname'];
                                 $row_num = $row['applicant_id'];
-                                echo "<tr>";                                
-                                //echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row['applicant_id'] . "</font>"."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['gender'] . "</font>" ."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['birthday'] . "</font>" ."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['city'] . "</font>" ."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['state'] . "</font>" ."</td>";
-                                echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['zipcode'] . "</font>" ."</td>";
-                                //echo "<td>" . "<button type=\"submit\" class=\"btn btn-warning mb-2\" value=$row_num id=\"tds2\" name=\"tds2\" >Edit</button>"."</td>";
+                                echo "<tr>";     
+                                echo "<td>" .  "<font>" . $fullname . "</font>" ."</td>";
+                                echo "<td>" .  "<font>" . $row['gender'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font>" . $row['birthday'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font>" . $row['city'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font>" . $row['state'] . "</font>" ."</td>";
+                                echo "<td>" .  "<font>" . $row['zipcode'] . "</font>" ."</td>";
                                 echo "</tr>";
                                 }
+                            }
+                            else{
+
                             }
                             
                                 echo "</table>";
@@ -174,14 +171,27 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
 </div>
 
+<div id="passed_content"></div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-           
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
+    <script src="/thesis_git/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/thesis_git/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/thesis_git/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/thesis_git/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/thesis_git/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/thesis_git/js/demo/datatables-demo.js"></script>
+
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -206,6 +216,24 @@ $(document).ready(function(){
         });
     });
 });
+</script>
+
+<script>
+    $('#view_btn').click(function(){
+        checked_ones = [];
+        $('input:checkbox:checked').each(function(){
+            checked_ones.push($(this).val());
+            dropdown = $('#records_view').val();
+        });  
+        $.ajax({
+        type: "POST",
+        url: "tools/view-tool.php",
+        data: {checked_ones :checked_ones , dropdown : dropdown},
+        success: function (data) {
+            $('#passed_content').html(data);
+            }        
+        });
+    });
 </script>
         
 
