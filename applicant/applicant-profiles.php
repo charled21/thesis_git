@@ -30,18 +30,28 @@ require_once(__DIR__.'/../php/db-config.php');
 <div class="container">
     <h3 class="mt-4 mb-4">PERSONNEL RECORDS</h3>
 
-    <!-- dropdown start-->
-    <div class="mt-2 mb-2">
-    <select id="records_view">
-    <option value="1" >All Records</option>
-    <option value="2">Employed</option>
-    <option value="3">Ongoing Application</option>
-    </select>
-    <a role="button" class="btn btn-primary" id="view_btn">View</a>
-    </div>
+    <div class="form-group-row d-flex justify-content-between">
 
-    <div class="mb-4">
-    <a class="btn btn-success" role="button" type="button" id="criteria" data-toggle="collapse" href="#criteria_collapse"> Criterias</a>
+        <!-- dropdown start-->
+        <div class="col-md-6 mb-2">
+            <select id="records_view">
+            <option value="1" >All Records</option>
+            <option value="2">Employed</option>
+            <option value="3">Ongoing Application</option>
+            </select>
+            <a role="button" class="btn btn-primary" id="view_btn">View</a>   
+        </div>
+
+        <div class="col-md-6 mb-2">
+            <a role="button" id="exp_csv" class="btn btn-success align-items-right">Export to CSV</a> 
+        </div>
+
+    </div>
+    
+
+
+    <div class="mb-4 col-md-12">
+        <a class="btn btn-success" role="button" type="button" id="criteria" data-toggle="collapse" href="#criteria_collapse"> Criterias</a>
     </div>
 
     <!-- collapse start -->
@@ -191,6 +201,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
+
+    <script src="/thesis_git/js/csv-export.js"></script>
 
 
 <script type="text/javascript">
