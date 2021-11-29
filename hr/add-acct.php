@@ -28,7 +28,7 @@
     <a class="btn btn-pill btn-primary mb-4" type="button" data-toggle="modal" data-target="#job_modal">
         <span class="fas fa-plus"></span>    
         Add New Account</a>
-    <h3 class="mt-4">Existing Accounts</h3>
+    <h3 class="mt-4">EXISTING ACCOUNTS</h3>
     <table class="table">
       <th>Account Name</th>
       <th>Account Email</th>

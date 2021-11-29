@@ -36,8 +36,8 @@
 			var year = d.getFullYear();
 			var day = d.getDate();
 		
-			selectYear.val(year); 
-			selectYear.on("change", AdjustDays);  
+			//selectYear.val(year); 
+			//selectYear.on("change", AdjustDays);  
 			selectMonth.val(month);    
 			selectMonth.on("change", AdjustDays);
 		

@@ -1,3 +1,4 @@
+<?php  session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +35,10 @@
 
         <!-- End of Topbar -->
 
+<?php 
+$passed_id = $_SESSION['passed_id'];
+?>
+
 <div class="container">
 
 
@@ -51,6 +56,8 @@
         </div> 
         <hr class="mb-4">
 
+        <?php var_dump($_SESSION);?>
+
 <!-- progressbar end -->
 
 
@@ -67,6 +74,7 @@
 
 <form action="" method="POST">
 <h3><strong>Personal Information</strong></h3>
+<input type="text" class="form-control" id="job_history_id" value="<?php echo "$passed_id";?>" hidden>
 <div class="mb-4"></div>
   <div class="form-row">
     <div class="form-group col-md-4">
@@ -225,14 +233,15 @@
         city = $('#city').val();
         state = $('#state').val();
         zip = $('#zip').val();
+        page_num = 1;
 
 				e.preventDefault();
 
 
 				$.ajax({
 					type: 'POST',
-					url: "tools/page1-tool.php",
-					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip},
+					url: "tools/session-tool.php",
+					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip, page_num : page_num},
 					success: function(data){
 						console.log("data= "+data);
             alert('Registration Successful!');

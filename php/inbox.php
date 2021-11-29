@@ -61,7 +61,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         INFORMATION_SCHEMA.COLUMNS 
                         WHERE TABLE_NAME = '$ft_tables'";
                         //start of display
-                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id WHERE a.app_status < 4";
+                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status WHERE a.app_status < 4";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -132,21 +132,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
                                     }
                                     //rating end
-
-                                    //status changer start
-                                    $current_status="";
-                                        if($row['app_status']==1){
-                                            $current_status = "Missing Personal Info";
-                                        }
-                                        else if($row['app_status']==2){
-                                            $current_status = "Lacking Examination";
-                                        }
-                                        else if($row['app_status']==3){
-                                            $current_status = "Awaiting Interview";
-                                        }
-                                    //status changer end
     
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $current_status . "</font>" ."</td>";
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['emp_status_name'] . "</font>" ."</td>";
 
                                     
                                     echo "<td>" . "<button type=\"button\" class=\"btn btn-primary mb-2\" data-id=$row_num data-toggle=\"modal\" data-target=\"#myModal\">Review</button>"."</td>";

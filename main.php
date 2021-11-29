@@ -159,7 +159,7 @@ else {
                 $app_stat_cnt=0;
 
                 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-                $rec_Query = "SELECT job_history_id, job_id, job_city, DATEDIFF(CURDATE(),job_date) as datepassed, emp_type FROM $ft_tables WHERE job_status = 0";
+                $rec_Query = "SELECT b.job_history_id, b.job_city, DATEDIFF(CURDATE(),b.job_date) as datepassed, b.emp_type, c.job_name FROM $ft_tables b JOIN job_req c ON b.job_id = c.job_id WHERE job_status = 0";
                 $result3 = mysqli_query($connect, $rec_Query);
                 ?>
                                         <div class="modal-dialog" role="document">
@@ -171,56 +171,35 @@ else {
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <form method="POST" action="">
                                                 <?php 
                                                 while($row = mysqli_fetch_array($result3))
                                                 {
                                                     $job_history_id = $row['job_history_id'];
-                                                    $row_num = $row['job_id'];
                                                     $city = $row['job_city'];
                                                     $emp_type = $row['emp_type'];
                                                     $date =$row['datepassed'];
-                                                    if($row_num==1){
-                                                        $job_id='Manager';
-                                                    }
-                                                    else if($row_num==2)
-                                                    {
-                                                        $job_id='Mechanic';
-                                                    }
-                                                    else if($row_num==3)
-                                                    {
-                                                        $job_id='Treasury Staff';
-                                                    }
-                                                    else if($row_num==4)
-                                                    {
-                                                        $job_id='IT Staff';
-                                                    }
-                                                    else if($row_num==5)
-                                                    {
-                                                        $job_id='Cost Engineer';
-                                                    }
-                                                    else if($row_num==6)
-                                                    {
-                                                        $job_id='HR Staff';
-                                                    }
-                                                    else if($row_num==7)
-                                                    {
-                                                        $job_id='Store Clerk';
-                                                    }
+                                                    $job_name = $row['job_name'];
                                                     $job_counter++;
                                                     
-                                                    echo "<h4 class=\"mb-3\">$job_id</h4>";
+                                                    echo "<h4 class=\"mb-3\">$job_name</h4>";
                                                     echo "<div class=\"form-row\">";
                                                     echo "<p class=\"ml-2 text-secondary\">$city<p><i class=\"ml-3 fas fa-briefcase text-secondary\"></i> <p class=\"ml-1 text-secondary\">$emp_type </p>";
                                                     echo "</div>";
                                                     echo "<div id=\"job_cnt_div\" class=\"form-row d-flex justify-content-between\">";
                                                     echo "<p class=\"text-secondary\">[#$job_counter]  Over $date day(s) ago</p>";
                                                     echo "<button type=\"submit\" class=\"apply_btn mr-4 btn btn-info\" data-id=\"$job_history_id\">Apply</button>";
+                                                    
                                                     echo "</div>";
                                                     echo "<hr>";
 
+
                                                 }
+
+                                                echo "<input type=\"text\" id=\"passed_id\" name=\"passed_id\" value=$job_history_id hidden>";
                                                 
                                                 ?>
+                                                </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -399,20 +378,29 @@ else {
             
 
             <!-----------------------scripts start-------------------------- -->
-
-            <script src="js/jquery-3.4.1.min.js"></script>
+            <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
-            <script src="js/jquery.easing.min.js"></script>
             <!-----------------------scripts end-------------------------- -->
 
             <script>
                 $(function(){
 		            $('.apply_btn').click(function(e){
-                        var job_history_id = $(this).data('id');                        
-                        //alert("job hist id : "+job_history_id);
-                        window.location.href = "/thesis_git/applicant/applicant-page1.php";
-                        
-                     });
+                        var passed_id = $(this).data('id');   
+                        var page_num = 0;
+                        $.ajax({
+                            type: 'POST',
+                            url: "applicant/tools/session-tool.php",
+                            data: {passed_id : passed_id , page_num : page_num},
+                            success: function(data){
+                                window.location.href = "applicant/applicant-page1.php";
+                            },
+                            error: function(data){
+                            alert('Error!');
+                            }
+                        });
+                    
+                    
+                    });
 	            });
             </script>
 
