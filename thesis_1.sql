@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2021 at 02:03 AM
+-- Generation Time: Nov 30, 2021 at 03:23 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -50,17 +50,17 @@ CREATE TABLE `applicant_details` (
 --
 
 INSERT INTO `applicant_details` (`applicant_id`, `firstname`, `middlename`, `lastname`, `gender`, `dateBirth`, `address`, `address2`, `city`, `state`, `zipcode`, `app_status`, `date_applied`, `job_history_id`) VALUES
-(4, 'Angela', 'Macabugto', 'Luso', 'F', '1988-06-27', 'P-8 Libertad', 'JC Aquino ', 'Butuan City', 'Agusan del Norte', '8600', 2, '2021-10-22', 2),
-(5, 'Dhanika', 'Sugbo', 'Cagas', 'F', '1997-08-18', 'Blk 34 Lot 18', 'Northtown Subdivision', 'Butuan City', 'Agusan del Norte', '8600', 2, '2021-10-18', 2),
+(4, 'Angela', 'Macabugto', 'Luso', 'F', '1988-06-27', 'P-8 Libertad', 'JC Aquino ', 'Butuan City', 'Agusan del Norte', '8600', 3, '2021-10-22', 2),
+(5, 'Dhanika', 'Sugbo', 'Cagas', 'F', '1997-08-18', 'Blk 34 Lot 18', 'Northtown Subdivision', 'Butuan City', 'Agusan del Norte', '8600', 3, '2021-10-18', 2),
 (7, 'Teofisto', 'Tuman', 'Lumad', 'M', '1989-07-29', 'P-1 Bading', 'Bading Rampa Road', 'Butuan City', 'Agusan del Norte', '8600', 4, '2017-03-03', 3),
 (8, 'Raymart', 'Naquila', 'Norberte', 'M', '1991-01-05', 'P-1 San Agustin ', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4, '2016-03-12', 3),
 (9, 'Jhuanna', 'Avenido', 'Dampa', 'F', '1994-12-21', 'P-3 San Agustin', 'Talacogon', 'Talacogon', 'Agusan del Sur', '8510', 4, '2015-04-02', 2),
 (10, 'Arthur', 'Yantoc', 'Pajo', 'M', '1990-08-08', 'San Isidro I', 'Sibagat', 'Sibagat', 'Agusan del Sur', '8503', 4, '2017-02-27', 9),
 (11, 'Jennifer', 'Macadulot', 'Pacyas', 'F', '1992-02-05', 'Libertad', 'San Isidro I', 'Sibagat', 'Agusan del Sur', '8503', 4, '2017-03-04', 9),
-(12, 'Ralph', 'Cep', 'Alf', 'M', '1993-03-01', 'P5', 'B4', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-27', 12),
-(13, 'Dwight', 'Macabaca', 'Howard', 'M', '1984-09-01', 'P41', 'B27', 'Butuan City', 'Agusan del Norte', '8600', 1, '2021-10-28', 12),
-(14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 1, '2021-10-28', 12),
-(39, 'Johnson', 'Travis', 'McCoy', 'M', '2020-12-01', 'P15', 'B24', 'Bayugan City', 'Agusan del Norte', '8502', 1, '0000-00-00', 0);
+(12, 'Ralph', 'Cep', 'Alf', 'M', '1993-03-01', 'P5', 'B4', 'Bayugan City', 'Agusan del Norte', '8502', 3, '2021-10-27', 12),
+(13, 'Dwight', 'Macabaca', 'Howard', 'M', '1984-09-01', 'P41', 'B27', 'Butuan City', 'Agusan del Norte', '8600', 2, '2021-10-28', 12),
+(14, 'Melissa', 'Hicky', 'Ricks', 'F', '1986-04-01', 'P90', 'B98', 'Bayugan City', 'Agusan del Norte', '8502', 3, '2021-10-28', 12),
+(39, 'Johnson', 'Travis', 'McCoy', 'M', '2020-12-01', 'P15', 'B24', 'Bayugan City', 'Agusan del Norte', '8502', 4, '2021-11-04', 12);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ INSERT INTO `app_add_details` (`app_details_id`, `app_email`, `app_religion`, `a
 (9, 'email_10@sample.com', 1, 1, 1, 3000000, 999999999, 10, 7, 2),
 (10, 'email_11@sample.com', 1, 1, 1, 3000000, 999999999, 11, 7, 1),
 (11, 'email_12@sample.com', 1, 1, 1, 3000000, 999999999, 12, 8, 1),
-(12, 'email_13@sample.com', 1, 1, 1, 3000000, 999999999, 13, 3, 2),
+(12, 'email_13@sample.com', 1, 1, 1, 3000000, 999999999, 13, 0, 2),
 (13, 'email_14@sample.com', 1, 1, 1, 3000000, 999999999, 14, 10, 1),
 (14, 'email_23@sample.com', 1, 1, 1, 3000000, 999999999, 23, 12, 0),
 (18, 'email@sample.com', 1, 2, 2, 341, 999, 25, 0, 0),
@@ -109,7 +109,7 @@ INSERT INTO `app_add_details` (`app_details_id`, `app_email`, `app_religion`, `a
 (27, 'email@sample.com', 1, 1, 1, 341, 999, 34, 0, 0),
 (28, 'email@sample.com', 1, 2, 1, 341, 999, 35, 0, 0),
 (30, 'email@sample.com', 1, 1, 1, 341, 999, 37, 0, 0),
-(33, 'email@sample.com', 1, 2, 1, 341, 999, 39, 0, 0);
+(33, 'email@sample.com', 1, 2, 1, 341, 999, 39, 0, 7);
 
 -- --------------------------------------------------------
 
@@ -157,12 +157,41 @@ INSERT INTO `app_educ_bg` (`educ_id`, `educ_attain`, `educ_deg`, `educ_univ`, `e
 (39, 2, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 31),
 (40, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
 (41, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 34),
-(42, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 35),
+(42, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 39),
 (43, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
 (44, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 37),
 (45, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
 (46, 0, 0, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 14),
 (47, 3, 1, 'Father Saturnino Urios University', 1988, 'Agusan National High School', 1984, 39);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_emp_details`
+--
+
+CREATE TABLE `app_emp_details` (
+  `app_emp_id` int(11) NOT NULL,
+  `applicant_id` int(11) NOT NULL,
+  `hired_date` date NOT NULL,
+  `job_history_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `app_emp_details`
+--
+
+INSERT INTO `app_emp_details` (`app_emp_id`, `applicant_id`, `hired_date`, `job_history_id`) VALUES
+(4, 39, '2021-11-30', 12),
+(5, 39, '2021-11-30', 12),
+(6, 39, '2021-11-30', 12),
+(7, 39, '2021-11-30', 12),
+(8, 39, '2021-11-30', 12),
+(9, 39, '2021-11-30', 12),
+(10, 39, '2021-11-30', 12),
+(11, 39, '2021-11-30', 12),
+(12, 39, '2021-11-30', 12),
+(13, 39, '2021-11-30', 12);
 
 -- --------------------------------------------------------
 
@@ -300,7 +329,8 @@ INSERT INTO `images` (`img_id`, `img_name`, `img_dir`, `applicant_id`, `img_clas
 (18, 'img6.jpg', '/thesis_git/img/uploads/2021-11-26-img6.jpg', 14, 1),
 (41, '1.jpg', '/thesis_git/img/uploads/certificates/2021-11-28-1.jpg', 14, 2),
 (42, '4.jpg', '/thesis_git/img/uploads/certificates/2021-11-28-4.jpg', 14, 2),
-(43, '7.jpg', '/thesis_git/img/uploads/certificates/2021-11-28-7.jpg', 5, 2);
+(43, '7.jpg', '/thesis_git/img/uploads/certificates/2021-11-28-7.jpg', 5, 2),
+(44, '3.png', '/thesis_git/img/uploads/prof-pics/prof-pic-3.png', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -608,7 +638,15 @@ INSERT INTO `login_history` (`instance_id`, `username`, `login_datetime`) VALUES
 (203, 'admin', '2021-11-28 13:21:54'),
 (204, 'admin', '2021-11-28 15:09:09'),
 (205, 'admin', '2021-11-28 15:28:29'),
-(206, 'admin', '2021-11-29 01:24:35');
+(206, 'admin', '2021-11-29 01:24:35'),
+(207, 'admin', '2021-11-29 10:54:36'),
+(208, 'admin', '2021-11-29 14:46:04'),
+(209, 'admin', '2021-11-29 17:02:20'),
+(210, 'hr_admin', '2021-11-29 17:02:45'),
+(211, 'admin', '2021-11-29 17:06:34'),
+(212, 'admin', '2021-11-29 22:17:22'),
+(213, 'admin', '2021-11-30 00:12:40'),
+(214, 'admin', '2021-11-30 00:20:15');
 
 -- --------------------------------------------------------
 
@@ -629,6 +667,7 @@ CREATE TABLE `personality_types` (
 --
 
 INSERT INTO `personality_types` (`per_id`, `per_name`, `per_choose_count`, `per_score`, `w_score`) VALUES
+(0, 'NONE', 0, 0, 0),
 (1, 'INTJ', 2, 30, 6),
 (2, 'INTP', 1, 30, 6),
 (3, 'ENTJ', 3, 65, 10),
@@ -767,6 +806,12 @@ ALTER TABLE `app_educ_bg`
   ADD PRIMARY KEY (`educ_id`);
 
 --
+-- Indexes for table `app_emp_details`
+--
+ALTER TABLE `app_emp_details`
+  ADD PRIMARY KEY (`app_emp_id`);
+
+--
 -- Indexes for table `citizenship`
 --
 ALTER TABLE `citizenship`
@@ -861,6 +906,12 @@ ALTER TABLE `app_educ_bg`
   MODIFY `educ_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
+-- AUTO_INCREMENT for table `app_emp_details`
+--
+ALTER TABLE `app_emp_details`
+  MODIFY `app_emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `citizenship`
 --
 ALTER TABLE `citizenship`
@@ -888,7 +939,7 @@ ALTER TABLE `eval_details`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `job_history`
@@ -912,7 +963,7 @@ ALTER TABLE `login_accounts`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
+  MODIFY `instance_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
 -- AUTO_INCREMENT for table `questions`
