@@ -154,6 +154,16 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
 </form>
 
+<!-- email details -start -->
+<form id="myForm" action="" method="POST">
+        <input type="text" id="name" value="Motor Trade Butuan" hidden>
+        <input type="text" id="email" value="no-reply@motortrade.com.ph" hidden>
+        <input type="text" id="subject" value="Job Application - Phase 3" hidden>
+        <input type="text" id="email2" value="ralph.alfaras@urios.edu.ph" hidden>
+        <textarea id="body" cols="30" rows="5" hidden></textarea>
+        </form>
+<!-- email details -end -->
+
 <!-- Modal -->
 <div class="modal fade  come-from-modal right" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -190,7 +200,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
      </div>
 
 
-
+<?php $interview_date=Date('D M d,Y', strtotime('+7 days'));?>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -222,8 +232,27 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 <script>
 
     function move_record() {
+            var applicant_id =$('#move_up').val();
+            var job_history_id =$('#move_up').data('id');
+            var init_score =$('#move_up').data('score');
+            var firstname = $('#move_up').data('user');
+        $("#body").html("Hi "+firstname+"!<br><br>You are scheduled for an interview on <?php echo "$interview_date"; ?> 09:00AM.<br><br>Your token is Y3YY.<br><br>To join the video meeting, click this link: https://meet.google.com/xxx-xxxx-xxx<br>Otherwise, to join by phone, dial +1 999-999-9999 and enter this PIN: 999 999 999#");
+
+        if (confirm('Are you sure you want to promote this employee to the next step?')) {
+            alert('Applicant has been moved!');
+        }
+                name = $('#name').val();
+				email = $('#email').val();
+                subject = $('#subject').val();
+                body = $('#body').val();
+                email2 = $('#email2').val();
             total_pts = 0;
-            var job_id =$('#move_up').val();
+            
+
+           
+
+
+
             $('input:checkbox:checked').each(function(){ 
                         total_pts += isNaN(parseInt($(this).val())) ? 0 : parseInt($(this).val());
                     });  
@@ -231,14 +260,30 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                     $.ajax({
 					type: 'POST',
 					url: "move-up.php",
-					data: {total_pts : total_pts},
+					data: {total_pts : total_pts , applicant_id : applicant_id, job_history_id : job_history_id , init_score : init_score},
 					success: function(data){
-                        alert('Applicant Moved To Next Phase! Total pts = '+total_pts);
+                        //alert('Applicant Moved To Next Phase! Total pts = '+total_pts);
 					},
 					error: function(data){
 						alert('Error!');
 					}
-				});
+                    
+				    });
+
+                    $.ajax({
+					type: 'POST',
+					url: "/thesis_git/hr/sendEmail.php",
+					data: {name : name, email : email, subject : subject, body : body, email2 : email2},
+					success: function(data){
+						console.log("data= "+data);
+                    alert('Email Sent!');
+					},
+					error: function(data){
+						alert('Something went wrong!');
+					}
+				    });
+
+
     }
 </script>
 

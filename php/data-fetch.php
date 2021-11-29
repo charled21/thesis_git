@@ -30,7 +30,7 @@
       }
 
       $table_name = "applicant_details";
-      $query = "SELECT firstname,middlename,lastname,gender,DATE_FORMAT(dateBirth,'%b %d %Y') as birthday,address,address2,city,state,zipcode,app_status,DATEDIFF(CURDATE(),date_applied) as pending_days FROM $table_name WHERE applicant_id = $id ";  
+      $query = "SELECT a.firstname,a.middlename,a.lastname,a.gender,DATE_FORMAT(a.dateBirth,'%b %d %Y') as birthday,a.address,a.address2,a.city,a.state,a.zipcode,a.app_status,DATEDIFF(CURDATE(),a.date_applied) as pending_days,b.init_score,c.job_history_id FROM $table_name a JOIN app_add_details b ON a.applicant_id = b.applicant_id JOIN job_history c ON a.job_history_id = c.job_history_id WHERE a.applicant_id = $id ";  
       $result = mysqli_query($connect, $query);  
       while($row = mysqli_fetch_array($result))
      {
@@ -46,6 +46,8 @@
           $zip = $row['zipcode'];
           $status = $row['app_status'];
           $pending_days = $row['pending_days'];
+          $init_score = $row['init_score'];
+          $job_history_id  =$row['job_history_id'];
      }
      echo "<p><b>Fullname:</b> $fname"." $mname"." $lname</p>";
      echo "<p><b>Gender:</b> $gender</p>";
@@ -96,7 +98,7 @@
 
      <?php 
      echo "<hr>";
-     echo "<button class=\"btn btn-success\" id=\"move_up\" value=$id onclick=\"move_record()\">Move Up</button>";
+     echo "<button class=\"btn btn-success\" id=\"move_up\" value=$id data-id=$job_history_id data-score=$init_score data-user=$fname onclick=\"move_record()\">Move Up</button>";
      echo "<button class=\"ml-2 btn btn-danger\" id=\"del_btn\" value=$id onclick=\"del_record()\" >Delete</button>";
      
  }  
