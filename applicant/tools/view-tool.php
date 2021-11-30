@@ -6,14 +6,25 @@
                 $length = count($checked_array);
                 $condition1 = 'WHERE a.app_status = 4';
                 $condition2 = 'WHERE a.app_status < 4';
+                $select_syntax = '';
+                $original_syntax = "SELECT a.applicant_id,a.firstname,a.lastname,a.gender,a.city,DATE_FORMAT(a.dateBirth,'%b %d, %Y') as birthday,a.zipcode,d.app_mobile,d.app_email,f.religion_name,g.app_civil_name,c.job_name,b.job_city,e.per_name,d.init_score,e.w_score,h.emp_status_name";
+                $employed_syntax = "SELECT a.applicant_id,a.firstname,a.lastname,a.gender,a.city,DATE_FORMAT(a.dateBirth,'%b %d, %Y') as birthday,a.zipcode,d.app_mobile,d.app_email,f.religion_name,g.app_civil_name,c.job_name,b.job_city,e.per_name,d.init_score,e.w_score,h.emp_status_name,DATE_FORMAT(i.hired_date, '%b %d,%Y') as date_hired";
+                $join_syntax= "";
+                $employed_join = "JOIN app_emp_details i ON i.applicant_id = a.applicant_id";
                 if($dropdown == 2){
                     $condition = $condition1;
+                    $select_syntax = $employed_syntax;
+                    $join_syntax = $employed_join;
                 }
                 else if ($dropdown == 3){
                     $condition = $condition2;
+                    $select_syntax = $original_syntax;
+                    $join_syntax = "";
                 }
                 else {
                     $condition = '';
+                    $select_syntax = $original_syntax;
+                    $join_syntax = "";
                 }
                 for($i=0;$i<$length;$i++){
                     //echo $checked_array[$i];
@@ -27,7 +38,7 @@
 
                 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
-                $query2 = "SELECT a.applicant_id,a.firstname,a.lastname,a.gender,a.city,DATE_FORMAT(a.dateBirth,'%b %d, %Y') as birthday,a.zipcode,d.app_mobile,d.app_email,f.religion_name,g.app_civil_name,c.job_name,b.job_city,e.per_name,d.init_score,e.w_score,h.emp_status_name FROM applicant_details a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON c.job_id = b.job_id JOIN app_add_details d ON a.applicant_id = d.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN religion f on f.app_religion_id = d.app_religion JOIN civil_status g ON g.app_civil_status = d.app_civil_status JOIN employment_status h ON h.emp_status_id = a.app_status $condition";
+                $query2 = "$select_syntax FROM applicant_details a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON c.job_id = b.job_id JOIN app_add_details d ON a.applicant_id = d.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN religion f on f.app_religion_id = d.app_religion JOIN civil_status g ON g.app_civil_status = d.app_civil_status JOIN employment_status h ON h.emp_status_id = a.app_status $join_syntax $condition";
                 $result = mysqli_query($connect, $query2);
 
                 echo "<div>";
@@ -91,6 +102,10 @@
                     echo "<th>Employment Status";
                     echo "<hr>";
                 }
+                if($checked_array[$i]==15){
+                    echo "<th>Date Hired";
+                    echo "<hr>";
+                }
                 
                 
                                
@@ -151,6 +166,9 @@
                                     }
                                     if($checked_array[$i]==14){
                                         echo "<td>" .  "<font>" . $row['emp_status_name'] . "</font>" ."</td>";
+                                    }
+                                    if($checked_array[$i]==15){
+                                        echo "<td>" .  "<font>" . $row['date_hired'] . "</font>" ."</td>";
                                     }
                                 }
                                

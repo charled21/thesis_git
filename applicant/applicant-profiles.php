@@ -78,6 +78,7 @@ require_once(__DIR__.'/../php/db-config.php');
         <div class="form group-row"><input class="" type="checkbox" id="per_chkbox" name="per_chkbox" value="12"> Personality type</div>
         <div class="form group-row"><input type="checkbox" id="score_chkbox" name="score_chkbox" value="13"> Total Score</div>
         <div class="form group-row"><input type="checkbox" id="emp_status" name="emp_status" value="14"> Employment Status</div>
+        <div class="form group-row"><input type="checkbox" id="date_hired" name="date_hired" value="15" disabled> Date Hired</div>
     </div>
 
     </div>
@@ -233,9 +234,17 @@ $(document).ready(function(){
 <script>
     $('#view_btn').click(function(){
         checked_ones = [];
+        dropdown = $('#records_view').val();
+        if(dropdown == 2){
+            $('#date_hired').removeAttr("disabled");            
+        }
+        else{
+            $('#date_hired').prop("checked",false);
+            $('#date_hired').attr("disabled",true);
+        }
         $('input:checkbox:checked').each(function(){
             checked_ones.push($(this).val());
-            dropdown = $('#records_view').val();
+            
         });  
         $.ajax({
         type: "POST",

@@ -303,7 +303,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 					}
 				});
                 
-    }
+        }
 
     
 </script>

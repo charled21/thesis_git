@@ -52,12 +52,16 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         $job_app_cnt=0;
                         $candidates = array();
 
+                        
+
                         $dataQuery = "SELECT job_history_id,job_id, job_applicants, DATE_FORMAT(job_date, '%b, %d %Y') as applydate, DATEDIFF(CURDATE(),job_date) as datepassed, job_city, branch_no FROM $ft_tables WHERE job_status < 1";
                         $applicant_query = "SELECT applicant_id, job_history_id FROM $applicants WHERE app_status < 4";
                         $jobQuery = "SELECT * FROM job_req";
                         //start of display
                         //$dataQuery = "SELECT applicant_id, firstname, lastname, DATE_FORMAT(date_applied, '%a %b, %d %Y') as applydate, app_status FROM $ft_tables";
+
                         
+
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -90,20 +94,25 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             echo "<hr>";
                         echo "</th> </tr>";
 
-                        // for ($i = 0; $i < count($candidates); $i++) {
-                                  
-                        //   if($job_hist_id==$candidates[$i]){
-                        //     $job_app_cnt++;
-                        //   }
-                        //   else{
+                        
 
-                        //   }
-                        // }
                             if($ft_tables=="job_history"){
                                 while($row = mysqli_fetch_array($result3))
                                 {
                                 $row_num = $row['job_id'];         
                                 $job_hist_id = $row['job_history_id'];
+                                $job_applicants = $row['job_applicants'];
+                                echo "<script>console.log('$job_hist_id');</script>";
+
+                                //update candidate # --start
+                                $candidateQuery = "UPDATE job_history SET job_applicants = (SELECT COUNT(*) FROM $applicants WHERE job_history_id= $job_hist_id AND app_status < 4) WHERE job_history_id = $job_hist_id";
+                                $candidateConnect = new mysqli($hostname, $username, $password, $databaseName);
+                                if ($candidateConnect->query($candidateQuery) === TRUE) {
+                                } else {
+                                  echo "Error updating record: " . $candidateConnect->error;
+                                }
+                                //update candidate # --end 
+                                
                                                                 
                                 if($row['job_history_id']<0){
                                     
@@ -144,7 +153,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                                             
                                     
                                     
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $job_app_cnt . "</font>"."</td>";
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $job_applicants . "</font>"."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['applydate'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['datepassed'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['job_city'] . "</font>" ."</td>";
@@ -159,7 +168,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                       $branch = 'Libertad';
                                     }
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $branch . "</font>" ."</td>";
-                                    echo "<td>" . "<button type=\"submit\" class=\"btn btn-primary mb-2\" data-id=$job_hist_id  >View</button>"."</td>";
+                                    echo "<td>" . "<a role=\"button\" type=\"submit\" class=\"btn btn-primary mb-2\" data-id=$job_hist_id onclick=\"view_recruit()\" >View</a>"."</td>";
                                     echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Close</button>"."</td>";
                                     echo "</tr>";
                                    
@@ -354,6 +363,12 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 					}
 				});
     });
+</script>
+
+<script>
+        function view_recruit() {
+            alert('Firing!');        
+        }
 </script>
   
 
