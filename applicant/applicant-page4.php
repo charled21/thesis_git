@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +44,6 @@
                         <li class="active" id="step4"> <h5> Personality Test </h5> </li>  
                     </ul>  
         </div> 
-
 
         <div class="col-sm-12">
         <form method="post" action="/thesis_git/php/answer-process.php">

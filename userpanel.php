@@ -87,7 +87,7 @@ while($row2 = mysqli_fetch_array($inbx))
 {
     
     $app_stat = $row2['app_status'];
-    if($app_stat<4){
+    if($app_stat<4 && $app_stat>0){
         $app_stat_cnt++;
     }
     

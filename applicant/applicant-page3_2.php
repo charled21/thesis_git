@@ -61,27 +61,35 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
 
         <?php print_r($_SESSION);?>
 <!-- progressbar end -->
+<!-- outside collapse -->
+<div class="container mb-4">
+  <label>Do you want to add certificates?</label>
+  <button class="btn btn-info" type="button" id="outside_collapse_btn" data-toggle="collapse" href="#outside_collapse">Yes</button>
+  <a href="applicant-page4.php" role="button" type="button" class="btn btn-danger" >Skip</a>
+</div>
+
+<div class="container collapse" id="outside_collapse">
+
 <div class="container mb-4">
   <button class="btn btn-primary" type="button" id="prof_pic" data-toggle="collapse" href="#prof_pic_collapse">Add Certificate</button>
 </div>
 
-<!-- collapse -->
+<!-- inside collapse -->
 <div class="container collapse" id="prof_pic_collapse">
 
 <form action="upload.php" method="post" enctype="multipart/form-data">
   Select image:
   <input class="btn btn-success" type="file" name="img_file" id="img_file">
-  <input class="btn btn-primary" type="submit" value="Upload Image" name="submit" id="upload_img">
+  <input class="btn btn-primary" type="submit" value="Upload File" name="submit" id="upload_img">
 </form>
 
 <div class="container" id="img_content"></div>
-
-
-<?php 
-
-  ?>
+</div>
 
 </div>
+
+
+
 
 
 <!-- Bootstrap core JavaScript-->

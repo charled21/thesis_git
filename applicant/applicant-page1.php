@@ -56,7 +56,7 @@ $passed_id = $_SESSION['passed_id'];
         </div> 
         <hr class="mb-4">
 
-        <?php var_dump($_SESSION);?>
+        
 
 <!-- progressbar end -->
 

@@ -30,6 +30,13 @@ $total_no_applicants = 0;
 $pending_req = 0;
 $completed_jobs = 0;
 
+$update_per_type_query="UPDATE personality_types SET per_choose_count = (SELECT COUNT(*) FROM app_add_details WHERE app_add_details.per_id = personality_types.per_id) WHERE per_id = per_id";
+$per_type_Connect = new mysqli($hostname, $username, $password, $databaseName);
+if ($per_type_Connect->query($update_per_type_query) === TRUE) {
+} else {
+  echo "Error updating record: " . $per_type_Connect->error;
+}
+
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $inboxQuery = "SELECT applicant_id, app_status FROM $rec_Table";
 $rec_Query = "SELECT job_history_id, job_status, DATE_FORMAT(job_date, '%c') as job_month FROM $ft_tables";

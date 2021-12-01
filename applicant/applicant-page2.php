@@ -65,7 +65,6 @@ while($last_id_row = mysqli_fetch_array($result3))
                     </ul>  
         </div> 
 
-        <?php var_dump($_SESSION);?>
 
 <!-- progressbar end -->
 

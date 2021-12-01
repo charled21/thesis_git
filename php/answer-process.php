@@ -21,6 +21,16 @@
 </head>
 <body>
 
+<div style="height: 10vh;"></div>
+<div class="text-center">
+    <h3>RESULTS PAGE</h3>
+    <label>You result has been recorded</label><br>
+    <button class="btn btn-success" type="button" id="view_result" data-toggle="collapse" href="#view_result">View Result</button>
+</div>
+
+
+
+
 <?php 
 
 $opt = array();
@@ -31,6 +41,9 @@ $opt = array();
             result[$x] = ". $opt[$x]. " </script>";
         }
 ?>
+<div class="container collapse text-center mb-4" id="view_result"> <!-- start of collapse-->
+
+<div class="container col-md-8">
 
 <div class="d-flex justify-content-between">
     <p id="mind_per">Mind Bar</p>
@@ -56,16 +69,26 @@ $opt = array();
 <label for="identBar" hidden>Identity Bar</label>
 <div id="identBar" class="progress" hidden></div>
 
+</div> <!-- end of progressbar container-->
+
+<div class="container col-md-8 text-center">
 <hr>
-<div>
-    <h3>PERSONALITY TYPE</h3>
-</div>
-<div>
+<div class="mt-4">
     <p>Your personality type is :</p>
-    <h4 id="per_result"></h4>
-    <a href="/thesis_git/main.php" role="button" class="btn btn-success">Main Page</a>
+    <h3 id="per_result"></h3>
 </div>
 
+<div class="mt-4">
+    <p class="mb-2">An email will be sent to your email address after your application has been checked and verified by the person-in-charge.</p>
+    <h4 class="mt-2 mb-4">Thank you and have a wonderful day!</h4>
+</div>
+
+</div>
+
+<a href="/thesis_git/main.php" role="button" class="mt-4 btn btn-danger">Return</a>
+    </div>  <!-- end of collapse-->
+
+    
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

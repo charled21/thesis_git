@@ -133,7 +133,7 @@ else {
                                                 <p>PASSWORD</p><input type="password" name="password" class="form-control" placeholder="*********" >
                                             </div>
                                         </div>
-                                        <div class="col-md-10 col-xs-4 row"> <p class="modal-text mr-2">Don't have an account yet?<p> <a href="register/register.php">Click here</a></div>
+                                        <!-- <div class="col-md-10 col-xs-4 row"> <p class="modal-text mr-2">Don't have an account yet?<p> <a href="register/register.php">Click here</a></div> -->
                                         
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -336,7 +336,6 @@ else {
         
             <!-- # of statistics start -->         
             <div class="form-row col-lg-12" style="height: 35vh; box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.8);">
-    
                                                     
                                     
                                                     <div data-aos="fade-up" class="mt-4 col mr-2 text-center">
