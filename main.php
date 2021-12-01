@@ -29,6 +29,7 @@ else {
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -187,7 +188,7 @@ else {
                                                     echo "<p class=\"ml-2 text-secondary\">$city<p><i class=\"ml-3 fas fa-briefcase text-secondary\"></i> <p class=\"ml-1 text-secondary\">$emp_type </p>";
                                                     echo "</div>";
                                                     echo "<div id=\"job_cnt_div\" class=\"form-row d-flex justify-content-between\">";
-                                                    echo "<p class=\"text-secondary\">[#$job_counter]  Over $date day(s) ago</p>";
+                                                    echo "<p class=\"ml-2 text-secondary\">Over $date day(s) ago</p>";
                                                     echo "<button type=\"submit\" class=\"apply_btn mr-4 btn btn-info\" data-id=\"$job_history_id\">Apply</button>";
                                                     
                                                     echo "</div>";
@@ -223,17 +224,17 @@ else {
             <!-- ---------------------topbar end-------------------------- -->
             <!-- ---------------------header-------------------------- -->
             <section>
-                <header id="header" class="fixed-top header-transparent">
+                <header id="header" class="fixed-top">
 
                     <div class="container d-flex align-items-center">
-                        <div class="col-lg-12 col-md-6 header-nav ">
+                        <div class="col-lg-12 col-md-6">
                         <nav class="navbar navbar-expand-md">
                             <div class="row">
                                 <!-- <a class="navbar-main"href="#">HRIS</a>
                                 <a id="nav-main"href="#">-SUBSYS</a> -->
-                                <img class="logo-topbar" src="img/logo-1.png">
+                                <img class="logo-topbar" src="img/logo-2.png">
                             </div>
-                                <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#collapse-items" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#collapse-items" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
 
@@ -298,18 +299,18 @@ else {
 
             <!-- ---------------------landing cover-------------------------- -->
             <section id="landingcover"> 
-                <div class="col-lg-12 landingcover-ss" >
+                <div class="col-lg-12 landingcover-ss parallax" >
                     <div class="container-fluid" >
-                        <div class="row landing-container align-items-center" >
+                        <div class="row landing-container align-items-center center-items" >
                             <!-- <div class="row"> -->
-                                <div class="col-lg-6 col-md-6 text-center">
-                                    <p class="mt-4 mb-3" style="font-family: 'Nunito'; font-size: 50px;";>WE ARE NOW HIRING!</p>
-                                    <p class="mt-3 mb-5" style="font-family: 'Nunito'; font-size: 14px;";>“Motorsiklo Sigurado, Alaga Ka Dito” sums up its number one priority — Total Customer Satisfaction is what we always guarantee! </p>
+                                <div class="col-md-12 text-center">
+                                    <p class="mt-4 mb-3 mid-text">JOIN OUR TEAM!</p>
+                                    <p class="mt-3 mb-5 mid-text-sub">“Motorsiklo Sigurado, Alaga Ka Dito” sums up its number one priority. <br> Total Customer Satisfaction is what we always guarantee! </p>
                                     <!-- <img class="logo-topbar-2 img-fluid" src="img/banner-1.png"> -->
          
                                     <?php 
                                     if(!isset($_SESSION["username"])){
-                                        echo "<a role=\"button\" data-toggle=\"modal\" data-target=\"#jobModal\" class=\"btn btn-warning button-style \"  id=\"gs-btn\" style=\"font-family: 'Nunito'; font-size: 20px;\";>APPLY NOW</a>";
+                                        echo "<a role=\"button\" data-toggle=\"modal\" data-target=\"#jobModal\" class=\"apply_now\">Apply Now</a>";
                                     }
                                     else {
                                         //if logged in, welcomes user
@@ -319,49 +320,7 @@ else {
                                     
                                 </div>
 
-                                <!-- # of statistics start -->         
-                                <div class="form-row col-lg-6">
-                                    
-                                <div class="col-xl-4 col-md-8 mb-4 mr-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Job Openings</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo  $completed_jobs;?></div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-5 col-md-12 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                    Total Applicants</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$total_no_applicants";?></div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> -->
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 
                                 
-                                
-                                <!-- # of statistics end -->
                                 
                             <!-- </div> -->
                         </div>
@@ -374,13 +333,60 @@ else {
 
 
             <!-- data analytics end -->
+        
+            <!-- # of statistics start -->         
+            <div class="form-row col-lg-12" style="height: 35vh; box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.8);">
+    
+                                                    
+                                    
+                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center">
+                                                        <i class="mb-3 fas fa-users fa-3x"></i>
+                                                        <div class="h5 text-xs font-weight-bold text-info  mb-3">
+                                                        Average Applicants Per Job</div>
+                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up">php echo "$total_no_applicants";?></div> -->
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">8</div>
+                                                    </div>
+
+                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center">
+                                                        <i class="mb-3 fas fa-wrench fa-3x"></i>
+                                                        <div class="h5 text-xs font-weight-bold text-secondary  mb-3">
+                                                        Service Shops Nationwide</div>
+                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up"></div> -->
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">380</div>
+                                                    </div>
+
+                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center">
+                                                        <i class="mb-3 fas fa-briefcase fa-3x"></i>
+                                                        <div class="h5 text-xs font-weight-bold text-success  mb-3">
+                                                        Local Job Openings</div>
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up"><?php  echo  $completed_jobs;?></div>
+                                                    </div>
+
+                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center ">
+                                                        <i class="mb-3 fas fa-building fa-3x"></i>
+                                                        <div class="h5 font-weight-bold text-danger  mb-3">
+                                                        Dealer Branches Nationwide</div>
+                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up"></div> -->
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">500</div>
+                                                    </div>
+                                    
+                                    <!-- # of statistics end -->
+
+            </div>
+
+            <div class="parallax_2" style="height:60vh; background-color: blue;"></div>
  
             
 
             <!-----------------------scripts start-------------------------- -->
             <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
             <script src="js/bootstrap.min.js"></script>
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
             <!-----------------------scripts end-------------------------- -->
+
+            <script>
+            AOS.init();
+            </script>
 
             <script>
                 $(function(){
@@ -402,6 +408,50 @@ else {
                     
                     });
 	            });
+            </script>
+            <script>
+                // Y axis scroll speed
+                var velocity = 0.5;
+
+                function update(){ 
+                    var pos = $(window).scrollTop(); 
+                    $('#header').each(function() { 
+                        var header_elem = $(this);
+                        
+                        if(pos > 100 ){
+                            $(this).css('height','80px');
+                            $(this).css('background-color','blue');
+                            $(this).css('box-shadow','0px 0px 30px rgba(58, 63, 73, 0.8)');
+                        }
+                        else{
+                            $(this).css('height','80px');
+                            $(this).css('background-color','transparent');
+                            $(this).css('box-shadow','0px 0px 30px rgba(127, 137, 161, 0.0)');
+                        }
+                        
+                    }); 
+                };
+                
+
+                $(window).bind('scroll', update);
+            </script>
+
+            <script>
+                $(function(){
+                
+                    $('.count-up').each(function () {
+                    var $this = $(this);
+                    jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                        duration: 2500,
+                        easing: 'swing',
+                        step: function () {
+                        $this.text(Math.ceil(this.Counter));
+                        }
+                    });
+                    });
+                
+            });
+                
             </script>
 
         </body>

@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 /* body*/
 body{
+  
 	background-image: linear-gradient(
 		to right,
 		rgba(131, 58, 180, 0.0), 
@@ -30,7 +33,7 @@ body{
 /* header start*/
 
 #header {
-    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0);
     transition: all 0.5s;
     z-index: 997;
     padding: 10px 0;
@@ -39,7 +42,7 @@ body{
   }
   #header.header-scrolled {
     top: 0;
-    background:#fff;
+    background:blue;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.4);
     height: 80px;
   }
@@ -84,7 +87,8 @@ body{
     font-weight: 500;
   }
   #header .nav-link{
-      color: rgb(50, 5, 255);
+      color: rgb(255, 255, 255);
+      padding: 6px 16px;
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 1.2px;
@@ -94,8 +98,8 @@ body{
     border-radius: 22px;
 	padding: 6px 16px;
 	font-size: 14px;
-	color:rgb(50, 5, 255);
-	border: solid rgb(50, 5, 255) 2px;
+	color:rgb(233, 229, 13);
+	border: solid rgb(233, 229, 13) 1.5px;
 	text-decoration: none;
 	letter-spacing: 1px;
   font-weight: 500;
@@ -301,14 +305,14 @@ body{
 #landingcover{
 }
 #landingcover .landingcover-ss{
-    /* background-image: linear-gradient(
+    background-image: linear-gradient(
 		to bottom,
-		rgba(18, 1, 255, 0.9), 
-		rgba(1, 141, 255, 0.0)
-        ); */
-    background-color:blue; 
-    /* background-image: url("http://localhost/thesis1/img/bg-yellow.webp"); 
-    opacity: 0.55; */
+		rgba(18, 1, 255, 1), 
+		rgba(18, 1, 255, 0.6)
+        ),url("http://localhost/thesis_git/img/bg/bg_1.jpg");
+    /* background-color:blue; */
+    /* background-image: url("http://localhost/thesis_git/img/bg/bg_1.jpg") , linear-gradient(#2f00ff, #2f00ff); 
+    opacity: 0.55;  */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -316,7 +320,7 @@ body{
 #ladingcover .container {
 }
 #landingcover .landing-container{
-    height: 100vh; 
+    height: 80vh; 
     
     
 }
@@ -579,3 +583,69 @@ body{
 .come-from-modal.right.fade.in .modal-dialog {
     right: 0;
 }
+
+/* parallax-- start*/
+
+.parallax {
+  /* The image used */
+  background-image: url("http://localhost/thesis_git/img/bg/bg_3.jpg");
+
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.parallax_2 {
+  /* The image used */
+  background-image: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0.6), 
+		rgba(255, 255, 255, 0.6)
+        ),url("http://localhost/thesis_git/img/bg/bg_2.jpg");
+
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* parallax -- end*/
+
+
+/* apply -- start*/
+.apply_now{
+  text-decoration: none;
+  color: rgb(0, 0, 0); 
+  font-family: 'Nunito';
+  background-color: yellow;  
+  padding: 20px 40px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 36px;
+  font-weight: bold;
+}
+.apply_now:hover , .apply_now:active{
+  background-color: white;
+}
+
+#landingcover .landingcover-ss .center-items .mid-text{
+  font-family: 'Nunito'; 
+  font-size: 50px;
+}
+#landingcover .landingcover-ss .center-items .mid-text-sub{
+  font-family: 'Nunito'; 
+  font-size: 16px;
+}
+/* apply -- end*/
+
+
