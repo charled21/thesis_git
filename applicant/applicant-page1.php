@@ -72,22 +72,22 @@ $passed_id = $_SESSION['passed_id'];
 
             <div class="container">
 
-<form action="" method="POST">
+<form class="needs-validation" action="" method="POST">
 <h3><strong>Personal Information</strong></h3>
 <input type="text" class="form-control" id="job_history_id" value="<?php echo "$passed_id";?>" hidden>
 <div class="mb-4"></div>
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="firstName">Firstname</label>
-      <input type="text" class="form-control" id="fname" placeholder="Firstname">
+      <input type="text" class="form-control" id="fname" placeholder="Firstname" required>
     </div>
     <div class="form-group col-md-3">
       <label for="middleName">Middlename</label>
-      <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename">
+      <input type="text" class="form-control" id="mname" name="mname" placeholder="Middlename" required>
     </div>
     <div class="form-group col-md-4">
       <label for="lastName">Lastname</label>
-      <input type="text" class="form-control" id="lname" name="lname" placeholder="Lastname">
+      <input type="text" class="form-control" id="lname" name="lname" placeholder="Lastname" required>
     </div>
     <!-- <div class="form-group col-md-1">
       <label for="suffix">Suffix</label>
@@ -99,7 +99,7 @@ $passed_id = $_SESSION['passed_id'];
   <div class="form-row">
     <div class="form-group col-md-3">
     <label for="inputGender">Gender</label>
-      <select id="gender" name="gender" class="form-control">
+      <select id="gender" name="gender" class="form-control" required>
         <option selected>Choose Gender</option>
         <option>Male</option>
         <option>Female</option>
@@ -109,9 +109,9 @@ $passed_id = $_SESSION['passed_id'];
     <div class="form-group col-md-8 ml-4">  
     <label for="birthday">Birthday</label>
       <div class="form-group row">
-        <select id="month" name="month" data-flip="false" class="form-control col-sm-4"></select>									
-        <select id="day"  name="day" class="form-control col-sm-2 ml-1"></select>
-        <select id="year"  name="year" data-flip="false" class="form-control col-sm-3 ml-1"></select> 
+        <select id="month" name="month" data-flip="false" class="form-control col-sm-4" required></select>									
+        <select id="day"  name="day" class="form-control col-sm-2 ml-1" required></select>
+        <select id="year"  name="year" data-flip="false" class="form-control col-sm-3 ml-1" required></select> 
       </div>
     </div>
    
@@ -121,43 +121,37 @@ $passed_id = $_SESSION['passed_id'];
 
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="address1" name="address1" placeholder="Street / Block No.">
+    <input type="text" class="form-control" id="address1" name="address1" placeholder="Street / Block No." required>
   </div>
   <div class="form-group">
     <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
+    <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor" required>
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
     <label for="inputCity">City</label>
-      <select id="city" name="city" class="form-control">
+      <select id="city" name="city" class="form-control" required>
         <option selected>Choose City</option>
-        <option data-zip="8502" value="Bayugan City">Bayugan City</option>
-        <option data-zip="8600" value="Butuan City">Butuan City</option>
-        <option data-zip="8605" value="Cabadbaran City">Cabadbaran City</option>
-        <option data-zip="8400" value="Surigao City">Surigao City</option>
+        <option data-zip="8600" data-state="Agusan del Norte" value="Butuan City" >Butuan City</option>
       </select>
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">State</label>
-      <select id="state" name="state" class="form-control">
+      <select id="state" name="state" class="form-control" required>
         <option selected>Choose State</option>
         <option>Agusan del Norte</option>
-        <option>Agusan del Sur</option>
-        <option>Surigao del Norte</option>
-        <option>Surigao del Sur</option>
       </select>
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip" >Zip</label>
-      <input type="text" class="form-control" id="zip" name="zip" placeholder="ex: 8600">
+      <input type="text" class="form-control" id="zip" name="zip" placeholder="ex: 8800" required>
     </div>
   </div>
   
   <hr>
   <div style="height: 30px;"></div>
   <!-- <a href="applicant-page2.php" role="button" class="btn btn-primary">Submit</a> -->
-  <button type="submit" class="btn btn-primary" id="sub_btn" >Submit</button>
+  <button type="submit" class="btn btn-primary" id="sub_btn" data-id=<?php echo $passed_id ?>>Submit</button>
 </form>
 
     
@@ -193,9 +187,13 @@ $passed_id = $_SESSION['passed_id'];
 
       $("#city").change(function () {
       city_z = $(this).children(':selected').data('zip');
+      city_state = $(this).children(':selected').data('state');
       //console.log(city_z);
      
-      $("#zip").val(city_z);    
+      $("#zip").val(city_z);   
+      $("#zip").prop('disabled',true);
+      $("#state").val(city_state);  
+      $("#state").prop('disabled',true);  
       });
 
    
@@ -217,6 +215,7 @@ $passed_id = $_SESSION['passed_id'];
 			var valid = this.form.checkValidity();
 			if(valid){
 
+        passed_id = $('#sub_btn').data('id');
 				fname = $('#fname').val();
 				mname = $('#mname').val();
         lname = $('#lname').val();
@@ -234,6 +233,8 @@ $passed_id = $_SESSION['passed_id'];
         state = $('#state').val();
         zip = $('#zip').val();
         page_num = 1;
+        
+        console.log(passed_id);
 
 				e.preventDefault();
 
@@ -243,11 +244,24 @@ $passed_id = $_SESSION['passed_id'];
 					url: "tools/session-tool.php",
 					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip, page_num : page_num},
 					success: function(data){
-						console.log("data= "+data);
-            alert('Registration Successful!');
+						//console.log("data= "+data);
+            alert('Successful - Proceed to Next Step!');
 					},
 					error: function(data){
-						alert('Error!');
+            alert('Error in session ajax - page 1');
+					}
+				});
+
+        $.ajax({
+					type: 'POST',
+					url: "reg-process.php",
+					data: {fname: fname, mname: mname, lname: lname, gender : gender, month : month, day : day, year : year, address1 : address1, address2: address2, city: city, state: state, zip: zip, page_num : page_num, passed_id : passed_id},
+					success: function(data){
+						//console.log("data= "+data);
+					},
+					error: function(data){
+            alert('Error in reg-process ajax - page 1');
+            console.log(data);
 					}
 				});
 

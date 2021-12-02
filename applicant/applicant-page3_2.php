@@ -59,13 +59,12 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
                     </ul>  
         </div> 
 
-        <?php print_r($_SESSION);?>
 <!-- progressbar end -->
 <!-- outside collapse -->
 <div class="container mb-4">
-  <label>Do you want to add certificates?</label>
+  <label>Do you want to add certificates?</label><br>
   <button class="btn btn-info" type="button" id="outside_collapse_btn" data-toggle="collapse" href="#outside_collapse">Yes</button>
-  <a href="applicant-page4.php" role="button" type="button" class="btn btn-danger" >Skip</a>
+  <a href="applicant-page4.php" role="button" type="button" class="btn btn-danger" id="skip_btn" >Skip</a>
 </div>
 
 <div class="container collapse" id="outside_collapse">

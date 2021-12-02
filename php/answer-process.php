@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +26,8 @@
 <div style="height: 10vh;"></div>
 <div class="text-center">
     <h3>RESULTS PAGE</h3>
-    <label>You result has been recorded</label><br>
-    <button class="btn btn-success" type="button" id="view_result" data-toggle="collapse" href="#view_result">View Result</button>
+    <label>You application has been accepted</label><br>
+    <button class="btn btn-success" type="button" id="view_btn" data-toggle="collapse" aria-expanded="false" aria-controls="view_result" href="#view_result">View Result</button>
 </div>
 
 
@@ -78,10 +80,14 @@ $opt = array();
     <h3 id="per_result"></h3>
 </div>
 
+<!-- accepted msg --start   -->
+
 <div class="mt-4">
-    <p class="mb-2">An email will be sent to your email address after your application has been checked and verified by the person-in-charge.</p>
+    <p class="mb-2" id="result_msg"></p>
     <h4 class="mt-2 mb-4">Thank you and have a wonderful day!</h4>
 </div>
+
+<!-- accepted msg --  end    -->
 
 </div>
 
@@ -89,11 +95,6 @@ $opt = array();
     </div>  <!-- end of collapse-->
 
     
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
     <!-- Bootstrap core JavaScript-->
     <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
     <script src="/thesis_git/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -111,7 +112,19 @@ $opt = array();
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
 
-<script type="text/javascript" src="/thesis_git/js/ans-process.js"></script>
+    <script type="text/javascript" src="/thesis_git/js/ans-process.js"></script>
+    <script>
+        var text = $('#per_result').text();
+        if(text=='ESTP' || text=='ESFP' || text=='ESFJ' || text=='ESTJ'){
+            $("#result_msg").html("An email will be sent to your email address after your application has been checked and verified by the person-in-charge.");
+        }
+        else if(text=='INFP' || text=='INFJ' || text=='INTP' || text=='INTJ'){
+            $("#result_msg").html("You have failed the examination.");            
+        }
+        else{
+            $("#result_msg").html("The person-in-charge will contact you after verifying your application.");
+        }
+    </script>
 
 </body>
 </html>

@@ -87,19 +87,19 @@ else{
 }
 echo "
     <p>Question $q_id : $q_txt</p>
-    <input type=\"radio\" name=\"opt_$q_id\" value=\"2\">
+    <input type=\"radio\" name=\"opt_$q_id\" value=\"2\" required>
     <label>Strongly-Agree</label><br>
 
-    <input type=\"radio\" name=\"opt_$q_id\" value=\"1\">
+    <input type=\"radio\" name=\"opt_$q_id\" value=\"1\" required>
     <label>Agree</label><br>
 
-    <input type=\"radio\" name=\"opt_$q_id\" value=\"0\">
+    <input type=\"radio\" name=\"opt_$q_id\" value=\"0\" required>
     <label>Neutral</label><br>
            
-    <input type=\"radio\" name=\"opt_$q_id\" value=\"-1\">
+    <input type=\"radio\" name=\"opt_$q_id\" value=\"-1\" required>
     <label>Disagree</label><br>
         
-    <input type=\"radio\" name=\"opt_$q_id\" value=\"-2\">
+    <input type=\"radio\" name=\"opt_$q_id\" value=\"-2\" required>
     <label>Strongly-Disagree</label><br>
     <hr>
 ";
@@ -131,9 +131,11 @@ if($q_id % 5 == 0){
 
 
 <hr>
+<div id="access_dev_tool">
 <h5>Dev Tools</h5>
 <button type="submit" id="reset_btn" class="btn btn-warning">Reset</button>
 <button type="submit" id="auto_radio" class="btn btn-success">AutoFill</button>
+</div>
 
 </div> <!-- col-sm-12 -->
 
@@ -215,6 +217,7 @@ if($q_id % 5 == 0){
 
                 answer = [];
                 choices = [];
+                page_num = 4;
 
                 for(var i=1;i<=60;i++){
                     answer[i] = $("input[type='radio'][name=opt_"+i+"]:checked").val();
@@ -242,21 +245,27 @@ if($q_id % 5 == 0){
                 }
 
 
-                var s = {
-                    "message_pri": message_pri,
-                    "follow_pri": follow_pri,
-                    "post_pri": post_pri,
-                    "check": check7
-                }
 
                 $.ajax({
                 type: "POST",
                 data: {answer:answer},
                 url: "/thesis_git/php/answer-process.php",
                 success: function(answer){
-                    console.log(answer);
+                    //console.log(answer);
                 }
                 });
+
+                $.ajax({
+					type: 'POST',
+					url: "tools/session-tool.php",
+					data: {page_num : page_num},
+					success: function(data){
+                        console.log(data);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
 
                 //resets form and radio buttons checked
 				//$("form").trigger("reset");

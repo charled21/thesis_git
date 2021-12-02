@@ -87,7 +87,7 @@ while($last_id_row = mysqli_fetch_array($result3))
 <div class="form-row">
     <div class="form-group col-md-4">
     <label>Highest Educational Attainment</label>
-      <select id="educ_attain" name="educ_attain" class="form-control">
+      <select id="educ_attain" name="educ_attain" class="form-control" required>
         <option selected>Choose Option</option>
         <option value="7">Doctorate</option>
         <option value="6">Masters Degree</option>
@@ -100,7 +100,7 @@ while($last_id_row = mysqli_fetch_array($result3))
     </div>
     <div class="form-group col-md-4">
     <label>Educational Achievement</label>
-      <select id="educ_attain_deg" name="educ_attain_deg" class="form-control">
+      <select id="educ_attain_deg" name="educ_attain_deg" class="form-control" required>
         <option selected>Choose Achievement</option>
         <option value="4">Summa Cum Laude</option>
         <option value="3">Magna Cum Laude</option>
@@ -114,22 +114,22 @@ while($last_id_row = mysqli_fetch_array($result3))
 <div class="form-row">
     <div class="form-group col-md-4">
       <label>University / School</label>
-      <input type="text" class="form-control" id="univ" name="univ" value="Father Saturnino Urios University">
+      <input type="text" class="form-control" id="univ" name="univ" value="Father Saturnino Urios University" required>
     </div>
     <div class="form-group col-md-4">
       <label>Year Graduated</label>
-      <input type="text" class="form-control" id="yr_grad" name="yr_grad" value="1988">
+      <input type="text" class="form-control" id="yr_grad" name="yr_grad" value="1988" required>
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-4">
       <label>Secondary Education</label>
-      <input type="text" class="form-control" id="hs" value="Agusan National High School">
+      <input type="text" class="form-control" id="hs" value="Agusan National High School" required>
     </div>
     <div class="form-group col-md-4">
       <label>Year Graduated</label>
-      <input type="text" class="form-control" id="yr_grad_2" name="yr_grad_2" value="1984">
+      <input type="text" class="form-control" id="yr_grad_2" name="yr_grad_2" value="1984" required>
     </div>
 </div>
 
@@ -139,45 +139,45 @@ while($last_id_row = mysqli_fetch_array($result3))
 <div class="form-row">
     <div class="form-group col-md-3">
       <label>Telephone / Landline</label>
-      <input type="text" class="form-control" id="landline" value="341-4111">
+      <input type="text" class="form-control" id="landline" value="341-4111" required>
     </div>
     <div class="form-group col-md-3">
       <label>Cellphone / Mobile No.</label>
-      <input type="text" class="form-control" id="mobile" name="mobile" value="0999-999-9999">
+      <input type="text" class="form-control" id="mobile" name="mobile" value="0999-999-9999" required>
     </div>
     <div class="form-group col-md-3">
       <label>Email</label>
-      <input type="email" class="form-control" id="email" name="email" value="email@sample.com">
+      <input type="email" class="form-control" id="email" name="email" value="ralph.alfaras@urios.edu.ph" required>
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-3">
     <label>Civil Status</label>
-      <select id="civil" name="civil" class="form-control">
+      <select id="civil" name="civil" class="form-control" required>
         <option selected>Choose Civil Status</option>
-        <option value="4">Widowed</option>
-        <option value="3">Divorced</option>
-        <option value="2">Married</option>
         <option value="1">Single</option>
+        <option value="2">Married</option>
+        <option value="3">Divorced</option>
+        <option value="4">Widowed</option>
       </select>
     </div>
     <div class="form-group col-md-3">
     <label>Citizenship</label>
-      <select id="citizen" name="citizen" class="form-control">
+      <select id="citizen" name="citizen" class="form-control" required>
         <option selected>Choose Citizenship</option>
-        <option value="2">Others</option>
         <option value="1">Filipino</option>
+        <option value="2">Others</option>
       </select>
     </div>
     <div class="form-group col-md-3">
     <label>Religion</label>
-      <select id="religion" name="religion" class="form-control">
+      <select id="religion" name="religion" class="form-control" required>
         <option selected>Choose Religion</option>
-        <option value="4">Islam</option>
-        <option value="3">Protestant</option>
-        <option value="2">Born Again Christian</option>
         <option value="1">Roman Catholic</option>
+        <option value="2">Born Again Christian</option>
+        <option value="3">Protestant</option>
+        <option value="4">Islam</option>
       </select>
     </div>
 </div>
@@ -245,7 +245,7 @@ $(function(){
 					data: { educ_attain : educ_attain, educ_attain_deg : educ_attain_deg , univ : univ, yr_grad : yr_grad, hs : hs, yr_grad_2 : yr_grad_2, landline : landline, mobile : mobile, email : email, civil : civil, citizen : citizen, religion : religion, page_num : page_num},
 					success: function(data){
             console.log(data);
-                    alert('Additional Info Added!');
+                    alert('Successful - Proceed to Next Step!');
 					},
 					error: function(data){
 						alert('Error!');

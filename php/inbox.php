@@ -29,9 +29,6 @@
 
   
 
-
-
-
     <form action="" method="POST">
         <?php 
 
@@ -61,7 +58,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         INFORMATION_SCHEMA.COLUMNS 
                         WHERE TABLE_NAME = '$ft_tables'";
                         //start of display
-                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status WHERE a.app_status < 4 AND a.app_status > 0";
+                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON (g.applicant_id = a.applicant_id AND g.img_class = 1)  WHERE (a.app_status < 4 AND a.app_status > 0)";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
@@ -71,6 +68,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             $th2 = "";
 
                             //moved the headers here
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Profile Pic";
+                            echo "<hr>";
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
                             echo "<hr>";
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant ID";
@@ -110,8 +109,13 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     $percentage = ($per_score / $max_score)*100;
                                     echo "<script>console.log('% = $percentage');</script>";
                                     $total_score = $percentage + $add_score;
+                                    if($total_score>100){
+                                        $total_score = 100;
+                                    }
                                     echo "<script>console.log('total = $total_score');</script>";
                                     echo "<tr>";   
+                                    //echo $row['img_dir'];
+                                    echo "<td>" . "<img src=\""  . $row['img_dir'] . "\" style=\"height: 40px; width: 40px;\">" . "</font>"."</td>";   
                                     echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row_cnt . "</font>"."</td>";                             
                                     echo "<td>" .  "<font style=\"font-size: 14px;\" >" . "00".$row['applicant_id'] . "</font>"."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['job_name'] . "</font>" ."</td>";
@@ -240,6 +244,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
         if (confirm('Are you sure you want to promote this employee to the next step?')) {
             alert('Applicant has been moved!');
+            setTimeout(parent.location.reload(true),2000);
         }
                 name = $('#name').val();
 				email = $('#email').val();
@@ -248,7 +253,6 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                 email2 = $('#email2').val();
             total_pts = 0;
             
-
            
 
 
@@ -262,7 +266,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 					url: "move-up.php",
 					data: {total_pts : total_pts , applicant_id : applicant_id, job_history_id : job_history_id , init_score : init_score},
 					success: function(data){
-                        //alert('Applicant Moved To Next Phase! Total pts = '+total_pts);
+
 					},
 					error: function(data){
 						alert('Error!');

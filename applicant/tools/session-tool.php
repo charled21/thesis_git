@@ -49,7 +49,6 @@ if(isset($_POST)){
                 $civil = $_POST['civil'];
                 $citizen = $_POST['citizen'];
                 $religion = $_POST['religion'];
-                $recent_id = $_POST['recent_id'];
                 $status = 2;
                 
 
@@ -66,6 +65,93 @@ if(isset($_POST)){
                 $_SESSION["citizen"] = $citizen;
                 $_SESSION["religion"] = $religion;
                 $_SESSION["status"] = $status;
+  }
+  else if($page_num==4){
+    echo "<script>console.log('inside page_num==4 session tool');</script>";
+    $hostname = "localhost";
+    $username = "root";
+    $password = "";
+    $databaseName = "thesis_1";
+    $db = new PDO('mysql:host=localhost;dbname='. $databaseName .';charset=utf8', $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $id_fetch_sql = "SELECT MAX(applicant_id) as recent_id FROM applicant_details";
+    $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+    $id_fetch_result = mysqli_query($connect, $id_fetch_sql);
+    while($id_row = mysqli_fetch_array($id_fetch_result))
+                                {
+                                  $recent_id = $id_row['recent_id'];
+                                }
+                $status = 3;
+                
+
+                $fname = $_SESSION["fname"];
+                $mname = $_SESSION["mname"];
+                $lname = $_SESSION["lname"];
+                $gender = $_SESSION["gender"];
+                $month = $_SESSION["month"];
+                $day = $_SESSION["day"];
+                $year = $_SESSION["year"];
+                $address1 = $_SESSION["address1"];
+                $address2 = $_SESSION["address2"];
+                $city = $_SESSION["city"];
+                $state = $_SESSION["state"];
+                $zip = $_SESSION["zip"];
+
+                $educ_attain = $_SESSION["educ_attain"];
+                $educ_attain_deg = $_SESSION["educ_attain_deg"];
+                $univ = $_SESSION["univ"];
+                $yr_grad = $_SESSION["yr_grad"];
+                $hs = $_SESSION["hs"];
+                $yr_grad_2 = $_SESSION["yr_grad_2"];
+                $landline = $_SESSION["landline"];
+                $mobile = $_SESSION["mobile"];
+                $email = $_SESSION["email"];
+                $civil = $_SESSION["civil"];
+                $citizen = $_SESSION["citizen"];
+                $religion = $_SESSION["religion"];
+
+                if($gender=='Male'){
+                  $final_gender='M';
+                }
+                else if($gender=='Female'){
+                  $final_gender='F';
+                }
+                else{
+                  $final_gender='U';
+                }
+                $final_month=intval($month)+1;
+                $birthday = "$year-$final_month-$day";
+
+                $update_sql = "UPDATE applicant_details SET firstname = '$fname', middlename = '$mname', lastname = '$lname', gender = '$final_gender', dateBirth = $birthday, address = '$address1', address2 = '$address2', city = '$city', state = '$state', zipcode = $zip, app_status = $status WHERE applicant_id = $recent_id";
+                $conn = new mysqli($hostname, $username, $password, $databaseName);
+                if ($conn->query($update_sql) === TRUE) {
+
+                } else {
+                  echo "Error deleting record: " . $conn->error;
+                }
+
+                $educ_sql = "INSERT INTO app_educ_bg (educ_attain,educ_deg,educ_univ,educ_univ_yr,educ_hs,educ_hs_grad,applicant_id) VALUES (?,?,?,?,?,?,?)";
+                $stmtinsert = $db->prepare($educ_sql);
+                $result = $stmtinsert->execute([$educ_attain, $educ_attain_deg, $univ, $yr_grad, $hs,$yr_grad_2,$recent_id]);
+
+                if($result){
+                  
+                }
+                else{
+                  echo 'Error in Connection!';
+                }
+
+                $add_info_sql = "INSERT INTO app_add_details (app_email,app_religion,app_citizenship,app_civil_status,app_landline,app_mobile,applicant_id) VALUES (?,?,?,?,?,?,?)";
+                $stmtinsert2 = $db->prepare($add_info_sql);
+                $add_info_result = $stmtinsert2->execute([$email, $religion, $citizen, $civil, $landline,$mobile,$recent_id]);
+
+                if($add_info_result){
+
+                }
+                else{
+                  echo 'Error in Connection!';
+                }
+
   }
   
 }

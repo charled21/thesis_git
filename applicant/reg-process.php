@@ -16,6 +16,7 @@ require_once(__DIR__.'/../php/db-config.php');
                 $city = $_POST['city'];
                 $state = $_POST['state'];
                 $zip = $_POST['zip'];
+				$passed_id = $_POST['passed_id'];
 				$status = 1;
 				
 				if($gender=='Male'){
@@ -30,9 +31,9 @@ require_once(__DIR__.'/../php/db-config.php');
 				$final_month=intval($month)+1;
 				$birthday = "$year-$final_month-$day";
 
-				$sql = "INSERT INTO applicant_details (firstname,middlename,lastname,gender,dateBirth,address,address2,city,state,zipcode,app_status) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+				$sql = "INSERT INTO applicant_details (firstname,middlename,lastname,gender,dateBirth,address,address2,city,state,zipcode,app_status,date_applied,job_history_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,CURDATE(),?)";
 				$stmtinsert = $db->prepare($sql);
-				$result = $stmtinsert->execute([$fname, $mname, $lname, $final_gender, $birthday,$address1,$address2,$city,$state,$zip,$status]);
+				$result = $stmtinsert->execute([$fname, $mname, $lname, $final_gender, $birthday,$address1,$address2,$city,$state,$zip,$status,$passed_id]);
 
 				if($result){
 
