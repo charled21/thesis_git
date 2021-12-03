@@ -114,22 +114,22 @@ while($last_id_row = mysqli_fetch_array($result3))
 <div class="form-row">
     <div class="form-group col-md-4">
       <label>University / School</label>
-      <input type="text" class="form-control" id="univ" name="univ" value="Father Saturnino Urios University" required>
+      <input type="text" class="form-control" id="univ" name="univ"  required>
     </div>
     <div class="form-group col-md-4">
       <label>Year Graduated</label>
-      <input type="text" class="form-control" id="yr_grad" name="yr_grad" value="1988" required>
+      <input type="text" class="form-control" id="yr_grad" name="yr_grad" required>
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-4">
       <label>Secondary Education</label>
-      <input type="text" class="form-control" id="hs" value="Agusan National High School" required>
+      <input type="text" class="form-control" id="hs" required>
     </div>
     <div class="form-group col-md-4">
       <label>Year Graduated</label>
-      <input type="text" class="form-control" id="yr_grad_2" name="yr_grad_2" value="1984" required>
+      <input type="text" class="form-control" id="yr_grad_2" name="yr_grad_2"  required>
     </div>
 </div>
 
@@ -139,15 +139,15 @@ while($last_id_row = mysqli_fetch_array($result3))
 <div class="form-row">
     <div class="form-group col-md-3">
       <label>Telephone / Landline</label>
-      <input type="text" class="form-control" id="landline" value="341-4111" required>
+      <input type="text" class="form-control" id="landline"  required>
     </div>
     <div class="form-group col-md-3">
       <label>Cellphone / Mobile No.</label>
-      <input type="text" class="form-control" id="mobile" name="mobile" value="0999-999-9999" required>
+      <input type="text" class="form-control" id="mobile" name="mobile" required>
     </div>
     <div class="form-group col-md-3">
       <label>Email</label>
-      <input type="email" class="form-control" id="email" name="email" value="ralph.alfaras@urios.edu.ph" required>
+      <input type="email" class="form-control" id="email" name="email"  required>
     </div>
 </div>
 

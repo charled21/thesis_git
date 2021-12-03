@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,26 +60,36 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
         </div> 
 
 <!-- progressbar end -->
+<!-- outside collapse -->
+<div class="container mb-4">
+  <label>Do you want to add certificates?</label><br>
+  <button class="btn btn-info" type="button" id="outside_collapse_btn" data-toggle="collapse" href="#outside_collapse">Yes</button>
+  <a href="applicant-page4.php" role="button" type="button" class="btn btn-danger" id="skip_btn" >Skip</a>
+</div>
 
-<div>
-        <label for="files">Select multiple files: </label>
-        <input id="files" type="file" multiple/>
-        <output id="result"> </output>
+<div class="container collapse" id="outside_collapse">
+
+<div class="container mb-4">
+  <button class="btn btn-primary" type="button" id="prof_pic" data-toggle="collapse" href="#prof_pic_collapse">Add Certificate</button>
+</div>
+
+<!-- inside collapse -->
+<div class="container collapse" id="prof_pic_collapse">
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image:
+  <input class="btn btn-success" type="file" name="img_file" id="img_file">
+  <input class="btn btn-primary" type="submit" value="Upload File" name="submit" id="upload_img">
+</form>
+
+<div class="container" id="img_content"></div>
+</div>
+
 </div>
 
 
-<button type="button" class="btn btn-success" id="btn_pts">Total Pts</button>
-
-<hr>
-<a href="applicant-page2.php" class="btn btn-danger" role="button">BACK</a>
-<a href="applicant-page4.php" class="btn btn-primary" role="button">PROCEED</a>
-
-</div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
@@ -92,55 +107,6 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
-
-    <script>
-window.onload = function(){
-    var points = 0;
-
-        if(window.File && window.FileList && window.FileReader)
-        {
-            var filesInput = document.getElementById("files"); 
-            filesInput.addEventListener("change", function(event){ 
-                var files = event.target.files; 
-                var output = document.getElementById("result");
-                
-                for(var i = 0; i< files.length; i++)
-                {
-                    var file = files[i]; 
-                    var file_name = file.name;
-                    
-                    alert("file name = "+file.name);
-                    if(!file.type.match('image'))
-                      continue;
-                      points += 2;
-                      console.log(points);
-                    var reader = new FileReader();
-                    reader.addEventListener("load",function(event){
-                        var file = event.target;
-                        var div = document.createElement("div");
-                        div.innerHTML = "<br><h5>Image:"+file_name+"</h5><img style='height: 50%; width: 50%;' id='img_id"+i+"'class='thumbnail' src='" + file.result + "'" +
-                                "title='" + file_name + "'/>";
-                        output.insertBefore(div,null);        
-
-                         
-                    });
-                    reader.readAsDataURL(file);
-                }                               
-            });
-        }
-        else
-        {
-            console.log("Your browser does not support File API");
-        }
-
-        $('#btn_pts').click(function(e){
-            alert("Total Points: "+points);
-        });
-    }
-        
-    </script>
-
-
     
 
 </body>

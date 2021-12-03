@@ -320,7 +320,7 @@ body{
 #ladingcover .container {
 }
 #landingcover .landing-container{
-    height: 80vh; 
+    height: 100vh; 
     
     
 }
@@ -589,6 +589,7 @@ body{
 .parallax {
   /* The image used */
   background-image: url("http://localhost/thesis_git/img/bg/bg_3.jpg");
+  height: 100vh;
 
   /* Set a specific height */
   min-height: 500px; 
@@ -610,7 +611,8 @@ body{
         ),url("http://localhost/thesis_git/img/bg/bg_2.jpg");
 
   /* Set a specific height */
-  min-height: 500px; 
+  min-height: 100px;
+  max-height: 200px; 
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -640,7 +642,8 @@ body{
 
 #landingcover .landingcover-ss .center-items .mid-text{
   font-family: 'Nunito'; 
-  font-size: 50px;
+  font-size: 60px;
+  font-weight: bold;
 }
 #landingcover .landingcover-ss .center-items .mid-text-sub{
   font-family: 'Nunito'; 
@@ -648,4 +651,6 @@ body{
 }
 /* apply -- end*/
 
-
+.l-color{
+  color: white;
+}

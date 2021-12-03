@@ -303,7 +303,7 @@ else {
                     <div class="container-fluid" >
                         <div class="row landing-container align-items-center center-items" >
                             <!-- <div class="row"> -->
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-12 text-center" style="margin-top: 60px;">
                                     <p class="mt-4 mb-3 mid-text">JOIN OUR TEAM!</p>
                                     <p class="mt-3 mb-5 mid-text-sub">“Motorsiklo Sigurado, Alaga Ka Dito” sums up its number one priority. <br> Total Customer Satisfaction is what we always guarantee! </p>
                                     <!-- <img class="logo-topbar-2 img-fluid" src="img/banner-1.png"> -->
@@ -320,7 +320,41 @@ else {
                                     
                                 </div>
 
-                                
+                                <div class="mt-4 form-row col-md-12 text-center">
+
+                                        <div data-aos="fade-up" class="mt-4 col mr-2 text-center form-group l-color">
+                                                        <i class="mb-3 fas fa-users fa-2x "></i>
+                                                        <div class="h5 text-xs font-weight-bold mb-3">
+                                                        Average Applicants Per Job</div>
+                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up">php echo "$total_no_applicants";?></div> -->
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">8</div>
+                                                    </div>
+
+                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center form-group l-color">
+                                                        <i class="mb-3 fas fa-wrench fa-2x "></i>
+                                                        <div class="h5 text-xs font-weight-bold mb-3">
+                                                        Service Shops Nationwide</div>
+                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up"></div> -->
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">380</div>
+                                                    </div>
+
+                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center form-group l-color">
+                                                        <i class="mb-3 fas fa-briefcase fa-2x"></i>
+                                                        <div class="h5 text-xs font-weight-bold mb-3">
+                                                        Local Job Openings</div>
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up"><?php  echo  $completed_jobs;?></div>
+                                                    </div>
+
+                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center form-group l-color">
+                                                        <i class="mb-3 fas fa-building fa-2x"></i>
+                                                        <div class="h5 font-weight-bold mb-3">
+                                                        Dealer Branches Nationwide</div>
+                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up"></div> -->
+                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">500</div>
+                                                    </div>
+
+                                    
+                                            </div>
                                 
                             <!-- </div> -->
                         </div>
@@ -335,45 +369,14 @@ else {
             <!-- data analytics end -->
         
             <!-- # of statistics start -->         
-            <div class="form-row col-lg-12" style="height: 35vh; box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.8);">
+            <!-- <div class="form-row col-lg-12" style="height: 15vh; ">
                                                     
                                     
-                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center">
-                                                        <i class="mb-3 fas fa-users fa-3x"></i>
-                                                        <div class="h5 text-xs font-weight-bold text-info  mb-3">
-                                                        Average Applicants Per Job</div>
-                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up">php echo "$total_no_applicants";?></div> -->
-                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">8</div>
-                                                    </div>
-
-                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center">
-                                                        <i class="mb-3 fas fa-wrench fa-3x"></i>
-                                                        <div class="h5 text-xs font-weight-bold text-secondary  mb-3">
-                                                        Service Shops Nationwide</div>
-                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up"></div> -->
-                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">380</div>
-                                                    </div>
-
-                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center">
-                                                        <i class="mb-3 fas fa-briefcase fa-3x"></i>
-                                                        <div class="h5 text-xs font-weight-bold text-success  mb-3">
-                                                        Local Job Openings</div>
-                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up"><?php  echo  $completed_jobs;?></div>
-                                                    </div>
-
-                                                    <div data-aos="fade-up" class="mt-4 col mr-2 text-center ">
-                                                        <i class="mb-3 fas fa-building fa-3x"></i>
-                                                        <div class="h5 font-weight-bold text-danger  mb-3">
-                                                        Dealer Branches Nationwide</div>
-                                                        <!-- <div class="h5 mb-0 font-weight-bold text-gray-800 count-up"></div> -->
-                                                        <div class="h2 mb-0 font-weight-bold text-gray-800 count-up">500</div>
-                                                    </div>
+                                                    
                                     
-                                    <!-- # of statistics end -->
+                                   
 
-            </div>
-
-            <div class="parallax_2" style="height:60vh; background-color: blue;"></div>
+            </div> -->
  
             
 
