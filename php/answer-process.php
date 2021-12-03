@@ -113,8 +113,13 @@ $opt = array();
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
 
     <script type="text/javascript" src="/thesis_git/js/ans-process.js"></script>
+    
+
     <script>
-        var text = $('#per_result').text();
+        $(function(){
+        page_num = 5; 
+        text = $('#per_result').text();
+
         if(text=='ESTP' || text=='ESFP' || text=='ESFJ' || text=='ESTJ'){
             $("#result_msg").html("An email will be sent to your email address after your application has been checked and verified by the person-in-charge.");
         }
@@ -124,6 +129,22 @@ $opt = array();
         else{
             $("#result_msg").html("The person-in-charge will contact you after verifying your application.");
         }
+
+        $('#view_btn').click(function(e){
+
+                $.ajax({
+					type: 'POST',
+					url: "/thesis_git/applicant/tools/session-tool.php",
+					data: {page_num : page_num, text : text},
+					success: function(data){
+                        console.log(data);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+            });      
+        });
     </script>
 
 </body>

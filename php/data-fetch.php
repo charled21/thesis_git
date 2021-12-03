@@ -63,8 +63,13 @@
           echo "<hr>";
           echo "<p><b>Pending:</b></p><p style=\"color: red\"> <b>$pending_days day(s)</b></p>";
      }
+     else if($status==4){
+          echo "<hr>";
+          echo "<p><b>Status:</b></p>". "<p style=\"color: red\"> <b>Rejected</b></p>";
+     }
      else{
-          echo "<p>Status:</p><p style=\"color: green\"> Passed</p>";
+          echo "<hr>";
+          echo "<p><b>Status:</b></p>". "<p style=\"color: green\"> <b>Passed</b></p>";
      }
      echo "<hr>";
      if($hasCertificate == 1){
@@ -98,8 +103,14 @@
 
      <?php 
      echo "<hr>";
-     echo "<button class=\"btn btn-success\" id=\"move_up\" value=$id data-id=$job_history_id data-score=$init_score data-user=$fname onclick=\"move_record()\">Move Up</button>";
-     echo "<button class=\"ml-2 btn btn-danger\" id=\"del_btn\" value=$id onclick=\"del_record()\" >Delete</button>";
+     if($status>4){
+          echo "<button class=\"btn btn-primary\" id=\"move_up\" value=$id data-id=$job_history_id data-score=$init_score data-user=$fname  data-status=$status onclick=\"move_record()\">Employ</button>";
+     }
+     else{
+          echo "<button class=\"btn btn-success\" id=\"move_up\" value=$id data-id=$job_history_id data-score=$init_score data-user=$fname data-status=$status onclick=\"move_record()\">Move Up</button>";
+     }
+     
+     echo "<button class=\"ml-2 btn btn-danger\" id=\"del_btn\" value=$id onclick=\"del_record()\" >Reject</button>";
      
  }  
  ?>

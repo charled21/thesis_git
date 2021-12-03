@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,133 +29,45 @@
 <div class="container">
     <h3 class="mt-4 mb-4">INBOX</h3>
 
-  
+<div class="d-flex mb-4 col-md-10">
+  <?php $priv = $_SESSION['acct_priv'];
 
-    <form action="" method="POST">
-        <?php 
+if($priv > 5){
+    echo "<div class=\"mr-2\"><b>Filters:</b></div>";
+    // echo "<div class=\"form group-row\">";
+    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"0\" checked>All Pending";
+    // echo "</div>";
+    // echo "<div class=\"form group-row\">";
+    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"1\">Awaiting Interview";
+    // echo "</div>";
+    // echo "<div class=\"form group-row\">";
+    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"2\">Accepted";
+    // echo "</div>";
+    // echo "<div class=\"form group-row\">";
+    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"3\">Rejected";
+    // echo "</div>";
+    echo "<div class=\"mr-2 form group-row\">";
+    echo "<select id=\"records_view\">";
+    echo "<option value=\"0\" selected>All Pending</option>" ;      
+    echo "<option value=\"1\">Awaiting Interview</option>";        
+    echo "<option value=\"2\">Accepted Applicants</option>";      
+    echo "<option value=\"3\">Rejected Applicants</option>";  
+    echo "</select>";  
+    echo "</div>";
 
-$row_cnt = 0;
-$per_id_arr = array();
-$app_per_id = array();
-$i = 0;
-
-$length = count($per_id_arr);
-$ft_tables="applicant_details";
-if (isset($_POST['ft_tables2'])) {
-    $ft_tables = $_POST['ft_tables2'];
+    echo "<div class=\"form group-row\">";
+    echo "<a role=\"button\" class=\"btn btn-info\" id=\"view_btn\">View</a>   ";
+    echo "</div>";
+          
 }
 else{
-	
+    
 }
-$ftable2 = 'applicant_service';
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$databaseName = "thesis_1";
+  ?>
+  </div>
 
-$connect = mysqli_connect($hostname, $username, $password, $databaseName);
-
-
-                        $schemaQuery = "SELECT COLUMN_NAME FROM
-                        INFORMATION_SCHEMA.COLUMNS 
-                        WHERE TABLE_NAME = '$ft_tables'";
-                        //start of display
-                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON (g.applicant_id = a.applicant_id AND g.img_class = 1)  WHERE (a.app_status < 4 AND a.app_status > 0)";
-                        echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
-                        echo "<div>";
-                        echo "<table class='col-sm-12'>
-                        <tr>";
-                        $result3 = mysqli_query($connect, $dataQuery2);
-                        $result2 = mysqli_query($connect, $schemaQuery);
-                            $th2 = "";
-
-                            //moved the headers here
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Profile Pic";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant ID";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Position Applied";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Rating";
-                            echo "<hr>";
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Status";
-                            echo "<hr>";
-                            
-                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
-                            echo "<hr>";
-                        echo "</th> </tr>";
-
-                            if($ft_tables=="applicant_details"){
-                                while($row = mysqli_fetch_array($result3))
-                                {
-                                
-                                $row_num = $row['applicant_id'];
-                                
-
-                                if($row['app_status']>3){
-                                    
-                                }
-                                else{
-                                    $max_score = 25;
-                                    $row_cnt++;
-                                    $init_score = $row['init_score'];
-                                    $add_score = ($init_score / $max_score)*100;
-                                    echo "<script>console.log('addscore = $add_score');</script>";
-                                    $per_score = $row['w_score'];                                    
-                                    $percentage = ($per_score / $max_score)*100;
-                                    echo "<script>console.log('% = $percentage');</script>";
-                                    $total_score = $percentage + $add_score;
-                                    if($total_score>100){
-                                        $total_score = 100;
-                                    }
-                                    echo "<script>console.log('total = $total_score');</script>";
-                                    echo "<tr>";   
-                                    //echo $row['img_dir'];
-                                    echo "<td>" . "<img src=\""  . $row['img_dir'] . "\" style=\"height: 40px; width: 40px;\">" . "</font>"."</td>";   
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row_cnt . "</font>"."</td>";                             
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . "00".$row['applicant_id'] . "</font>"."</td>";
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['job_name'] . "</font>" ."</td>";
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
-    
-                                    //rating part
-                                    if($total_score > 80){
-                                        echo "<td>" .  "<font style=\"font-size: 14px; color: green;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
-                                    }
-                                    else if($total_score >50 && $total_score < 81){
-                                        echo "<td>" .  "<font style=\"font-size: 14px; color: orange;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
-                                    }
-                                    else if($total_score >0 && $total_score < 51){
-                                        echo "<td>" .  "<font style=\"font-size: 14px; color: red;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
-                                    }
-                                    else {
-
-                                    }
-                                    //rating end
-    
-                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['emp_status_name'] . "</font>" ."</td>";
-
-                                    
-                                    echo "<td>" . "<button type=\"button\" class=\"btn btn-primary mb-2\" data-id=$row_num data-toggle=\"modal\" data-target=\"#myModal\">Review</button>"."</td>";
-                                    echo "</tr>";
-                                    }
-                                }
-                                
-                            }
-                            
-                                echo "</table>";
-                                
-                                mysqli_close($connect);
-                    
-                        //end of display start of original
-						
-                        ?>
+    <form action="" method="POST">
+    <div id="passed_content"></div>
             
 
 </form>
@@ -207,18 +121,28 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 <?php $interview_date=Date('D M d,Y', strtotime('+7 days'));?>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-         
+<!-- Bootstrap core JavaScript-->
+<script src="/thesis_git/vendor/jquery/jquery.min.js"></script>
+    <script src="/thesis_git/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    $('button').click(function() {
-        // var row = $(this).closest("tr");
-        // var tds2 = row.find("td:nth-child(1)").val();
-        var tds2 =$(this).data('id');
-        //alert(tds2);
-        $.ajax({
+    <!-- Core plugin JavaScript-->
+    <script src="/thesis_git/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/thesis_git/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/thesis_git/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/thesis_git/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/thesis_git/js/demo/datatables-demo.js"></script>
+
+    <script>
+        function review(val) {
+            var tds2 =$(val).data('id');
+            //alert(tds2);
+            $.ajax({
 					type: 'POST',
 					url: "data-fetch.php",
 					data: {tds2 : tds2},
@@ -230,8 +154,9 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 						alert('Error!');
 					}
 				});
-    });
-</script>
+        }
+    </script>
+
 
 <script>
 
@@ -240,6 +165,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
             var job_history_id =$('#move_up').data('id');
             var init_score =$('#move_up').data('score');
             var firstname = $('#move_up').data('user');
+            var data_status = $('#move_up').data('status');
         $("#body").html("Hi "+firstname+"!<br><br>You are scheduled for an interview on <?php echo "$interview_date"; ?> 09:00AM.<br><br>Your token is Y3YY.<br><br>To join the video meeting, click this link: https://meet.google.com/xxx-xxxx-xxx<br>Otherwise, to join by phone, dial +1 999-999-9999 and enter this PIN: 999 999 999#");
 
         if (confirm('Are you sure you want to promote this employee to the next step?')) {
@@ -264,7 +190,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                     $.ajax({
 					type: 'POST',
 					url: "move-up.php",
-					data: {total_pts : total_pts , applicant_id : applicant_id, job_history_id : job_history_id , init_score : init_score},
+					data: {total_pts : total_pts , applicant_id : applicant_id, job_history_id : job_history_id , init_score : init_score, data_status : data_status},
 					success: function(data){
 
 					},
@@ -310,6 +236,26 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
         }
 
     
+</script>
+
+<script>
+    $('#view_btn').click(function(){
+        // checked_ones = [];
+        // $('input:checkbox:checked').each(function(){
+        //     checked_ones.push($(this).data('id'));            
+        // });  
+        checked_ones = $('#records_view').val();
+
+        $.ajax({
+        type: "POST",
+        url: "tools/inbox-view-tool.php",
+        data: {checked_ones :checked_ones},
+        success: function (data) {
+            $('#passed_content').html(data);
+            console.log(data);
+            }        
+        });
+    });
 </script>
 
 

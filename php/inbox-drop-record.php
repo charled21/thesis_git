@@ -11,7 +11,7 @@ $dbname = "thesis_1";
 			if(isset($_POST)){
 				$job_id = $_POST['job_id'];
                 
-				$sql = "UPDATE applicant_details SET app_status ='0' WHERE applicant_id = $job_id";
+				$sql = "UPDATE applicant_details SET app_status ='4' WHERE applicant_id = $job_id";
 				$conn = new mysqli($servername, $username, $password, $dbname);
                 if ($conn->query($sql) === TRUE) {
 					header('Location: '.$_SERVER['REQUEST_URI']);

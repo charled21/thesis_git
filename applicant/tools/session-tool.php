@@ -1,5 +1,13 @@
 <?php 
 session_start();
+$hostname = "localhost";
+    $username = "root";
+    $password = "";
+    $databaseName = "thesis_1";
+    
+    $db = new PDO('mysql:host=localhost;dbname='. $databaseName .';charset=utf8', $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 if(isset($_POST)){
   $page_num = $_POST['page_num'];
   if($page_num==0){
@@ -37,6 +45,14 @@ if(isset($_POST)){
                 $_SESSION["status"] = $status;
   }
   else if($page_num==2){
+    $id_fetch_sql = "SELECT MAX(applicant_id) as recent_id FROM applicant_details";
+    $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+    $id_fetch_result = mysqli_query($connect, $id_fetch_sql);
+    while($id_row = mysqli_fetch_array($id_fetch_result))
+                                {
+                                  $recent_id = $id_row['recent_id'];
+                                }
+
                 $educ_attain = $_POST['educ_attain'];
                 $educ_attain_deg = $_POST['educ_attain_deg'];
                 $univ = $_POST['univ'];
@@ -51,7 +67,6 @@ if(isset($_POST)){
                 $religion = $_POST['religion'];
                 $status = 2;
                 
-
 				        $_SESSION["educ_attain"] = $educ_attain;
                 $_SESSION["educ_attain_deg"] = $educ_attain_deg;
                 $_SESSION["univ"] = $univ;
@@ -65,15 +80,10 @@ if(isset($_POST)){
                 $_SESSION["citizen"] = $citizen;
                 $_SESSION["religion"] = $religion;
                 $_SESSION["status"] = $status;
+                $_SESSION['recent_id'] = $recent_id;
   }
   else if($page_num==4){
-    echo "<script>console.log('inside page_num==4 session tool');</script>";
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $databaseName = "thesis_1";
-    $db = new PDO('mysql:host=localhost;dbname='. $databaseName .';charset=utf8', $username, $password);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
     $id_fetch_sql = "SELECT MAX(applicant_id) as recent_id FROM applicant_details";
     $connect = mysqli_connect($hostname, $username, $password, $databaseName);
     $id_fetch_result = mysqli_query($connect, $id_fetch_sql);
@@ -122,7 +132,7 @@ if(isset($_POST)){
                 $final_month=intval($month)+1;
                 $birthday = "$year-$final_month-$day";
 
-                $update_sql = "UPDATE applicant_details SET firstname = '$fname', middlename = '$mname', lastname = '$lname', gender = '$final_gender', dateBirth = $birthday, address = '$address1', address2 = '$address2', city = '$city', state = '$state', zipcode = $zip, app_status = $status WHERE applicant_id = $recent_id";
+                $update_sql = "UPDATE applicant_details SET firstname = '$fname', middlename = '$mname', lastname = '$lname', gender = '$final_gender', address = '$address1', address2 = '$address2', city = '$city', state = '$state', zipcode = $zip, app_status = $status WHERE applicant_id = $recent_id";
                 $conn = new mysqli($hostname, $username, $password, $databaseName);
                 if ($conn->query($update_sql) === TRUE) {
 
@@ -152,6 +162,34 @@ if(isset($_POST)){
                   echo 'Error in Connection!';
                 }
 
+  }
+
+  else if($page_num==5){
+    $text = $_POST['text'];
+    $per_fetch_sql = "SELECT per_id FROM personality_types WHERE per_name = '$text'";
+    $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+    $per_fetch_result = mysqli_query($connect, $per_fetch_sql);
+    while($per_row = mysqli_fetch_array($per_fetch_result))
+                                {
+                                  $per_fetch = $per_row['per_id'];
+                                }   
+
+    $id_fetch_sql = "SELECT MAX(applicant_id) as recent_id FROM applicant_details";
+    $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+    $id_fetch_result = mysqli_query($connect, $id_fetch_sql);
+    while($id_row = mysqli_fetch_array($id_fetch_result))
+                                {
+                                  $recent_id = $id_row['recent_id'];
+                                }                            
+                                $init_score = 1;
+    $insert_per_sql = "UPDATE app_add_details SET per_id = '$per_fetch', init_score = '$init_score' WHERE applicant_id = $recent_id";
+    $conn = new mysqli($hostname, $username, $password, $databaseName);
+                if ($conn->query($insert_per_sql) === TRUE) {
+
+                } else {
+                  echo "Error deleting record: " . $conn->error;
+                }
+                
   }
   
 }

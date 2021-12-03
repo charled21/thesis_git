@@ -68,16 +68,42 @@ while($last_id_row = mysqli_fetch_array($result3))
 
 <!-- progressbar end -->
 
-<div class="embed-responsive embed-responsive-16by9" style="height: 25vh">
+<!-- <div class="embed-responsive embed-responsive-16by9" style="height: 25vh">
         <iframe class="embed-responsive-item" src="upload-prof.php" name="accounts_iframe" id="accounts_iframe" allowfullscreen></iframe>
-        </div>
+        </div> -->
 
+<!-- upload picture -->
+
+<div class="container mb-4">
+  <button class="btn btn-success" type="button" id="prof_pic" data-toggle="collapse" href="#prof_pic_collapse">Add Profile Picture</button>
+</div>
+
+<!-- collapse -->
+<div class="container collapse" id="prof_pic_collapse">
+
+<form action="" method="post" enctype="multipart/form-data">
+  Select image:
+  <input class="btn btn-info" type="file" name="img_file" id="img_file" onchange="preview(this);">
+
+
+<div class="container" id="img_content">
+  <img id="img_prev" src="#" alt="profile_pic_preview" style="height: 140px; width: 140px;" hidden />
+</div>
+
+</div>
+
+</form>
+
+<!-- upload picture end -->
+
+
+        
 
 <!-- collapse -->
 
 <hr>
+<form action="" method="post">
 
-<form action="" method="POST">
 <div class="container">
   <input type="text" class="form-control" id="recent_id" name="recent_id" value="<?php echo $recent_id; ?>" hidden>
 
@@ -221,6 +247,12 @@ while($last_id_row = mysqli_fetch_array($result3))
 
 $(function(){
 		$('#sub_btn').click(function(e){
+        file_data = $('#img_file').prop('files')[0];
+        form_data = new FormData();
+        form_data.append("img_file", file_data);
+
+        //alert(form_data);
+
         educ_attain = $('#educ_attain').val();
         educ_attain_deg = $('#educ_attain_deg').val();
         univ = $('#univ').val();
@@ -235,6 +267,8 @@ $(function(){
         religion = $('#religion').val();
         page_num = 2;
 
+        
+
         //console.log(recent_id +educ_attain + educ_attain_deg + univ + yr_grad + hs + yr_grad_2 + landline + mobile + email + civil + citizen + religion);
 				
 				e.preventDefault();
@@ -242,7 +276,7 @@ $(function(){
 				$.ajax({
 					type: 'POST',
 					url: "tools/session-tool.php",
-					data: { educ_attain : educ_attain, educ_attain_deg : educ_attain_deg , univ : univ, yr_grad : yr_grad, hs : hs, yr_grad_2 : yr_grad_2, landline : landline, mobile : mobile, email : email, civil : civil, citizen : citizen, religion : religion, page_num : page_num},
+					data: {educ_attain : educ_attain, educ_attain_deg : educ_attain_deg , univ : univ, yr_grad : yr_grad, hs : hs, yr_grad_2 : yr_grad_2, landline : landline, mobile : mobile, email : email, civil : civil, citizen : citizen, religion : religion, page_num : page_num},
 					success: function(data){
             console.log(data);
                     alert('Successful - Proceed to Next Step!');
@@ -251,8 +285,23 @@ $(function(){
 						alert('Error!');
 					}
 				});
+
+
+        $.ajax({
+        url: 'prof-pic-upload.php',
+        type: 'POST',
+        data: form_data,
+        async: false,
+        success: function (data) {
+            console.log(data);
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+        });
+
 				$("form").trigger("reset");
-                window.location.href = "/thesis_git/applicant/applicant-page3_2.php";
+                window.location.href = "/thesis_git/applicant/applicant-page3.php";
 		});
 
     
@@ -264,6 +313,21 @@ $(function(){
       $('#upload_img').click(function(e){
       
     });
+    </script>
+
+    <script>
+      function preview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            $("#img_prev").prop('hidden',false);
+            reader.onload = function (e) {
+                $('#img_prev').attr('src', e.target.result);
+                
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     </script>
 
 

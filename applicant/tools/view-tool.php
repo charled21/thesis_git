@@ -4,8 +4,8 @@
                 $checked_array = $_POST['checked_ones'];
                 $dropdown = $_POST['dropdown'];
                 $length = count($checked_array);
-                $condition1 = 'WHERE a.app_status = 4';
-                $condition2 = 'WHERE a.app_status < 4';
+                $condition1 = 'WHERE a.app_status = 6';
+                $condition2 = 'WHERE a.app_status < 6';
                 $select_syntax = '';
                 $original_syntax = "SELECT a.applicant_id,a.firstname,a.lastname,a.gender,a.city,DATE_FORMAT(a.dateBirth,'%b %d, %Y') as birthday,a.zipcode,d.app_mobile,d.app_email,f.religion_name,g.app_civil_name,c.job_name,b.job_city,e.per_name,d.init_score,e.w_score,h.emp_status_name";
                 $employed_syntax = "SELECT a.applicant_id,a.firstname,a.lastname,a.gender,a.city,DATE_FORMAT(a.dateBirth,'%b %d, %Y') as birthday,a.zipcode,d.app_mobile,d.app_email,f.religion_name,g.app_civil_name,c.job_name,b.job_city,e.per_name,d.init_score,e.w_score,h.emp_status_name,DATE_FORMAT(i.hired_date, '%b %d %Y') as date_hired";

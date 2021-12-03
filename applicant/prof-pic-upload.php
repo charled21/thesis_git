@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__.'/../php/db-config.php');
 
 $target_dir = __DIR__.'/../img/uploads/prof-pics/';
@@ -9,16 +10,6 @@ $target_file = $target_dir . $newfilename;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["img_file"]["tmp_name"]);
-  if($check !== false) {
-    //echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    echo "<script>alert('File is not an image.');</script>";
-    $uploadOk = 0;
-  }
-}
 
 if ($_FILES["img_file"]["size"] > 500000) {
   echo "<script>alert('Sorry, your file is too large.');</script>";
@@ -37,26 +28,18 @@ if ($uploadOk == 0) {
 } else {
   if (move_uploaded_file($_FILES["img_file"]["tmp_name"], $target_file)) {
       //var_dump($target_file);
-    //echo "The file ". htmlspecialchars( basename( $_FILES["img_file"]["name"])). " has been uploaded.";
     
 //store to db --start
+                $img_class = 1;
+                $recent_id = $_SESSION['recent_id'];
                 $img_name = $_FILES["img_file"]["name"];
                 $img_dir =  $valid_dir . $newfilename;;
-                $img_sql = "INSERT INTO images (img_name,img_dir) VALUES (?,?)";
+                $img_sql = "INSERT INTO images (img_name,img_dir,img_class,applicant_id) VALUES (?,?,?,?)";
 				        $stmtinsert = $db->prepare($img_sql);
-				        $result = $stmtinsert->execute([$img_name, $img_dir]);
+				        $result = $stmtinsert->execute([$img_name, $img_dir, $img_class, $recent_id]);
 
                 if($result){
-                    echo "<script>alert('Image Successfully Added to Database!');</script>";
-                    $connect = mysqli_connect("localhost", "root", "", "thesis_1"); 
-                    $img_table = "images";
-                    $img_query = "SELECT img_dir FROM $img_table ORDER BY img_id DESC LIMIT 1";
-                    $img_result = mysqli_query($connect, $img_query);
-                    while($img_row = mysqli_fetch_array($img_result)){
-                        $file_dest = $img_row['img_dir'];
-                        //echo "$file_dest";
-                        echo "<img src=\"$file_dest\" alt=\"Profile Pic\" width=\"140\" height=\"140\">";
-                    }
+                    
 				}
 				else{
 					echo 'Error in Connection!';

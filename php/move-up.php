@@ -13,12 +13,22 @@ if(isset($_POST)){
     $add_pts = $_POST['total_pts'];
     $init_score = $_POST['init_score'];
     $job_history_id = $_POST['job_history_id'];
+    $data_status = $_POST['data_status'];
+
+//start of status = 3 -> 4
+
     if($add_pts == 0){
         $add_pts = 1;
     }
     $total_pts = $add_pts + $init_score;
     
-    $job_status = 4;
+    if($data_status==3){
+        $job_status = 5;
+    }
+    else if($data_status==5){
+        $job_status = 6;
+    }
+    
 
     $sql5 = "INSERT INTO app_emp_details (applicant_id,hired_date,job_history_id) VALUES (?,CURDATE(),?)";
 	$stmtinsert = $db->prepare($sql5);
@@ -60,6 +70,7 @@ if(isset($_POST)){
     {
         echo "Error updating record: " . $conn->error;
     }
+
 
     
 

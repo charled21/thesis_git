@@ -131,7 +131,7 @@ if($q_id % 5 == 0){
 
 
 <hr>
-<div id="access_dev_tool" hidden>
+<div id="access_dev_tool">
 <h5>Dev Tools</h5>
 <button type="submit" id="reset_btn" class="btn btn-warning">Reset</button>
 <button type="submit" id="auto_radio" class="btn btn-success">AutoFill</button>
