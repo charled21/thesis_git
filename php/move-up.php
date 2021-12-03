@@ -22,7 +22,10 @@ if(isset($_POST)){
     }
     $total_pts = $add_pts + $init_score;
     
-    if($data_status==3){
+    if($data_status==2){
+        $job_status = 3;
+    }
+    else if($data_status==3){
         $job_status = 5;
     }
     else if($data_status==5){

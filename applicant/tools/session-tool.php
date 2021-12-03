@@ -65,7 +65,7 @@ if(isset($_POST)){
                 $civil = $_POST['civil'];
                 $citizen = $_POST['citizen'];
                 $religion = $_POST['religion'];
-                $status = 2;
+                $status = 1;
                 
 				        $_SESSION["educ_attain"] = $educ_attain;
                 $_SESSION["educ_attain_deg"] = $educ_attain_deg;
@@ -91,7 +91,7 @@ if(isset($_POST)){
                                 {
                                   $recent_id = $id_row['recent_id'];
                                 }
-                $status = 3;
+                $status = 2;
                 
 
                 $fname = $_SESSION["fname"];

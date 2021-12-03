@@ -28,7 +28,25 @@ require_once(__DIR__.'/../php/db-config.php');
 
 
 <div class="container">
-    <h3 class="mt-4 mb-4">PERSONNEL RECORDS</h3>
+    <div class="row mt-4">
+
+        <div class="col">
+        <h3 class="mt-4 mb-4">PERSONNEL RECORDS</h3>
+        </div>
+
+        <div class="col-md-4">
+        <div class="mt-4 mb-4 input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+        aria-describedby="search-addon" id="search_bar" />
+        <span class="ml-2 input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+        </span>
+        </div>
+
+    </div>
+
+</div>
+    
 
     <div class="form-group-row d-flex justify-content-between">
 
@@ -254,6 +272,14 @@ $(document).ready(function(){
             $('#passed_content').html(data);
             }        
         });
+    });
+</script>
+
+<script>
+    $('#search-addon').click(function(){
+        search_text = $('#search_bar').val();
+        alert('firing!');
+        //alert(search_text);
     });
 </script>
         

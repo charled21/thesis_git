@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php session_start();
+$row_cnt = 0;
+$ft_tables="applicant_details";
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$databaseName = "thesis_1";
+$connect = mysqli_connect($hostname, $username, $password, $databaseName);
+$dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON (g.applicant_id = a.applicant_id AND g.img_class = 1)  WHERE (a.app_status < 6 AND a.app_status > 0)";
+
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,18 +44,6 @@
 
 if($priv > 5){
     echo "<div class=\"mr-2\"><b>Filters:</b></div>";
-    // echo "<div class=\"form group-row\">";
-    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"0\" checked>All Pending";
-    // echo "</div>";
-    // echo "<div class=\"form group-row\">";
-    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"1\">Awaiting Interview";
-    // echo "</div>";
-    // echo "<div class=\"form group-row\">";
-    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"2\">Accepted";
-    // echo "</div>";
-    // echo "<div class=\"form group-row\">";
-    // echo "<input type=\"checkbox\" class=\"mr-2\" data-id=\"3\">Rejected";
-    // echo "</div>";
     echo "<div class=\"mr-2 form group-row\">";
     echo "<select id=\"records_view\">";
     echo "<option value=\"0\" selected>All Pending</option>" ;      
@@ -62,12 +60,103 @@ if($priv > 5){
 }
 else{
     
+    
 }
   ?>
   </div>
 
     <form action="" method="POST">
-    <div id="passed_content"></div>
+    <div id="passed_content"> 
+    <?php 
+    if($priv <10){
+        echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
+        echo "<div>";
+        echo "<table class='col-sm-12'>
+        <tr>";
+        $result3 = mysqli_query($connect, $dataQuery2);
+        echo "<th class=\"mb-4\" style=\"font-size:16px;\">Profile Pic";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant No.";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Applicant ID";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Position Applied";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Firstname";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Lastname";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Rating";
+                            echo "<hr>";
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Status";
+                            echo "<hr>";
+                            
+                            echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
+                            echo "<hr>";
+                        echo "</th> </tr>";
+
+                            if($ft_tables=="applicant_details"){
+                                while($row = mysqli_fetch_array($result3))
+                                {
+                                
+                                $row_num = $row['applicant_id'];
+                                
+
+                                    $max_score = 25;
+                                    $row_cnt++;
+                                    $init_score = $row['init_score'];
+                                    $add_score = ($init_score / $max_score)*100;
+                                    echo "<script>console.log('addscore = $add_score');</script>";
+                                    $per_score = $row['w_score'];                                    
+                                    $percentage = ($per_score / $max_score)*100;
+                                    echo "<script>console.log('% = $percentage');</script>";
+                                    $total_score = $percentage + $add_score;
+                                    if($total_score>100){
+                                        $total_score = 100;
+                                    }
+                                    echo "<script>console.log('total = $total_score');</script>";
+                                    echo "<tr>";   
+                                    //echo $row['img_dir'];
+                                    echo "<td>" . "<img src=\""  . $row['img_dir'] . "\" style=\"height: 40px; width: 40px;\">" . "</font>"."</td>";   
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . $row_cnt . "</font>"."</td>";                             
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\" >" . "00".$row['applicant_id'] . "</font>"."</td>";
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['job_name'] . "</font>" ."</td>";
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['firstname'] . "</font>" ."</td>";
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['lastname'] . "</font>" ."</td>";
+    
+                                    //rating part
+                                    if($total_score > 80){
+                                        echo "<td>" .  "<font style=\"font-size: 14px; color: green;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
+                                    }
+                                    else if($total_score >50 && $total_score < 81){
+                                        echo "<td>" .  "<font style=\"font-size: 14px; color: orange;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
+                                    }
+                                    else if($total_score >0 && $total_score < 51){
+                                        echo "<td>" .  "<font style=\"font-size: 14px; color: red;\"><b>" . $total_score ."%" ."</b></font>" ."</td>";
+                                    }
+                                    else {
+
+                                    }
+                                    //rating end
+    
+                                    echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['emp_status_name'] . "</font>" ."</td>";
+
+                                    
+                                    echo "<td>" . "<button type=\"button\" class=\"btn btn-primary mb-2\" data-id=$row_num data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"review(this);\">Review</button>"."</td>";
+                                    echo "</tr>";
+                                    
+                                }
+                                
+                            }
+                            
+                                echo "</table>";
+    } 
+    else{
+
+    }
+    ?>
+
+    </div>
             
 
 </form>
@@ -245,7 +334,7 @@ else{
         //     checked_ones.push($(this).data('id'));            
         // });  
         checked_ones = $('#records_view').val();
-
+        
         $.ajax({
         type: "POST",
         url: "tools/inbox-view-tool.php",
