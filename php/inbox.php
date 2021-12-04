@@ -329,6 +329,19 @@ else{
 </script>
 
 <script>
+$(function(){
+    checked_ones = $('#records_view').val();
+        
+        $.ajax({
+        type: "POST",
+        url: "tools/inbox-view-tool.php",
+        data: {checked_ones :checked_ones},
+        success: function (data) {
+            $('#passed_content').html(data);
+            console.log(data);
+            }        
+        });
+        
     $('#view_btn').click(function(){
         // checked_ones = [];
         // $('input:checkbox:checked').each(function(){
@@ -346,6 +359,7 @@ else{
             }        
         });
     });
+});
 </script>
 
 
