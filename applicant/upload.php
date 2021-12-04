@@ -1,10 +1,18 @@
 <?php
+session_start();
 require_once(__DIR__.'/../php/db-config.php');
 
+$hostname = "localhost";
+    $username = "root";
+    $password = "";
+    $databaseName = "thesis_1";
+
+var_dump($_FILES);
 $target_dir = __DIR__.'/../img/uploads/certificates/';
 $valid_dir = '/thesis_git/img/uploads/certificates/';
 $img_class = 2;
-$newfilename= date('Y-m-d')."-".str_replace(" ", "", basename($_FILES["img_file"]["name"]));
+$newfilename= "cert-".date('Y-m-d')."-".str_replace(" ", "", basename($_FILES["img_file"]["name"]));
+
 $target_file = $target_dir . $newfilename;
 //var_dump($_FILES);
 $uploadOk = 1;
@@ -21,15 +29,7 @@ if(isset($_POST["submit"])) {
   }
 }
 
-if (file_exists($target_file)) {
-  echo "<script>alert('Sorry, file already exists.');</script>";
-  $uploadOk = 0;
-}
 
-if ($_FILES["img_file"]["size"] > 500000) {
-  echo "<script>alert('Sorry, your file is too large.');</script>";
-  $uploadOk = 0;
-}
 
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
@@ -47,24 +47,33 @@ if ($uploadOk == 0) {
     
 //store to db --start
                 $img_name = $_FILES["img_file"]["name"];
+                $recent_id = $_SESSION['recent_id'];
                 $img_dir =  $valid_dir . $newfilename;;
-                $img_sql = "INSERT INTO images (img_name,img_dir,img_class) VALUES (?,?,?)";
+                $img_sql = "INSERT INTO images (img_name,img_dir,img_class,applicant_id) VALUES (?,?,?,?)";
 				        $stmtinsert = $db->prepare($img_sql);
-				        $result = $stmtinsert->execute([$img_name, $img_dir, $img_class]);
+				        $result = $stmtinsert->execute([$img_name, $img_dir, $img_class, $recent_id]);
 
                 if($result){
-                    echo "<script>alert('Image Successfully Added to Database!');</script>";
-				}
-				else{
-					echo 'Error in Connection!';
-				}
+                }
+                else{
+                  echo 'Error in Connection!';
+                }
+
+                $init_score = 1;
+                $init_pt_sql = "UPDATE app_add_details SET init_score = '$init_score' WHERE applicant_id = $recent_id";
+                $conn = new mysqli($hostname, $username, $password, $databaseName);
+                if ($conn->query($init_pt_sql) === TRUE) {
+
+                } else {
+                  echo "Error deleting record: " . $conn->error;
+                }
 
 //store to db --end
 
 
   } else {
     echo "Sorry, there was an error uploading your file.";
-    header("Location: ../applicant/applicant-page3_2.php");
+    header("Location: ../applicant/applicant-page3.php");
     die();
   }
 }

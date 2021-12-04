@@ -62,28 +62,28 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
 <!-- progressbar end -->
 <!-- outside collapse -->
 <div class="container mb-4">
-  <label>Do you want to add certificates?</label><br>
+  <label>Do you want to add certificate(s)?</label><br>
   <button class="btn btn-info" type="button" id="outside_collapse_btn" data-toggle="collapse" href="#outside_collapse">Yes</button>
   <a href="applicant-page4.php" role="button" type="button" class="btn btn-danger" id="skip_btn" >Skip</a>
 </div>
 
 <div class="container collapse" id="outside_collapse">
 
-<div class="container mb-4">
-  <button class="btn btn-primary" type="button" id="prof_pic" data-toggle="collapse" href="#prof_pic_collapse">Add Certificate</button>
-</div>
+<form action="" method="post" enctype="multipart/form-data">
 
-<!-- inside collapse -->
-<div class="container collapse" id="prof_pic_collapse">
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
-  Select image:
-  <input class="btn btn-success" type="file" name="img_file" id="img_file">
-  <input class="btn btn-primary" type="submit" value="Upload File" name="submit" id="upload_img">
+        <div>
+        <label for="files">Select file: </label>
+        <input id="files" type="file" multiple/>
+      <button type="button" id="clear">Clear</button>
+        <output id="result" >
+        </div>
+
+        <div>
+        <a role="button" class="btn btn-primary" type="submit" id="upload_all">Upload</a>
+        </div>
+        
 </form>
-
-<div class="container" id="img_content"></div>
-</div>
 
 </div>
 
@@ -107,6 +107,95 @@ $con = mysqli_connect($hostname, $username, $password, $databaseName);
 
     <!-- Page level custom scripts -->
     <script src="/thesis_git/js/demo/datatables-demo.js"></script>
+
+    
+    <script>
+      window.onload = function(){   
+    //Check File API support
+    if(window.File && window.FileList && window.FileReader)
+    {
+        $('#files').on("change", function(event) {
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            for(var i = 0; i< files.length; i++)
+            {
+                
+                var file = files[i];
+                //file_data = $('#files').prop('files')[i];
+                
+
+
+                //Only pics
+                // if(!file.type.match('image'))
+                if(file.type.match('image.*')){
+                    if(this.files[0].size < 2097152){    
+                  // continue;
+                    var picReader = new FileReader();
+                    picReader.addEventListener("load",function(event){
+                        var picFile = event.target;
+                        var div = document.createElement("div");
+                        div.innerHTML = "<img style='height: 140px; width: 140px;' class='thumbnail' src='" + picFile.result + "'" +
+                                "title='preview image'/>";
+                        output.insertBefore(div,null);            
+                    });
+                    //Read the image
+                    $('#clear, #result').show();
+                    picReader.readAsDataURL(file);
+                    }else{
+                        alert("Image Size is too big. Minimum size is 2MB.");
+                        $(this).val("");
+                    }
+                }else{
+                alert("You can only upload image file.");
+                $(this).val("");
+            }
+            }                               
+           
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+
+   $('#upload_all').on("click", function() {
+              // file_data = $('#files').prop('files')[0];
+              // form_data = new FormData();
+              // form_data.append("img_file", file_data);
+
+              file_data = $('#files').prop('files')[0];
+              form_data = new FormData();
+              form_data.append("img_file", file_data);
+
+                
+
+                    $.ajax({
+                    url: 'upload.php',
+                    type: 'POST',
+                    data: form_data,
+                    async: false,
+                    success: function (data) {
+                        console.log("data="+data);
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                    });
+                
+        // $('.thumbnail').parent().remove();
+        // $('result').hide();
+        // $(this).val("");
+    });
+
+    $('#clear').on("click", function() {
+        $('.thumbnail').parent().remove();
+        $('#result').hide();
+        $('#files').val("");
+        $(this).hide();
+    });
+
+    </script>
     
 
 </body>

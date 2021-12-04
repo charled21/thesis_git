@@ -259,7 +259,8 @@ else{
 
         if (confirm('Are you sure you want to promote this employee to the next step?')) {
             alert('Applicant has been moved!');
-            setTimeout(parent.location.reload(true),2000);
+            //setTimeout(parent.location.reload(true),2000);
+            setTimeout(location.reload(true),2000);
         }
                 name = $('#name').val();
 				email = $('#email').val();

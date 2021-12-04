@@ -36,10 +36,10 @@ require_once(__DIR__.'/../php/db-config.php');
 
         <div class="col-md-4">
         <div class="mt-4 mb-4 input-group rounded">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+        <!-- <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
         aria-describedby="search-addon" id="search_bar" />
         <span class="ml-2 input-group-text border-0" id="search-addon">
-            <i class="fas fa-search"></i>
+            <i class="fas fa-search"></i> -->
         </span>
         </div>
 
@@ -276,11 +276,11 @@ $(document).ready(function(){
 </script>
 
 <script>
-    $('#search-addon').click(function(){
-        search_text = $('#search_bar').val();
-        alert('firing!');
-        //alert(search_text);
-    });
+    // $('#search-addon').click(function(){
+    //     search_text = $('#search_bar').val();
+    //     alert('firing!');
+    //     //alert(search_text);
+    // });
 </script>
         
 

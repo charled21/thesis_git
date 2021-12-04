@@ -157,6 +157,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['applydate'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['datepassed'] . "</font>" ."</td>";
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $row['job_city'] . "</font>" ."</td>";
+                                    $job_city = $row['job_city'];
 
                                     if($row['branch_no']==1){
                                       $branch = 'Montilla';
@@ -168,7 +169,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                       $branch = 'Libertad';
                                     }
                                     echo "<td>" .  "<font style=\"font-size: 14px;\">" . $branch . "</font>" ."</td>";
-                                    echo "<td>" . "<a role=\"button\" type=\"submit\" class=\"btn btn-primary mb-2\" data-id=$job_hist_id onclick=\"view_recruit()\" >View</a>"."</td>";
+                                    //echo "<td>" . "<a role=\"button\" type=\"submit\" class=\"btn btn-primary mb-2\" data-id=$job_hist_id data-toggle=\"modal\" data-target=\"#view_recruit\" data-title=\"$job_id\" data-city=\"$job_city\" data-branch=\"$branch\">View</a>"."</td>";
                                     echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Close</button>"."</td>";
                                     echo "</tr>";
                                    
@@ -192,6 +193,89 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 </div> <!-- container end-->
 
     </div>
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="view_recruit" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white" id="job_modal_label">Edit Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+<div class="modal-body">
+
+<form action="" method="POST">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="chng_title">Job Title</label>
+      <select id="chng_title" class="form-control">
+        <option selected>Choose Position</option>
+        <option value="1">Manager</option>
+        <option value="2">Mechanic</option>
+        <option value="3">Treasury Staff</option>
+        <option value="4">IT Staff</option>
+        <option value="5">Cost Engineer</option>
+        <option value="6">HR Staff</option>
+        <option value="7">Store Clerk</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    
+    <div class="form-group col-md-6">
+    <label>City</label>
+      <select id="chng_city" class="form-control">
+        <option selected>Choose City</option>
+        <option value="Butuan City">Butuan City</option>
+        <option value="Cabadbaran City">Cabadbaran City</option>
+        <option value="Surigao City">Surigao City</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Branch</label>
+      <select id="chng_empBranch" name="chng_empBranch" class="form-control">
+        <option selected>Choose Branch</option>
+        <option value="1">Montilla</option>
+        <option value="2">Imadejas</option>
+        <option value="3">Libertad</option>
+      </select>
+    </div>
+  </div>
+
+
+ 
+  <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="chng_empTerm">Employment Term</label>
+      <select id="chng_empTerm" name="chng_empTerm" class="form-control">
+        <option selected>Choose Term</option>
+        <option value="1">Permanent</option>
+        <option value="2">Contract</option>
+        <option value="3">Season</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+    <label for="chng_empType">Employment Type</label>
+      <select id="chng_empType" name="chng_empType" class="form-control">
+        <option selected>Choose Type</option>
+        <option value="Full-time">Full-time</option>
+        <option value="Part-time">Part-time</option>
+      </select>
+    </div>
+    </div>
+    <label for="chng_jobDesc">Job Description</label><br>
+    <textarea name="chng_jobDesc" id="chng_jobDesc" cols="52" rows="3"></textarea>
+    <div class="mb-4"></div>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary" id="chng_save_btn">Save</button>
+   -->
+  <!-- End Change Modal -->
 
 
 <!-- Modal -->
@@ -350,6 +434,18 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 <script>
     $('button').click(function() {
         var job_id =$(this).data('id');
+
+        // var title =$(this).data('title');
+        // var city =  $(this).data('city');
+        // var branch = $(this).data('branch');
+        // alert(title);
+        // $('#chng_title').val(title);
+        // $('#chng_title').prop('disabled', true);
+        // $('#chng_city').val(city);
+        // $('#chng_city').prop('disabled', true);
+        // $('#chng_empBranch').val(branch);
+        // $('#chng_empBranch').prop('disabled', true);
+
         //alert("Firing!");
         $.ajax({
 					type: 'POST',
@@ -365,10 +461,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
     });
 </script>
 
-<script>
-        function view_recruit() {
-            alert('Firing!');        
-        }
+<script>       
+        
 </script>
   
 
