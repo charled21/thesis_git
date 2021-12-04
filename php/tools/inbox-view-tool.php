@@ -26,10 +26,12 @@ $databaseName = "thesis_1";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
                         $condition = "";
+                        $img_cond = "(g.applicant_id = a.applicant_id AND g.img_class = 1)";
                         $condition1 = "(a.app_status < 4 AND a.app_status > 0)";
                         $condition2 = "(a.app_status = 3)";
                         $condition3 = "(a.app_status = 5)";
-                        $condition4 = "(a.app_status = 4)";
+                        $condition4 = "(a.app_status <3 AND a.app_status < 6 AND g.img_class = 2)";
+
                         if($passed_dropdown==0){                                
                             $condition = $condition1;
                         }
@@ -40,7 +42,10 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             $condition = $condition3;
                         }
                         if($passed_dropdown==3){                                
-                            $condition = $condition4;
+                            $condition = $condition1;
+                        }
+                        if($passed_dropdown==4){                              
+
                         }
                         // for($i=0;$i<$length;$i++){
                         //     if($checked_array[$i]==0){                                
@@ -57,7 +62,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         //     }
                         // }
                         //start of display
-                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON (g.applicant_id = a.applicant_id AND g.img_class = 1)  WHERE $condition";
+                        $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON $img_cond WHERE $condition";
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>

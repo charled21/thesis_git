@@ -50,6 +50,9 @@ if($priv > 5){
     echo "<option value=\"1\">Awaiting Interview</option>";        
     echo "<option value=\"2\">Accepted Applicants</option>";      
     echo "<option value=\"3\">Rejected Applicants</option>";  
+
+    echo "<option value=\"4\">With Certificates</option>"; 
+
     echo "</select>";  
     echo "</div>";
 
@@ -59,7 +62,7 @@ if($priv > 5){
           
 }
 else{
-    
+    echo "<input type=\"text\" id=\"records_view\" hidden>";
     
 }
   ?>

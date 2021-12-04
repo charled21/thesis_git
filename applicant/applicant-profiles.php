@@ -31,7 +31,7 @@ require_once(__DIR__.'/../php/db-config.php');
     <div class="row mt-4">
 
         <div class="col">
-        <h3 class="mt-4 mb-4">PERSONNEL RECORDS</h3>
+        <h3 class="mt-4 mb-4">APPLICANT RECORDS</h3>
         </div>
 
         <div class="col-md-4">
@@ -61,7 +61,7 @@ require_once(__DIR__.'/../php/db-config.php');
         </div>
 
         <div class="col-md-6 mb-2">
-            <a role="button" id="exp_csv" class="btn btn-success align-items-right">Export to CSV</a> 
+            <a role="button" id="exp_csv" class="btn btn-success align-items-right" hidden>Export to CSV</a> 
         </div>
 
     </div>
@@ -226,6 +226,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
 <script type="text/javascript">
 $(document).ready(function(){
+
     $('button').click(function() {
     let xhr = new XMLHttpRequest();
     let url = new URL('https://localhost/thesis_git/php/inbox-review.php');
@@ -253,12 +254,15 @@ $(document).ready(function(){
     $('#view_btn').click(function(){
         checked_ones = [];
         dropdown = $('#records_view').val();
+        
         if(dropdown == 2){
-            $('#date_hired').removeAttr("disabled");            
+            $('#date_hired').removeAttr("disabled"); 
+            $('#exp_csv').prop("hidden",false);           
         }
         else{
             $('#date_hired').prop("checked",false);
             $('#date_hired').attr("disabled",true);
+            $('#exp_csv').prop("hidden",true);    
         }
         $('input:checkbox:checked').each(function(){
             checked_ones.push($(this).val());

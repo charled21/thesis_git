@@ -82,7 +82,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             echo "<hr>";
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Candidates";
                             echo "<hr>";
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Date Posted";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\"><a id=\"date_btn\" role=\"button\" type=\"button\" href=\"#\">Date Posted</a>";
                             echo "<hr>";  
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Days Passed";
                             echo "<hr>"; 
@@ -461,8 +461,11 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
     });
 </script>
 
-<script>       
-        
+<script>      
+        $('#date_btn').click(function() {
+          alert('clicked!');
+          //do stuff here
+        });
 </script>
   
 

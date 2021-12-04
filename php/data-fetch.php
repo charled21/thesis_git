@@ -76,7 +76,7 @@
           echo "<a role=\"button\" data-toggle=\"collapse\" href=\"#cert_collapse\" class=\"btn btn-success\" id=\"see_cert\" >See Certificates</a>";
      }
      else{
-          echo "Has (0) Certificates Submitted";
+          echo "<p>Has (0) Certificates Submitted<p>";
      }
     
      ?>

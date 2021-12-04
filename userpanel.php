@@ -191,7 +191,7 @@ while($row = mysqli_fetch_array($result3))
         <a class="nav-link collapsed" href="applicant\applicant-profiles.php" target="accounts_iframe" 
             aria-expanded="true" aria-controls="collapseStatistics">
             <i class="fas fa-fw fa-user"></i>
-            <span>Personnel</span>
+            <span>Applicants</span>
         </a>
     </li>
 

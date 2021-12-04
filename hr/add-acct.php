@@ -65,8 +65,10 @@
             echo "<td>". $admin_accts ."</td>";
             echo "<td>". $admin_email ."</td>";
             echo "<td>". $admin_priv ."</td>";
-            echo "<td>" . "<button class=\"btn btn-pill btn-success \" value=$admin_priv2 data-id=$admin_accts data-email=$admin_email type=\"button\" data-toggle=\"modal\" data-target=\"#pass_modal\">  
+            echo "<td>" . "<button role=\"button\" class=\"btn btn-pill btn-success \" value=$admin_priv2 data-id=$admin_accts data-email=$admin_email type=\"button\" data-toggle=\"modal\" data-target=\"#pass_modal\">  
             Edit</button>" . "</td>";
+            echo "<td>" . "<button role=\"button\" class=\"btn btn-pill btn-danger \" value=$admin_priv2 data-id=$admin_accts data-email=$admin_email type=\"button\" id=\"del_btn\" onclick='del_record(this);'>  
+            Remove</button>" . "</td>";
             echo "</tr>";          
         }
         mysqli_close($connect);
@@ -303,6 +305,7 @@
       
 			
 		});
+
 	});
 </script>
 
@@ -317,6 +320,26 @@ $('button').click(function() {
   $('#chng_email').val(email2);
 
   });
+</script>
+
+<script>
+  function del_record(val){
+    job_id = $(val).data("id");
+    if (confirm('Are you sure you want to remove this account?')) {
+            alert('Account has been removed!');
+        }
+    $.ajax({
+					type: 'POST',
+					url: "admin-drop-proc.php",
+					data: {job_id :job_id},
+					success: function(data){
+            setTimeout(function(){ location.reload();window.top.location.reload(); }, 2000);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+  }
 </script>
 
 </body>
