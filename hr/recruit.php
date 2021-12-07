@@ -62,7 +62,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
                         
 
-                        echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
+                        echo "<input class=\"form-control table\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
                         <tr>";
@@ -82,7 +82,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                             echo "<hr>";
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Candidates";
                             echo "<hr>";
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\"><a id=\"date_btn\" role=\"button\" type=\"button\" href=\"#\">Date Posted</a>";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\"><a id=\"date_btn\" data-item=\"0\" role=\"button\" type=\"button\" href=\"#\">Date Posted</a>";
                             echo "<hr>";  
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Days Passed";
                             echo "<hr>"; 
@@ -95,7 +95,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         echo "</th> </tr>";
 
                         
-
+                            echo "<div id=\"init_display\">";
                             if($ft_tables=="job_history"){
                                 while($row = mysqli_fetch_array($result3))
                                 {
@@ -172,6 +172,8 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     //echo "<td>" . "<a role=\"button\" type=\"submit\" class=\"btn btn-primary mb-2\" data-id=$job_hist_id data-toggle=\"modal\" data-target=\"#view_recruit\" data-title=\"$job_id\" data-city=\"$job_city\" data-branch=\"$branch\">View</a>"."</td>";
                                     echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Close</button>"."</td>";
                                     echo "</tr>";
+
+                                    echo "</div>";
                                    
                                     
                                     } //else end
@@ -188,12 +190,14 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         //end of display start of original
 						
                         ?>
+                        <div id="cont_recruit"></div>
             
 
 </div> <!-- container end-->
 
     </div>
 
+    
 
 <!-- Modal -->
 <!-- <div class="modal fade" id="view_recruit" tabindex="-1" role="dialog"  aria-hidden="true">
@@ -461,10 +465,32 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
     });
 </script>
 
-<script>      
+<script>  
         $('#date_btn').click(function() {
-          alert('clicked!');
-          //do stuff here
+          sort = $('#date_btn').data('item');
+          alert(sort);
+          if(sort==0){
+            $('#date_btn').data('item',1);
+          }
+          else{
+            $('#date_btn').data('item',0);
+          }
+          
+          $.ajax({
+					type: 'POST',
+					url: "sorter.php",
+					data: {sort : sort},
+					success: function(data){
+            console.log(data);
+            $('#init_display').hide();
+            $('#cont_recruit').html(data);
+            //setTimeout(function(){ location.reload();window.top.location.reload(); }, 2000);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+          
         });
 </script>
   
