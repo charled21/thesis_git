@@ -12,50 +12,66 @@ $applicants="applicant_details";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
             $sort = 0;
             $order = "";
+            $header = "";
 			if(isset($_POST)){
+                //var_dump($_POST);
 				$sort = $_POST['sort'];
+                $header = $_POST['header'];
+                
+
                 if($sort == 1){
                     $order = 'ASC';
                 }
                 else{
                     $order = 'DESC';
                 }
+                if($header == 2 ){
+                    $column = 'job_applicants';
+                }
+                else if($header == 3){
+                    $column = 'job_date';
+                }
+                else if($header == 6){
+                    $column = 'branch_no';
+                }
+                else{
+                    $column = 'job_id';
+                }
                 
-                $sql2 = "SELECT job_history_id,job_id, job_applicants, DATE_FORMAT(job_date, '%b, %d %Y') as applydate, DATEDIFF(CURDATE(),job_date) as datepassed, job_city, branch_no FROM $ft_tables WHERE job_status < 1 ORDER BY job_date $order ";
-                $applicant_query = "SELECT applicant_id, job_history_id FROM $applicants WHERE app_status < 4";
-                        $jobQuery = "SELECT * FROM job_req";
+                
+                
+                $sql2 = "SELECT job_history_id,job_id, job_applicants, DATE_FORMAT(job_date, '%b, %d %Y') as applydate, DATEDIFF(CURDATE(),job_date) as datepassed, job_city, branch_no FROM $ft_tables WHERE job_status < 1 ORDER BY $column $order ";
+                $jobQuery = "SELECT * FROM job_req";
                 $result3 = mysqli_query($connect, $sql2);
 
 
                 echo "<input class=\"form-control table\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
-                echo "<div>";
-                echo "<table class='col-sm-12'>
-                <tr>";
+                        echo "<div>";
+                        echo "<table class='col-sm-12'>
+                        <tr>";
                 $result3 = mysqli_query($connect, $sql2);
                 
-                $app_cnt_query = mysqli_query($connect, $applicant_query);
-                
-                          while($app_cnt_row = mysqli_fetch_array($app_cnt_query))
-                            {
-                              $app_job_hist = $app_cnt_row['job_history_id']; 
-                                $candidates[] = $app_job_hist; 
-                            }
+            
 
                 $result_job_id = mysqli_query($connect, $jobQuery);
-                    echo "<th>";
-                    //echo "<th class=\"mb-4\" style=\"font-size:16px;\">All Jobs";
-                    // echo "<hr>";
-                    // echo "<th class=\"mb-4\" style=\"font-size:16px;\">Candidates";
-                    // echo "<hr>";
-                    // echo "<th class=\"mb-4\" style=\"font-size:16px;\"><a id=\"date_btn\" data-item=\"0\" role=\"button\" type=\"button\" href=\"#\">Date Posted</a>";
-                    // echo "<hr>";  
-                    // echo "<th class=\"mb-4\" style=\"font-size:16px;\">Days Passed";
-                    // echo "<hr>"; 
-                    // echo "<th class=\"mb-4\" style=\"font-size:16px;\">Assignment Area";
-                    // echo "<hr>";   
-                    // echo "<th class=\"mb-4\" style=\"font-size:16px;\">Store Branch";
-                    // echo "<hr>";                           
-                    // echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
+                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">All Jobs";
+                    echo "<span data-header=\"1\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn2\"> </span>";
+                    echo "<hr>";
+                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Candidates";
+                    echo "<span data-header=\"2\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn2\"> </span>";
+                    echo "<hr>";
+                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Date Posted";
+                    echo "<span data-header=\"3\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn2\"> </span>";
+                    echo "<hr>";  
+                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Days Passed";
+                    echo "<span data-header=\"3\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn2\"> </span>";
+                    echo "<hr>"; 
+                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Assignment Area";
+                    echo "<hr>";   
+                    echo "<th class=\"mb-4\" style=\"font-size:16px;\">Store Branch";
+                    echo "<span data-header=\"6\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn2\"> </span>";
+                    echo "<hr>";                           
+                    echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
                     echo "<hr>";
                 echo "</th> </tr>";
 
@@ -136,7 +152,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Close</button>"."</td>";
                         echo "</tr>";
                        
-                        
+                        echo "</div>";
                         } //else end
                         
                     }// while end
@@ -146,7 +162,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                 
                     echo "</table>";
                     
-                    echo "</div>";
+                    
 
 			}
 			else{
@@ -155,6 +171,36 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 
 ?>
 
+
+<script>
+    $('.date_btn2').click(function() {
+          header = $(this).data('header');
+          sort = $('.date_btn').data('item');
+          //alert(header);
+          if(sort==0){
+            $('.date_btn').data('item',1);
+          }
+          else{
+            $('.date_btn').data('item',0);
+          }
+          
+          $.ajax({
+					type: 'POST',
+					url: "sorter.php",
+					data: {sort : sort, header : header},
+					success: function(data){
+            console.log(data);
+            $('#cont_recruit').html(data);
+            $('#init_display').attr("hidden",true);
+            //setTimeout(function(){ location.reload();window.top.location.reload(); }, 2000);
+					},
+					error: function(data){
+						alert('Error!');
+					}
+				});
+          
+        });
+</script>
 
 
 

@@ -63,7 +63,13 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         
 
                         echo "<input class=\"form-control table\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
-                        echo "<div>";
+
+                        ?>
+
+                                    <div id="init_display">
+
+                                    <?php 
+
                         echo "<table class='col-sm-12'>
                         <tr>";
                         $result3 = mysqli_query($connect, $dataQuery);
@@ -79,23 +85,28 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         $result_job_id = mysqli_query($connect, $jobQuery);
 
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">All Jobs";
+                            echo "<span data-header=\"1\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn\"> </span>";
                             echo "<hr>";
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Candidates";
+                            echo "<span data-header=\"2\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn\"> </span>";
                             echo "<hr>";
-                            echo "<th class=\"mb-4\" style=\"font-size:16px;\"><a id=\"date_btn\" data-item=\"0\" role=\"button\" type=\"button\" href=\"#\">Date Posted</a>";
+                            echo "<th class=\"mb-4\" style=\"font-size:16px;\">Date Posted";
+                            echo "<span data-header=\"3\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn\"> </span>";
                             echo "<hr>";  
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Days Passed";
+                            echo "<span data-header=\"3\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn\"> </span>";
                             echo "<hr>"; 
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Assignment Area";
                             echo "<hr>";   
                             echo "<th class=\"mb-4\" style=\"font-size:16px;\">Store Branch";
+                            echo "<span data-header=\"6\" data-item=\"0\" role=\"button\" type=\"button\" class=\"ml-2 fas fa-sort date_btn\"> </span>";
                             echo "<hr>";                           
                             echo "<th class=\"mb-4\"  style=\"font-size:16px;\">Actions";
                             echo "<hr>";
                         echo "</th> </tr>";
 
-                        
-                            echo "<div id=\"init_display\">";
+                                    
+
                             if($ft_tables=="job_history"){
                                 while($row = mysqli_fetch_array($result3))
                                 {
@@ -173,7 +184,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                     echo "<td>" . "<button type=\"submit\" class=\"btn btn-danger mb-2\" data-id=$job_hist_id  >Close</button>"."</td>";
                                     echo "</tr>";
 
-                                    echo "</div>";
+                                    
                                    
                                     
                                     } //else end
@@ -186,6 +197,12 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                                 echo "</table>";
                                 
                                 mysqli_close($connect);
+
+                                ?> 
+                                    
+                                  </div>
+                                    
+                                    <?php
                     
                         //end of display start of original
 						
@@ -466,24 +483,25 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 </script>
 
 <script>  
-        $('#date_btn').click(function() {
-          sort = $('#date_btn').data('item');
-          alert(sort);
+        $('.date_btn').click(function() {
+          header = $(this).data('header');
+          sort = $('.date_btn').data('item');
+          //alert(header);
           if(sort==0){
-            $('#date_btn').data('item',1);
+            $('.date_btn').data('item',1);
           }
           else{
-            $('#date_btn').data('item',0);
+            $('.date_btn').data('item',0);
           }
           
           $.ajax({
 					type: 'POST',
 					url: "sorter.php",
-					data: {sort : sort},
+					data: {sort : sort, header : header},
 					success: function(data){
             console.log(data);
-            $('#init_display').hide();
             $('#cont_recruit').html(data);
+            $('#init_display').attr("hidden",true);
             //setTimeout(function(){ location.reload();window.top.location.reload(); }, 2000);
 					},
 					error: function(data){
@@ -492,6 +510,7 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 				});
           
         });
+
 </script>
   
 
