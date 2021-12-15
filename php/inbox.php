@@ -351,7 +351,7 @@ $(function(){
         //     checked_ones.push($(this).data('id'));            
         // });  
         checked_ones = $('#records_view').val();
-        
+        //alert(checked_ones);
         $.ajax({
         type: "POST",
         url: "tools/inbox-view-tool.php",
