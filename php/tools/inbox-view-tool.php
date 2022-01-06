@@ -61,14 +61,17 @@ $connect = mysqli_connect($hostname, $username, $password, $databaseName);
                         //start of display
                         $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON $img_cond WHERE $condition";
 
-                        $imgQuery = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM applicant_details a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON (g.applicant_id = a.applicant_id AND g.img_class = 2) WHERE (a.app_status < 4 AND a.app_status > 0)";
+                        //previous query with image --
+                        // $imgQuery = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM applicant_details a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON (g.applicant_id = a.applicant_id AND g.img_class = 2) WHERE (a.app_status < 4 AND a.app_status > 0)";
+
+                        $certQuery = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_score,a.app_status,a.job_history_id,c.job_name,f.emp_status_name,g.img_dir FROM $ft_tables a JOIN job_history b ON a.job_history_id = b.job_history_id JOIN job_req c ON b.job_id = c.job_id JOIN app_add_details d ON d.applicant_id = a.applicant_id JOIN personality_types e ON e.per_id = d.per_id JOIN employment_status f ON f.emp_status_id = a.app_status JOIN images g ON $img_cond WHERE (a.has_cert > 0)";
 
                         echo "<input class=\"form-control\" id=\"ft_tables\" type=\"text\" name=\"ft_tables\" value=\"$ft_tables\"  hidden>";
                         echo "<div>";
                         echo "<table class='col-sm-12'>
                         <tr>";
                         if($passed_dropdown==4){                              
-                            $dataQuery2 = $imgQuery;
+                            $dataQuery2 = $certQuery;
                         }
                         $result3 = mysqli_query($connect, $dataQuery2);
 

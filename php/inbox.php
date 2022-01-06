@@ -43,6 +43,24 @@ $dataQuery2 = "SELECT a.applicant_id,a.firstname,a.lastname,d.init_score,e.w_sco
   <?php $priv = $_SESSION['acct_priv'];
 
 if($priv > 5){
+
+    //onload update value of has_cert
+    $onload_Query = "SELECT applicant_id FROM applicant_details WHERE app_status < 5";
+    $updateRec = mysqli_query($connect, $onload_Query);
+    while($updateRow = mysqli_fetch_array($updateRec))
+        {
+            //fetch ID 
+            $onload_ID = $updateRow['applicant_id'];
+            //update of has_cert value start
+            $has_CertQuery = "UPDATE applicant_details SET has_cert = (SELECT COUNT(*) FROM images WHERE img_class = 2 AND applicant_id = $onload_ID) WHERE app_status < 4 AND applicant_id = $onload_ID";
+            $has_CertConnect = new mysqli($hostname, $username, $password, $databaseName);
+            if ($has_CertConnect->query($has_CertQuery) === TRUE) {
+            } else {
+              echo "Error updating record: " . $has_CertConnect->error;
+            }
+        }
+
+
     echo "<div class=\"mr-2\"><b>Filters:</b></div>";
     echo "<div class=\"mr-2 form group-row\">";
     echo "<select id=\"records_view\">";
